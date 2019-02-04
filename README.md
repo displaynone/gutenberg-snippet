@@ -16,6 +16,8 @@ It also contains serveral 'starter blocks' with plenty of inline documentation.
 - run `npm run build` to compile the plugin assets
 
 ## Find and Replace
+@TODO: REFACTOR THIS (formatting is ugly)
+
 You can find and replace the following strings to make the plugin fit for your organisation:
 
 `Author Name`
