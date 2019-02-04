@@ -83,7 +83,7 @@ Note that there will be README.md files in most folders, describing the purpose 
 - `/vendor` — A place to put third party code libraries
 - `.babelrc` — The configuration for the webpack `babel` plugin
 - `.gitignore` — Tells Git not to commit certain files
-- `index.php` — **Start Here** - The 'Main' class, that loads all other classes.
+- **`index.php` — *Start Here* - The 'Main' class, that loads all other classes, functions and assets.**
 - `LICENSE` — The Open Source licence for the plugin
 - `package.json` — The npm dependancies for the project, and npm scripts. 
 - `README.md` — This file!
