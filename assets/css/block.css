@@ -1,0 +1,257 @@
+/**
+ * Block Styles
+ *
+ * The styles for the Block.
+ */
+/**
+ * Common scss
+ *
+ * This file is imported into each blocks style.scss
+ * and editor.scss to allow use of shared vars and mixins.
+ */
+/**
+ * Default vars
+ */
+/**
+ * WP Breakpoint vars
+ *
+ * https://github.com/WordPress/gutenberg/blob/master/assets/stylesheets/_breakpoints.scss
+ */
+/**
+ * WP Breakpoint mixins
+ *
+ * https://github.com/WordPress/gutenberg/blob/master/assets/stylesheets/_mixins.scss
+ */
+/**
+ * Layout mixin
+ *
+ * Flex and provide equal spacing between a list of
+ * items.
+ *
+ * NOTE: Any layout must be enclosed inside a
+ * parent with padding equal or greater than
+ * spacing.
+ */
+/**
+ * Visually Hidden
+ *
+ * Common declarations to hide without display:none.
+ */
+/**
+ * Background Image
+ *
+ * Common declarations for bg images.
+ */
+/**
+ * Reset List
+ */
+/**
+ * Wrap
+ */
+/**
+ * Clear floated elements.
+ */
+/**
+ * Dimmer mixin
+ *
+ * Mimics the behaviour of the native wp cover block
+ * dimmer class.
+ *
+ * NOTE: Other element need a z-index of 1 or more.
+ */
+/**
+ * On Event.
+ *
+ * Shorthand for anchor pseudo classes.
+ */
+.entry .entry-content a.mkdo-button,
+.editor-block-list__layout a.mkdo-button,
+a.mkdo-button.mkdo-button,
+.mkdo-button.mkdo-button {
+  padding: 7.5px 15px;
+  background-color: #1d1d1d;
+  line-height: 1.2em;
+  border-radius: 2px;
+  color: #FFFFFF;
+  text-align: center;
+  min-width: 100px;
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 14px;
+  font-family: sans-serif;
+  transition: all 300ms ease; }
+  .entry .entry-content a.mkdo-button:hover, .entry .entry-content a.mkdo-button:active,
+  .editor-block-list__layout a.mkdo-button:hover,
+  .editor-block-list__layout a.mkdo-button:active,
+  a.mkdo-button.mkdo-button:hover,
+  a.mkdo-button.mkdo-button:active,
+  .mkdo-button.mkdo-button:hover,
+  .mkdo-button.mkdo-button:active {
+    color: #EDEDED;
+    background-color: #505050;
+    text-decoration: none; }
+
+.editor-styles-wrapper .mce-content-body.mkdo-heading,
+.editor-styles-wrapper .mkdo-heading,
+h1.mkdo-heading:not(.site-title),
+h2.mkdo-heading,
+.mkdo-heading {
+  margin: 0;
+  line-height: 1.2em; }
+  .editor-styles-wrapper .mce-content-body.mkdo-heading:before, .editor-styles-wrapper .mce-content-body.mkdo-heading:after,
+  .editor-styles-wrapper .mkdo-heading:before,
+  .editor-styles-wrapper .mkdo-heading:after,
+  h1.mkdo-heading:not(.site-title):before,
+  h1.mkdo-heading:not(.site-title):after,
+  h2.mkdo-heading:before,
+  h2.mkdo-heading:after,
+  .mkdo-heading:before,
+  .mkdo-heading:after {
+    display: none; }
+
+.block-example {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #EDEDED;
+  position: relative;
+  overflow: hidden; }
+
+.block-example__title {
+  line-height: 1em;
+  margin: 0px;
+  padding: 0px; }
+
+.block-example__header {
+  position: relative; }
+
+.block-example__header-background {
+  height: 200px;
+  width: 100%;
+  z-index: 0; }
+  .block-example__header-background.has-background-dim {
+    position: relative;
+    background-color: #1d1d1d; }
+    .block-example__header-background.has-background-dim:before {
+      content: "";
+      background-color: inherit;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      opacity: .5;
+      z-index: 1; }
+    .block-example__header-background.has-background-dim-10:before {
+      opacity: 0.1; }
+    .block-example__header-background.has-background-dim-20:before {
+      opacity: 0.2; }
+    .block-example__header-background.has-background-dim-30:before {
+      opacity: 0.3; }
+    .block-example__header-background.has-background-dim-40:before {
+      opacity: 0.4; }
+    .block-example__header-background.has-background-dim-50:before {
+      opacity: 0.5; }
+    .block-example__header-background.has-background-dim-60:before {
+      opacity: 0.6; }
+    .block-example__header-background.has-background-dim-70:before {
+      opacity: 0.7; }
+    .block-example__header-background.has-background-dim-80:before {
+      opacity: 0.8; }
+    .block-example__header-background.has-background-dim-90:before {
+      opacity: 0.9; }
+    .block-example__header-background.has-background-dim-100:before {
+      opacity: 1; }
+
+.block-example__header-inner {
+  bottom: 0px;
+  left: 0px;
+  padding: 1em;
+  position: absolute;
+  width: 100%;
+  z-index: 1; }
+  .block-example__header-inner a {
+    color: inherit !important; }
+
+.block-example__main {
+  padding: 0 1em 1em 1em; }
+
+.block-example__cta .button {
+  font-size: .8em;
+  line-height: .8em !important;
+  height: 2.4em;
+  padding: .8em;
+  border-radius: .5em;
+  border-width: 0px;
+  box-shadow: none; }
+
+.meta {
+  clear: both;
+  float: none;
+  overflow: hidden;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center; }
+  .meta .meta__image {
+    border-radius: 100%;
+    height: 50px;
+    width: 50px; }
+  .meta .meta__list {
+    list-style-type: none;
+    font-size: .6em;
+    line-height: 1.5em;
+    padding: 0px;
+    margin: 0px; }
+    .meta .meta__list .meta__list-item {
+      margin: 0px 0px 0px 1.5em;
+      padding: 0px; }
+
+.categories {
+  list-style-type: none; }
+  .categories .categories__item {
+    display: inline-block;
+    margin-right: 5px; }
+
+.block-example--align-center .block-example__header {
+  text-align: center; }
+
+.block-example--align-center .block-example__main {
+  text-align: center; }
+
+.block-example--align-center .meta {
+  display: block; }
+  .block-example--align-center .meta .meta__list-item {
+    display: inline; }
+    .block-example--align-center .meta .meta__list-item .categories {
+      display: inline; }
+
+.block-example--align-right .block-example__header {
+  text-align: right; }
+
+.block-example--align-right .block-example__main {
+  text-align: right; }
+
+.block-example--align-right .meta {
+  -ms-flex-direction: row-reverse;
+      flex-direction: row-reverse; }
+  .block-example--align-right .meta .meta__list .meta__list-item {
+    margin: 0px 1.5em 0px 0px; }
+
+.block-example.is-style-image-left {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row; }
+  .block-example.is-style-image-left .block-example__header {
+    width: 100%; }
+
+.block-example.is-style-image-right {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row-reverse;
+      flex-direction: row-reverse; }
+  .block-example.is-style-image-right .block-example__header {
+    width: 100%; }
