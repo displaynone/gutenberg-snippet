@@ -19,43 +19,43 @@ It also contains serveral 'starter blocks' with plenty of inline documentation.
 You can find and replace the following strings to make the plugin fit for your organisation:
 
 `Author Name`  
-Author of the plugin, EG `Matt Watson` or `Make Do`.
+Author of the plugin, eg: `Matt Watson` or `Make Do`.
 
-`author-name@author.uri` (Author Email Address)   
-Author of the plugin, EG `matt@makedo.net` or `hello@makedo.net`.
+`author-name@author.uri`
+Author email address of the plugin, eg: `matt@makedo.net` or `hello@makedo.net`.
 
 `author_wordpress_username`  
-Comma seperated list of WordPress.org usernames to add them as contributors if/when the plugin is uploaded into the repository, EG: `mwtsn, davegreen, mkdo`.
+Comma seperated list of WordPress.org usernames to add them as contributors if/when the plugin is uploaded into the repository, eg: `mwtsn, davegreen, mkdo`.
 
 `https://author.uri`   
-Author URL, EG: `http://www.makedo.net`
+Author URL, eg: `http://www.makedo.net`
 
 `company_name`   
-Lowercase underscored short version of your company name, EG: `mkdo`.
+Lowercase underscored short version of your company name, eg: `mkdo`.
 
 `COMPANY_NAME`   
-Uppercase underscored short version of your company name, EG: `MKDO`.
+Uppercase underscored short version of your company name, eg: `MKDO`.
 
 `https://donate.uri`  
 Link to donate to the plugin (or remove this if not applicable).
 
 `Plugin Name`   
-Plugin name, EG `Block Starter Kit`.
+Plugin name, eg `Block Starter Kit`.
 
 `plugin_name`  
-Lowercase underscored short version of your plugin name, EG: `block_starter_kit` or `bsk`.
+Lowercase underscored short version of your plugin name, eg: `block_starter_kit` or `bsk`.
 
 `plugin-name`  
-Lowercase dashed short version of your plugin name, EG: `block-starter-kit` or `bsk`.
+Lowercase dashed short version of your plugin name, eg: `block-starter-kit` or `bsk`.
 
 `PLUGIN_NAME`  
-Uppercase underscored short version of your plugin name, EG: `BLOCK_STARTER_KIT` or `BSK`.
+Uppercase underscored short version of your plugin name, eg: `BLOCK_STARTER_KIT` or `BSK`.
 
 `Plugin Description.`   
 Description of your plugin. 
 
 `https://plugin.uri`  
-Link to the location of the plugin. EG. `https://github.com/mkdo/block-starter-kit`
+Link to the location of the plugin. eg. `https://github.com/mkdo/block-starter-kit`
 
 ## Folder Structure
 
