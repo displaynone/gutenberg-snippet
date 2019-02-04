@@ -28,7 +28,7 @@ Author email address of the plugin, eg: `matt@makedo.net` or `hello@makedo.net`.
 Comma seperated list of WordPress.org usernames to add them as contributors if/when the plugin is uploaded into the repository, eg: `mwtsn, davegreen, mkdo`.
 
 `https://author.uri`   
-Author URL, eg: `http://www.makedo.net`
+Author URL, eg: `http://www.makedo.net`.
 
 `company_name`   
 Lowercase underscored short version of your company name, eg: `mkdo`.
@@ -55,7 +55,7 @@ Uppercase underscored short version of your plugin name, eg: `BLOCK_STARTER_KIT`
 Description of your plugin. 
 
 `https://plugin.uri`  
-Link to the location of the plugin. eg. `https://github.com/mkdo/block-starter-kit`
+Link to the location of the plugin. eg. `https://github.com/mkdo/block-starter-kit`.
 
 ## Folder Structure
 
