@@ -16,48 +16,46 @@ It also contains serveral 'starter blocks' with plenty of inline documentation.
 - run `npm run build` to compile the plugin assets
 
 ## Find and Replace
-@TODO: REFACTOR THIS (formatting is ugly)
-
 You can find and replace the following strings to make the plugin fit for your organisation:
 
-`Author Name`
-Replace this with the Author of the plugin, EG `Matt Watson` or `Make Do`.
+`Author Name`  
+Author of the plugin, EG `Matt Watson` or `Make Do`.
 
-`author-name@author.uri` (Author Email Address)
-Replace this with the Author of the plugin, EG `matt@makedo.net` or `hello@makedo.net`.
+`author-name@author.uri` (Author Email Address)   
+Author of the plugin, EG `matt@makedo.net` or `hello@makedo.net`.
 
-`author_wordpress_username`
-Replace this with a comma seperated list of WordPress.org usernames to add them as contributors if/when the plugin is uploaded into the repository, EG: `mwtsn, davegreen, mkdo`.
+`author_wordpress_username`  
+Comma seperated list of WordPress.org usernames to add them as contributors if/when the plugin is uploaded into the repository, EG: `mwtsn, davegreen, mkdo`.
 
-`https://author.uri`
-Replace this with the Author URL, EG: `http://www.makedo.net`
+`https://author.uri`   
+Author URL, EG: `http://www.makedo.net`
 
-`company_name`
-Replace this with a lowercase underscored short version of your company name, EG: `mkdo`.
+`company_name`   
+Lowercase underscored short version of your company name, EG: `mkdo`.
 
-`COMPANY_NAME`
-Replace this with an uppercase underscored short version of your company name, EG: `MKDO`.
+`COMPANY_NAME`   
+Uppercase underscored short version of your company name, EG: `MKDO`.
 
-`https://donate.uri`
-Replace this with a link that people can use to donate to the plugin (or remove this if not applicable).
+`https://donate.uri`  
+Link to donate to the plugin (or remove this if not applicable).
 
-`Plugin Name`
-Replace this with the plugin name, EG `Block Starter Kit`.
+`Plugin Name`   
+Plugin name, EG `Block Starter Kit`.
 
-`plugin_name`
-Replace this with a lowercase underscored short version of your plugin name, EG: `block_starter_kit` or `bsk`.
+`plugin_name`  
+Lowercase underscored short version of your plugin name, EG: `block_starter_kit` or `bsk`.
 
-`plugin-name`
-Replace this with a lowercase dashed short version of your plugin name, EG: `block-starter-kit` or `bsk`.
+`plugin-name`  
+Lowercase dashed short version of your plugin name, EG: `block-starter-kit` or `bsk`.
 
-`PLUGIN_NAME`
-Replace this with an uppercase underscored short version of your plugin name, EG: `BLOCK_STARTER_KIT` or `BSK`.
+`PLUGIN_NAME`  
+Uppercase underscored short version of your plugin name, EG: `BLOCK_STARTER_KIT` or `BSK`.
 
-`Plugin Description.`
-Replace this with a description of your plugin. 
+`Plugin Description.`   
+Description of your plugin. 
 
-`https://plugin.uri`
-Replace this with a link to the location of the plugin. EG. `https://github.com/mkdo/block-starter-kit`
+`https://plugin.uri`  
+Link to the location of the plugin. EG. `https://github.com/mkdo/block-starter-kit`
 
 ## Folder Structure
 
