@@ -87,7 +87,7 @@ Note that there will be README.md files in most folders, describing the purpose 
 - `LICENSE` — The Open Source licence for the plugin
 - `package.json` — The npm dependancies for the project, and npm scripts. 
 - `README.md` — This file!
-- `README.md` — Starter WordPress plugin repository readme file.
+- `readme.txt` — Starter WordPress plugin repository readme file.
 - `webpack.config.js` — The webpack configruation for the project
 
 ## Credits
