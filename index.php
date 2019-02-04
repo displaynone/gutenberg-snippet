@@ -93,26 +93,29 @@ class Main {
 		/**
 		 * Load Text Domain
 		 */
-		load_plugin_textdomain( 'mkdo-blocks', false, COMPANY_NAME_PLUGIN_NAME_ROOT . '\languages' );
+		load_plugin_textdomain( 'plugin-name', false, COMPANY_NAME_PLUGIN_NAME_ROOT . '\languages' );
 
 		/**
 		 * Load assets.
 		 */
 
-		/**
-		 * Load Admin Assets.
-		 * 
-		 * Admin assets do not alter the Gutenberg blocks, but load in the editor. 
-		 * If you need to style an InspectorControl, this is the place you can do it.
-		 **/ 
+		// Load Front End Assets
+		add_action( 'wp_enqueue_scripts', array( $this, 'assets' ), 10 );
+
+		// Load Block Front and Back End Assets (can use a conditional to restrict load).
+		add_action( 'enqueue_block_assets', array( $this, 'block_assets' ) ); 
+
+		// Load WordPress Global Admin Assets
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_assets' ) );
 
 		// Load Block Editor Assets.
 		add_action( 'enqueue_block_editor_assets', array( $this, 'editor_assets' ) ); 
 
-		// Load Block Front and Back End Assets (can use a conditional to restrict load).
-		add_action( 'enqueue_block_assets', array( $this, 'assets' ) ); 
+		// Load Customizer Assets.
+		add_action( 'customize_preview_init', array( $this, 'customize_assets' ), 10 );
 
+		// Classic Editor Styles
+		add_action( 'admin_enqueue_scripts', array( $this, 'classic_editor_assets' ) );
 
 		/**
 		 * Setup Block Categories
@@ -122,22 +125,73 @@ class Main {
 		 */
 		add_action( 'block_categories', array( $this, 'block_categories' ), 10, 2 );
 
+		/**
+		 * Load Classes
+		 * 
+		 * Load all the other classes that this plugin needs to run.
+		 */
+		add_action( 'init', array( $this, 'includes' ) );
 	}
 
 	/**
-	 * Enqueue Admin Styles.
+	 * Front end Assets.
 	 * 
-	 * Assets to alter the editor (InspectorControls), does not impact front end block styles.
+	 * Assets that load on on the Front End of WordPress.
 	 * 
 	 * @since 1.0.0
 	 */
-	public function admin_assets() {
+	public function assets() {
 
-		$styles = '/assets/css/admin.css';
+		$scripts = '/assets/js/script.js';
+		$styles  = '/assets/css/style.css';
+
+		// Example: JavaScript will run on the Front End only.
+		if ( ! is_admin() ) {
+			// Enqueue JS.
+			wp_enqueue_script(
+				'plugin-name',
+				plugins_url( $scripts, __FILE__ ),
+				$this->dependencies,
+				filemtime( plugin_dir_path( __FILE__ ) . $scripts )
+			);
+		}
 
 		// Enqueue Styles.
 		wp_enqueue_style(
-			'mkdo-blocks-admin',
+			'plugin-name',
+			plugins_url( $styles, __FILE__ ),
+			[],
+			filemtime( plugin_dir_path( __FILE__ ) . $styles )
+		);
+	}
+
+	/**
+	 * Block Assets.
+	 * 
+	 * Assets that load on on the Gutenberg 'Save' and Admin view. If you want 
+	 * certain assets to only load on the front end, wrap them in a `is_admin` conditional.
+	 * 
+	 * @since 1.0.0
+	 */
+	public function block_assets() {
+
+		$scripts = '/assets/js/block.js';
+		$styles  = '/assets/css/block.css';
+
+		// Example: JavaScript will run on the Front End only.
+		if ( ! is_admin() ) {
+			// Enqueue JS.
+			wp_enqueue_script(
+				'plugin-name-block',
+				plugins_url( $scripts, __FILE__ ),
+				$this->dependencies,
+				filemtime( plugin_dir_path( __FILE__ ) . $scripts )
+			);
+		}
+
+		// Enqueue Styles.
+		wp_enqueue_style(
+			'plugin-name-block',
 			plugins_url( $styles, __FILE__ ),
 			[],
 			filemtime( plugin_dir_path( __FILE__ ) . $styles )
@@ -156,12 +210,12 @@ class Main {
 	 */
 	public function editor_assets() {
 
-		$scripts = '/assets/js/editor.js';
-		$styles  = '/assets/css/editor.css';
+		$scripts = '/assets/js/block_editor.js';
+		$styles  = '/assets/css/block_editor.css';
 
 		// Enqueue editor JS.
 		wp_enqueue_script(
-			'mkdo-blocks-editor',
+			'plugin-name-block-editor',
 			plugins_url( $scripts, __FILE__ ),
 			$this->dependencies,
 			filemtime( plugin_dir_path( __FILE__ ) . $scripts )
@@ -169,7 +223,7 @@ class Main {
 
 		// Enqueue edtior Styles.
 		wp_enqueue_style(
-			'mkdo-blocks-editor',
+			'plugin-name-block-editor',
 			plugins_url( $styles, __FILE__ ),
 			array(),
 			filemtime( plugin_dir_path( __FILE__ ) . $styles )
@@ -177,37 +231,78 @@ class Main {
 	}
 
 	/**
-	 * Block Assets.
+	 * Enqueue Admin Styles.
 	 * 
-	 * Assets that load on on the Gutenberg 'Save' and Admin view. If you want 
-	 * certain assets to only load on the front end, wrap them in a `is_admin` conditional.
+	 * Assets to alter the editor (IE InspectorControls), does not impact front end block styles.
 	 * 
 	 * @since 1.0.0
 	 */
-	public function assets() {
+	public function admin_assets() {
 
-		$scripts = '/assets/js/script.js';
-		$styles  = '/assets/css/style.css';
-
-		// Example: JavaScript will run on the Front End only.
-		if ( ! is_admin() ) {
-			// Enqueue JS.
-			wp_enqueue_script(
-				'mkdo-blocks',
-				plugins_url( $scripts, __FILE__ ),
-				$this->dependencies,
-				filemtime( plugin_dir_path( __FILE__ ) . $scripts )
-			);
-		}
+		$styles = '/assets/css/admin.css';
+		$scripts = '/assets/css/admin.js';
 
 		// Enqueue Styles.
 		wp_enqueue_style(
-			'mkdo-blocks',
+			'plugin-name-admin',
 			plugins_url( $styles, __FILE__ ),
 			[],
 			filemtime( plugin_dir_path( __FILE__ ) . $styles )
 		);
 
+		// Enqueue edtior JS.
+		wp_enqueue_script(
+			'plugin-name-admin',
+			plugins_url( $scripts, __FILE__ ),
+			array(),
+			filemtime( plugin_dir_path( __FILE__ ) . $styles )
+		);
+	}
+
+	/**
+	 * Customizer Assets.
+	 * 
+	 * Assets that load on on the Customizer.
+	 * 
+	 * @since 1.0.0
+	 */
+	public function customize_assets() {
+
+		$scripts = '/assets/js/customizer.js';
+		$styles  = '/assets/css/customizer.css';
+
+		// Enqueue Styles.
+		wp_enqueue_style(
+			'plugin-name-customizer',
+			plugins_url( $styles, __FILE__ ),
+			[],
+			filemtime( plugin_dir_path( __FILE__ ) . $styles )
+		);
+
+		// Enqueue JS.
+		wp_enqueue_script(
+			'plugin-name-customizer',
+			plugins_url( $scripts, __FILE__ ),
+			$this->dependencies,
+			filemtime( plugin_dir_path( __FILE__ ) . $scripts )
+		);
+	}
+
+	/**
+	 * Classic Edtior Assets.
+	 * 
+	 * CSS that loads in the classic editor only.
+	 * 
+	 * @since 1.0.0
+	 */
+	public function classic_editor_assets() {
+
+		$styles  = '/assets/css/classic-editor.css';
+
+		add_editor_style( 
+			plugins_url( $styles, __FILE__ ) . 
+			'?v=' . filemtime( plugin_dir_path( __FILE__ ) . $styles ) 
+		);
 	}
 
 	/**
@@ -231,6 +326,25 @@ class Main {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Include Classes
+	 */
+	public function includes() {
+
+		/** Example Code
+		 * 
+		 * require_once 'blocks/block-example/php/class-dynamic-example.php';
+		 * $dynamic_example = new Dynamic_Example();
+		 * $dynamic_example->run();
+		 */
+		
+		// Require Classes
+
+		// Instantiate Classes
+
+		// Run Code
 	}
 }
 

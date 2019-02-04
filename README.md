@@ -4,36 +4,91 @@ A boilerplate / starter kit for WordPress Editor (Gutenberg) blocks.
 ## Purpose
 This starter kit aims to give a 'keep only what you need' approach to block building that works for PHP only WordPress plugins, Block driven plugins, or a mixure of both.
 
-## How To Use
-This starter kit is full of useful code snippets and tutorials. Every folder will contain a README.md file that will contain an explanation and a usage example.
+The kit is full of useful code snippets and tutorials. Every folder will contain a README.md file that will contain an explanation and a usage example.
 
 It also contains serveral 'starter blocks' with plenty of inline documentation.
 
+## Getting Started
+
+- Download the plugin into your 'plugins' folder. 
+- cd into the folder
+- run `npm install` to install the project dependancies
+- run `npm run build` to compile the plugin assets
+
+## Find and Replace
+You can find and replace the following strings to make the plugin fit for your organisation:
+
+`Author Name`
+Replace this with the Author of the plugin, EG `Matt Watson` or `Make Do`.
+
+`author-name@author.uri` (Author Email Address)
+Replace this with the Author of the plugin, EG `matt@makedo.net` or `hello@makedo.net`.
+
+`author_wordpress_username`
+Replace this with a comma seperated list of WordPress.org usernames to add them as contributors if/when the plugin is uploaded into the repository, EG: `mwtsn, davegreen, mkdo`.
+
+`https://author.uri`
+Replace this with the Author URL, EG: `http://www.makedo.net`
+
+`company_name`
+Replace this with a lowercase underscored short version of your company name, EG: `mkdo`.
+
+`COMPANY_NAME`
+Replace this with an uppercase underscored short version of your company name, EG: `MKDO`.
+
+`https://donate.uri`
+Replace this with a link that people can use to donate to the plugin (or remove this if not applicable).
+
+`Plugin Name`
+Replace this with the plugin name, EG `Block Starter Kit`.
+
+`plugin_name`
+Replace this with a lowercase underscored short version of your plugin name, EG: `block_starter_kit` or `bsk`.
+
+`plugin-name`
+Replace this with a lowercase dashed short version of your plugin name, EG: `block-starter-kit` or `bsk`.
+
+`PLUGIN_NAME`
+Replace this with an uppercase underscored short version of your plugin name, EG: `BLOCK_STARTER_KIT` or `BSK`.
+
+`Plugin Description.`
+Replace this with a description of your plugin. 
+
+`https://plugin.uri`
+Replace this with a link to the location of the plugin. EG. `https://github.com/mkdo/block-starter-kit`
+
 ## Folder Structure
 
-The following details the structure of the plugin, and what each file / folder is for.
+The following details the high level structure of the plugin, and detail the purpose of each folder and file.
 
-@TODO:
+Note that there will be README.md files in most folders, describing the purpose of the code within. 
 
-- /assets
- - /css
- - /js
- - /src
-  - /js
-  - /scss
-- /blocks
- - /examples
-- /php
- - /examples
-- .babelrc
-- LICENSE
-- package.json
-- plugin.php
-- README.md
-- webpack.config.js
+- `/assets` — The assests folder. 
+ - `/images` — Images that are used within the blocks
+ - `/css` — The compiled CSS for the plugin
+ - `/js` — The compiled JavaScript for the plugin
+ - `/src` — The folder that contains the uncompiled (non block specific) JavaScript and CSS for the plugin
+  - `/js` — The uncompiled (non block specific) JavaScript for the plugin
+  - `/scss` — The uncompiled (non block specific) CSS for the plugin
+- `/blocks` — WordPress Editor (Gutenberg) Blocks
+ - `/examples` — Block based code examples with documentation
+- `deploy` - Tools to deploy to the WordPress.org plugin repository
+ - `/wp-org` — Assets for the WordPress plugin repository (header, icon and screenshots go here), uploaded with deploy script.
+ - `.deploy.sh` — Script to deploy to WordPress plugin repository.
+- `/docs` - Files and images that support the documentation
+- `/php` — Non block specific PHP plugin code
+ - `/examples` — Non block based code examples with documentation
+- `.babelrc` — The configuration for the webpack `babel` plugin
+- `.gitignore` — Tells Git not to commit certain files
+- `index.php` — **Start Here** - The 'Main' class, that loads all other classes.
+- `LICENSE` — The Open Source licence for the plugin
+- `package.json` — The npm dependancies for the project, and npm scripts. 
+- `README.md` — This file!
+- `README.md` — Starter WordPress plugin repository readme file.
+- `webpack.config.js` — The webpack configruation for the project
 
 ## Credits
 
-@TODO:
+Original webpack configuration (before modifications) from [Zac Gordon's Gutenberg Course](https://github.com/zgordon/gutenberg-course).
 
-Original webpack configuration from Zac Gordon (link needed).
+Original deploy script (before modifications) from [Garry Jones](https://github.com/GaryJones/wordpress-plugin-git-flow-svn-deploy).

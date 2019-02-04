@@ -48,7 +48,7 @@ const blockCSS = new ExtractTextPlugin( {
 } );
 
 const blockEditorCSS = new ExtractTextPlugin( {
-	filename: './assets/css/editor.css',
+	filename: './assets/css/block-editor.css',
 } );
 
 const blockAdminCSS = new ExtractTextPlugin( {
@@ -93,8 +93,8 @@ module.exports = {
 	 * This is compiled into editor.js in the assets/js folder.
 	 */ 
 	entry: {
-		'./assets/js/editor' : './blocks/index.js',
-		'./assets/js/script' : './blocks/script.js',
+		'./assets/js/editor' : './blocks/block-editor.js',
+		'./assets/js/block' : './blocks/block.js',
 	},
 	output: {
 		path: path.resolve( __dirname ),
