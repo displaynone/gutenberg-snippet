@@ -13,6 +13,8 @@ It also contains serveral 'starter blocks' with plenty of inline documentation.
 
 The following details the structure of the plugin, and what each file / folder is for.
 
+@TODO:
+
 - /assets
  - /css
  - /js
@@ -30,3 +32,8 @@ The following details the structure of the plugin, and what each file / folder i
 - README.md
 - webpack.config.js
 
+## Credits
+
+@TODO:
+
+Original webpack configuration from Zac Gordon (link needed).
