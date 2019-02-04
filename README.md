@@ -66,20 +66,21 @@ The following details the high level structure of the plugin, and detail the pur
 Note that there will be README.md files in most folders, describing the purpose of the code within. 
 
 - `/assets` — The assests folder. 
- - `/images` — Images that are used within the blocks
- - `/css` — The compiled CSS for the plugin
- - `/js` — The compiled JavaScript for the plugin
- - `/src` — The folder that contains the uncompiled (non block specific) JavaScript and CSS for the plugin
-  - `/js` — The uncompiled (non block specific) JavaScript for the plugin
-  - `/scss` — The uncompiled (non block specific) CSS for the plugin
+  - `/images` — Images that are used within the blocks
+   - `/css` — The compiled CSS for the plugin
+   - `/js` — The compiled JavaScript for the plugin
+   - `/src` — The folder that contains the uncompiled (non block specific) JavaScript and CSS for the plugin
+     - `/js` — The uncompiled (non block specific) JavaScript for the plugin
+     - `/scss` — The uncompiled (non block specific) CSS for the plugin
 - `/blocks` — WordPress Editor (Gutenberg) Blocks
- - `/examples` — Block based code examples with documentation
+  - `/examples` — Block based code examples with documentation
 - `deploy` - Tools to deploy to the WordPress.org plugin repository
- - `/wp-org` — Assets for the WordPress plugin repository (header, icon and screenshots go here), uploaded with deploy script.
- - `.deploy.sh` — Script to deploy to WordPress plugin repository.
+  - `/wp-org` — Assets for the WordPress plugin repository (header, icon and screenshots go here), uploaded with deploy script
+  - `.deploy.sh` — Script to deploy to WordPress plugin repository
 - `/docs` - Files and images that support the documentation
 - `/php` — Non block specific PHP plugin code
- - `/examples` — Non block based code examples with documentation
+  - `/examples` — Non block based code examples with documentation
+- `/vendor` — A place to put third party code libraries
 - `.babelrc` — The configuration for the webpack `babel` plugin
 - `.gitignore` — Tells Git not to commit certain files
 - `index.php` — **Start Here** - The 'Main' class, that loads all other classes.
