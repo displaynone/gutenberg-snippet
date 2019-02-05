@@ -25,7 +25,7 @@ class Uninstaller {
 	 * @since 1.0.0
 	 */
 	public function run() {
-        register_uninstall_hook( COMPANY_NAME_PLUGIN_NAME_ROOT, array( $this, 'uninstall' ) );
+        register_uninstall_hook( COMPANY_NAME_PLUGIN_NAME_ROOT, array( 'company_name\plugin_name\Uninstaller', 'uninstall' ) );
     }
 
     /**
@@ -35,8 +35,8 @@ class Uninstaller {
 	 *
 	 * @since 1.0.0
 	 */
-	public function uninstall() {
+	public static function uninstall() {
 		// Remove a transient to confirm uninstallation.
-		remove_transient( COMPANY_NAME_PLUGIN_NAME_PREFIX . '_activated' );
+		delete_transient( COMPANY_NAME_PLUGIN_NAME_PREFIX . '_activated' );
 	}
 }
