@@ -139,9 +139,6 @@ if [ -f ".gitmodules" ]
 		git config -f .gitmodules --get-regexp '^submodule\..*\.path$' |
 			while read path_key path
 			do
-				#url_key=$(echo $path_key | sed 's/\.path/.url/')
-				#url=$(git config -f .gitmodules --get "$url_key")
-				#git submodule add $url $path
 				echo "This is the submodule path: $path"
 				echo "The following line is the command to checkout the submodule."
 				echo "git submodule foreach --recursive 'git checkout-index -a -f --prefix=$SVNPATH/trunk/$path/'"
@@ -151,29 +148,37 @@ fi
 
 # Support for the /assets folder on the .org repo.
 echo "Moving assets"
+
 # Make the directory if it doesn't already exist
 mkdir -p $SVNPATH/assets/
+
+# Move wp-org files into /assets
 mv $SVNPATH/trunk/deploy/wp-org/* $SVNPATH/assets/
 svn add --force $SVNPATH/assets/
+
+# Delete the deploy folder from SVN
 svn delete --force $SVNPATH/trunk/deploy/
+
 # We dont want all of our toys in the SVN repo, so lets remove them:
 echo "Deleting unwanted assets"
-svn delete --force $SVNPATH/trunk/examples
-svn delete --force $SVNPATH/trunk/tools
-svn delete --force $SVNPATH/trunk/.DS_Store
+svn delete --force $SVNPATH/trunk/docs
 
 echo "Changing directory to SVN and committing to trunk"
 cd $SVNPATH/trunk/
+
 # Delete all files that should not now be added.
 svn status | grep -v "^.[ \t]*\..*" | grep "^\!" | awk '{print $2}' | xargs svn del
+
 # Add all new files that are not set to be ignored
 svn status | grep -v "^.[ \t]*\..*" | grep "^?" | awk '{print $2}' | xargs svn add
 svn commit --username=$SVNUSER -m "Preparing for $PLUGINVERSION release"
 
 echo "Updating WordPress plugin repo assets and committing"
 cd $SVNPATH/assets/
+
 # Delete all new files that are not set to be ignored
 svn status | grep -v "^.[ \t]*\..*" | grep "^\!" | awk '{print $2}' | xargs svn del
+
 # Add all new files that are not set to be ignored
 svn status | grep -v "^.[ \t]*\..*" | grep "^?" | awk '{print $2}' | xargs svn add
 svn update --accept mine-full $SVNPATH/assets/*
@@ -183,6 +188,7 @@ echo "Creating new SVN tag and committing it"
 cd $SVNPATH
 svn update --quiet $SVNPATH/tags/$PLUGINVERSION
 svn copy --quiet trunk/ tags/$PLUGINVERSION/
+
 # Remove assets and trunk directories from tag directory
 svn delete --force --quiet $SVNPATH/tags/$PLUGINVERSION/assets/wp-org
 svn delete --force --quiet $SVNPATH/tags/$PLUGINVERSION/trunk

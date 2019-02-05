@@ -130,7 +130,7 @@ class Main {
 		 * 
 		 * Load all the other classes that this plugin needs to run.
 		 */
-		add_action( 'init', array( $this, 'includes' ) );
+		$this->includes();
 	}
 
 	/**
@@ -332,19 +332,21 @@ class Main {
 	 * Include Classes
 	 */
 	public function includes() {
-
-		/** Example Code
-		 * 
-		 * require_once 'blocks/block-example/php/class-dynamic-example.php';
-		 * $dynamic_example = new Dynamic_Example();
-		 * $dynamic_example->run();
-		 */
 		
 		// Require Classes
+		require_once 'php/class-activator.php';
+		require_once 'php/class-deactivator.php';
+		require_once 'php/class-uninstaller.php';
 
 		// Instantiate Classes
+		$activator   = new Activator();
+		$deactivator = new Deactivator();
+		$uninstaller = new Uninstaller();
 
 		// Run Code
+		$activator->run();
+		$deactivator->run();
+		$uninstaller->run();
 	}
 }
 
