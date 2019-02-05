@@ -1,6 +1,8 @@
 # Block Starter Kit
 A boilerplate / starter kit for WordPress Editor (Gutenberg) blocks. 
 
+**Currently very much Work In Progress**
+
 ## Purpose
 This starter kit aims to give a 'keep only what you need' approach to block building that works for PHP only WordPress plugins, Block driven plugins, or a mixure of both.
 
