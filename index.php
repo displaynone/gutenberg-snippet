@@ -344,9 +344,9 @@ class Main {
 		$uninstaller = new Uninstaller();
 
 		// Run Code
-		$activator->run();
-		$deactivator->run();
-		$uninstaller->run();
+		$activator->run();   // Run code on activation.
+		$deactivator->run(); // Run code on deactivation.
+		$uninstaller->run(); // Run code on uninstallation.
 	}
 }
 
