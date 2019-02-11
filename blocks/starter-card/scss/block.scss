@@ -1,0 +1,162 @@
+@charset "UTF-8";
+
+/**
+ * Block Styles
+ *
+ * The styles for the Block.
+ */
+
+@import "../../../assets/src/scss/common/styles";
+
+.starter-card {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: $common-offwhite;
+	position: relative;
+	overflow: hidden;
+}
+
+.starter-card__title {
+	line-height: 1em;
+	margin: 0px;
+	padding: 0px;
+}
+
+.starter-card__header {
+	position: relative;
+}
+
+.starter-card__header-background {
+	height: 200px;
+	width: 100%;
+	z-index: 0;
+
+	&.has-background-dim {
+		@include dimmer;
+		background-color: $common-dark;
+	}
+}
+
+.starter-card__header-inner {
+	bottom: 0px;
+	left: 0px;
+	padding: 1em;
+	position: absolute;
+	width: 100%;
+	z-index: 1;
+
+	a {
+		color: inherit !important;
+	}
+}
+
+.starter-card__main {
+	padding: 0 1em 1em 1em;
+}
+
+.starter-card__cta {
+	.button {
+		font-size: .8em;
+		line-height: .8em !important;
+		height: 2.4em;
+		padding: .8em;
+		border-radius: .5em;
+		border-width: 0px;
+		box-shadow: none;
+	}
+}
+
+.meta {
+	clear:both;
+	float:none;
+	overflow: hidden;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+	.meta__image {
+		border-radius: 100%;
+		height: 50px;
+		width: 50px;
+	}
+
+	.meta__list {
+		list-style-type: none;
+		font-size: .6em;
+		line-height: 1.5em;
+		padding: 0px;
+		margin: 0px;
+
+		.meta__list-item {
+			margin: 0px 0px 0px 1.5em;
+			padding: 0px;
+		}
+	}
+}
+
+.categories {
+	list-style-type: none;
+
+	.categories__item {
+		display: inline-block;
+		margin-right: 5px;
+	}
+}
+
+.starter-card--align-center {
+	.starter-card__header {
+		text-align: center;
+	}
+
+	.starter-card__main {
+		text-align: center;
+	}
+
+	.meta { 
+		display: block;
+		.meta__list-item {
+			display: inline;
+
+			.categories {
+				display: inline;
+			}
+		}
+	}
+}
+
+.starter-card--align-right {
+	.starter-card__header {
+		text-align: right;
+	}
+
+	.starter-card__main {
+		text-align: right;
+	}
+
+	.meta { 
+		flex-direction: row-reverse;
+
+		.meta__list {	
+			.meta__list-item {
+				margin: 0px 1.5em 0px 0px;
+			}
+		}
+	}
+}
+
+.starter-card.is-style-image-left {
+	display: flex;
+	flex-direction: row;
+
+	.starter-card__header {
+		width: 100%;
+	}
+}
+
+.starter-card.is-style-image-right {
+	display: flex;
+	flex-direction: row-reverse;
+
+	.starter-card__header {
+		width: 100%;
+	}
+}

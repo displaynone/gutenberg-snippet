@@ -60,15 +60,15 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 101);
+/******/ 	return __webpack_require__(__webpack_require__.s = 106);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 101:
+/***/ 106:
 /***/ (function(module, exports) {
 
-eval("/**\n * Block\n * \n * This is where all the block front end code for our plugin goes. \n *///# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTAxLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vYmxvY2tzL2Jsb2NrLmpzPzYzNWYiXSwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBCbG9ja1xuICogXG4gKiBUaGlzIGlzIHdoZXJlIGFsbCB0aGUgYmxvY2sgZnJvbnQgZW5kIGNvZGUgZm9yIG91ciBwbHVnaW4gZ29lcy4gXG4gKi9cblxuXG4vLy8vLy8vLy8vLy8vLy8vLy9cbi8vIFdFQlBBQ0sgRk9PVEVSXG4vLyAuL2Jsb2Nrcy9ibG9jay5qc1xuLy8gbW9kdWxlIGlkID0gMTAxXG4vLyBtb2R1bGUgY2h1bmtzID0gMiJdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQSIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///101\n");
+eval("/**\n * Admin\n * \n * Global front end scripts for the plugin.\n *///# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTA2LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vYXNzZXRzL3NyYy9qcy9zY3JpcHQuanM/OWQxNiJdLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEFkbWluXG4gKiBcbiAqIEdsb2JhbCBmcm9udCBlbmQgc2NyaXB0cyBmb3IgdGhlIHBsdWdpbi5cbiAqL1xuXG5cbi8vLy8vLy8vLy8vLy8vLy8vL1xuLy8gV0VCUEFDSyBGT09URVJcbi8vIC4vYXNzZXRzL3NyYy9qcy9zY3JpcHQuanNcbi8vIG1vZHVsZSBpZCA9IDEwNlxuLy8gbW9kdWxlIGNodW5rcyA9IDMiXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///106\n");
 
 /***/ })
 

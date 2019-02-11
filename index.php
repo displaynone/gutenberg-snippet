@@ -210,8 +210,8 @@ class Main {
 	 */
 	public function editor_assets() {
 
-		$scripts = '/assets/js/block_editor.js';
-		$styles  = '/assets/css/block_editor.css';
+		$scripts = '/assets/js/block-editor.js';
+		$styles  = '/assets/css/block-editor.css';
 
 		// Enqueue editor JS.
 		wp_enqueue_script(
@@ -240,7 +240,7 @@ class Main {
 	public function admin_assets() {
 
 		$styles = '/assets/css/admin.css';
-		$scripts = '/assets/css/admin.js';
+		$scripts = '/assets/js/admin.js';
 
 		// Enqueue Styles.
 		wp_enqueue_style(

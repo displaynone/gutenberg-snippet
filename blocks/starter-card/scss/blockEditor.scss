@@ -1,0 +1,27 @@
+/**
+ * Editor Styles
+ *
+ * The Styles for the Block in the Edit View.
+ */
+
+@import "../../../assets/src/scss/common/styles";
+
+.wp-block-plugin-name-starter-card {
+	.starter-card__cta {
+		.editor-rich-text__tinymce[data-is-placeholder-visible=true] {
+			width: 120px;
+			height: 2.4em;
+		}
+	}
+
+	.starter-card__link-picker {
+		margin-top: .5em;
+		& > svg {
+			display: inline;
+			padding: 7px 7px 0 0;
+		}
+		& > .editor-url-input {
+			display: inline;
+		}
+	}
+}

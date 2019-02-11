@@ -43,6 +43,10 @@ const wplib = [
  * 
  * - admin.css is the CSS for the entire WordPress admin interface
  */
+const adminCSS = new ExtractTextPlugin( {
+	filename: './assets/css/admin.css',
+} );
+
 const blockCSS = new ExtractTextPlugin( {
 	filename: './assets/css/block.css',
 } );
@@ -51,10 +55,13 @@ const blockEditorCSS = new ExtractTextPlugin( {
 	filename: './assets/css/block-editor.css',
 } );
 
-const blockAdminCSS = new ExtractTextPlugin( {
-	filename: './assets/css/admin.css',
+const editorCSS = new ExtractTextPlugin( {
+	filename: './assets/css/editor.css',
 } );
 
+const styleCSS = new ExtractTextPlugin( {
+	filename: './assets/css/style.css',
+} );
 
 /**
  * ExtractTextPlugin Config.
@@ -93,8 +100,10 @@ module.exports = {
 	 * This is compiled into editor.js in the assets/js folder.
 	 */ 
 	entry: {
-		'./assets/js/editor' : './blocks/block-editor.js',
+		'./assets/js/block-editor' : './blocks/block-editor.js',
 		'./assets/js/block' : './blocks/block.js',
+		'./assets/js/admin' : './assets/src/js/admin.js',
+		'./assets/js/script' : './assets/src/js/script.js',
 	},
 	output: {
 		path: path.resolve( __dirname ),
@@ -131,22 +140,32 @@ module.exports = {
 			},
 			// Extract CSS from JS
 			{
+				test: /admin\.s?css$/,
+				use: adminCSS.extract( extractConfig ),
+			},
+			{
 				test: /block\.s?css$/,
 				use: blockCSS.extract( extractConfig ),
 			},
 			{
-				test: /editor\.s?css$/,
+				test: /blockEditor\.s?css$/,
 				use: blockEditorCSS.extract( extractConfig ),
 			},
 			{
-				test: /admin\.s?css$/,
-				use: blockAdminCSS.extract( extractConfig ),
+				test: /editor\.s?css$/,
+				use: editorCSS.extract( extractConfig ),
+			},
+			{
+				test: /style\.s?css$/,
+				use: styleCSS.extract( extractConfig ),
 			},
 		],
 	},
 	plugins: [
+		adminCSS,
 		blockCSS,
 		blockEditorCSS,
-		blockAdminCSS,
+		editorCSS,
+		styleCSS,
 	],
 };

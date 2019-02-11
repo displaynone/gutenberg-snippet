@@ -1,0 +1,56 @@
+{
+  "_from": "react-checkbox-list@0.0.2",
+  "_id": "react-checkbox-list@0.0.2",
+  "_inBundle": false,
+  "_integrity": "sha1-j0smJh9btGjbJRB+6768XWEiTMk=",
+  "_location": "/react-checkbox-list",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "react-checkbox-list@0.0.2",
+    "name": "react-checkbox-list",
+    "escapedName": "react-checkbox-list",
+    "rawSpec": "0.0.2",
+    "saveSpec": null,
+    "fetchSpec": "0.0.2"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-checkbox-list/-/react-checkbox-list-0.0.2.tgz",
+  "_shasum": "8f4b26261f5bb468db25107eebbebc5d61224cc9",
+  "_spec": "react-checkbox-list@0.0.2",
+  "_where": "/Users/mattwatson/Sites/mkdo-gutenblocks/build/wp-content/plugins/block-big-card-cta",
+  "author": {
+    "name": "Sony An",
+    "email": "sony.an@outlook.com"
+  },
+  "bugs": {
+    "url": "https://github.com/sonyan/react-checkbox-list/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "A bootstrap-style react component for checkbox list.",
+  "homepage": "https://github.com/sonyan/react-checkbox-list",
+  "keywords": [
+    "checkbox",
+    "checkboxlist",
+    "checkboxgroup",
+    "react",
+    "bootstrap",
+    "component"
+  ],
+  "license": "MIT",
+  "main": "CheckBoxList.js",
+  "name": "react-checkbox-list",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonyan/react-checkbox-list.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.2"
+}

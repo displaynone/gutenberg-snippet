@@ -28,5 +28,10 @@
 		"webpack": "^3.10.0"
 	},
 	"version": "1.0.0",
-	"license": "GPL-3.0"
+	"license": "GPL-3.0",
+	"dependencies": {
+		"create-react-class": "^15.6.3",
+		"datejs": "^1.0.0-rc3",
+		"prop-types": "^15.7.1"
+	}
 }

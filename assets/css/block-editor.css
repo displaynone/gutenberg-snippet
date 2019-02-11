@@ -1,0 +1,124 @@
+/**
+ * Editor Styles
+ *
+ * The Styles for the Block in the Edit View.
+ */
+/**
+ * Common scss
+ *
+ * This file is imported into each blocks style.scss
+ * and editor.scss to allow use of shared vars and mixins.
+ */
+/**
+ * Default vars
+ */
+/**
+ * WP Breakpoint vars
+ *
+ * https://github.com/WordPress/gutenberg/blob/master/assets/stylesheets/_breakpoints.scss
+ */
+/**
+ * WP Breakpoint mixins
+ *
+ * https://github.com/WordPress/gutenberg/blob/master/assets/stylesheets/_mixins.scss
+ */
+/**
+ * Layout mixin
+ *
+ * Flex and provide equal spacing between a list of
+ * items.
+ *
+ * NOTE: Any layout must be enclosed inside a
+ * parent with padding equal or greater than
+ * spacing.
+ */
+/**
+ * Visually Hidden
+ *
+ * Common declarations to hide without display:none.
+ */
+/**
+ * Background Image
+ *
+ * Common declarations for bg images.
+ */
+/**
+ * Reset List
+ */
+/**
+ * Wrap
+ */
+/**
+ * Clear floated elements.
+ */
+/**
+ * Dimmer mixin
+ *
+ * Mimics the behaviour of the native wp cover block
+ * dimmer class.
+ *
+ * NOTE: Other element need a z-index of 1 or more.
+ */
+/**
+ * On Event.
+ *
+ * Shorthand for anchor pseudo classes.
+ */
+.entry .entry-content a.mkdo-button,
+.editor-block-list__layout a.mkdo-button,
+a.mkdo-button.mkdo-button,
+.mkdo-button.mkdo-button {
+  padding: 7.5px 15px;
+  background-color: #1d1d1d;
+  line-height: 1.2em;
+  border-radius: 2px;
+  color: #FFFFFF;
+  text-align: center;
+  min-width: 100px;
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 14px;
+  font-family: sans-serif;
+  transition: all 300ms ease; }
+  .entry .entry-content a.mkdo-button:hover, .entry .entry-content a.mkdo-button:active,
+  .editor-block-list__layout a.mkdo-button:hover,
+  .editor-block-list__layout a.mkdo-button:active,
+  a.mkdo-button.mkdo-button:hover,
+  a.mkdo-button.mkdo-button:active,
+  .mkdo-button.mkdo-button:hover,
+  .mkdo-button.mkdo-button:active {
+    color: #EDEDED;
+    background-color: #505050;
+    text-decoration: none; }
+
+.editor-styles-wrapper .mce-content-body.mkdo-heading,
+.editor-styles-wrapper .mkdo-heading,
+h1.mkdo-heading:not(.site-title),
+h2.mkdo-heading,
+.mkdo-heading {
+  margin: 0;
+  line-height: 1.2em; }
+  .editor-styles-wrapper .mce-content-body.mkdo-heading:before, .editor-styles-wrapper .mce-content-body.mkdo-heading:after,
+  .editor-styles-wrapper .mkdo-heading:before,
+  .editor-styles-wrapper .mkdo-heading:after,
+  h1.mkdo-heading:not(.site-title):before,
+  h1.mkdo-heading:not(.site-title):after,
+  h2.mkdo-heading:before,
+  h2.mkdo-heading:after,
+  .mkdo-heading:before,
+  .mkdo-heading:after {
+    display: none; }
+
+.wp-block-plugin-name-starter-card .starter-card__cta .editor-rich-text__tinymce[data-is-placeholder-visible=true] {
+  width: 120px;
+  height: 2.4em; }
+
+.wp-block-plugin-name-starter-card .starter-card__link-picker {
+  margin-top: .5em; }
+  .wp-block-plugin-name-starter-card .starter-card__link-picker > svg {
+    display: inline;
+    padding: 7px 7px 0 0; }
+  .wp-block-plugin-name-starter-card .starter-card__link-picker > .editor-url-input {
+    display: inline; }
