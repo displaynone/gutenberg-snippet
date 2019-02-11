@@ -16,7 +16,8 @@
 
 .starter-card .starter-card__cta .editor-rich-text__tinymce {
   min-width: 120px;
-  min-height: 2.4em; }
+  min-height: 2.4em;
+  text-align: center; }
 
 .starter-card .starter-card__cta .editor-rich-text__tinymce[data-is-placeholder-visible=true] {
   width: 120px;

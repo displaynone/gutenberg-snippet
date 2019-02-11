@@ -26,12 +26,10 @@
   background-color: #EDEDED;
   position: relative;
   overflow: hidden; }
-  .starter-card .block-library-button__inline-link {
-    display: inline-block; }
-    .starter-card .block-library-button__inline-link > svg,
-    .starter-card .block-library-button__inline-link > div,
-    .starter-card .block-library-button__inline-link > button {
-      display: inline; }
+  .starter-card.hentry .starter-card__main .entry-summary {
+    margin: 0px;
+    max-width: 100%;
+    padding: 0px; }
 
 .starter-card__title {
   line-height: 1em;
@@ -100,12 +98,6 @@
   border-radius: .5em;
   border-width: 0px;
   box-shadow: none; }
-
-.categories {
-  list-style-type: none; }
-  .categories .categories__item {
-    display: inline-block;
-    margin-right: 5px; }
 
 .starter-card--align-center .starter-card__header {
   text-align: center; }

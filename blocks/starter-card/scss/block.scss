@@ -27,12 +27,14 @@ $block-color-primary : #EDEDED;
 	position: relative;
 	overflow: hidden;
 
-	.block-library-button__inline-link {
-		display: inline-block;
-		& > svg,
-		& > div,
-		& > button {
-			display: inline;
+	// Override the theme microformat styles.
+	&.hentry {
+		.starter-card__main {
+			.entry-summary {
+				margin: 0px;
+				max-width: 100%;
+				padding: 0px;
+			}
 		}
 	}
 }
@@ -87,15 +89,7 @@ $block-color-primary : #EDEDED;
 	}
 }
 
-.categories {
-	list-style-type: none;
-
-	.categories__item {
-		display: inline-block;
-		margin-right: 5px;
-	}
-}
-
+// Alignments
 .starter-card--align-center {
 	.starter-card__header {
 		text-align: center;
@@ -116,6 +110,7 @@ $block-color-primary : #EDEDED;
 	}
 }
 
+// Card Styles
 .starter-card.is-style-image-left {
 	display: flex;
 	flex-direction: row;

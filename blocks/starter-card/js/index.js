@@ -78,7 +78,13 @@ export default registerBlockType( 'plugin-name/starter-card', {
 		align: true,
 	},
 
-	// Create custom style variations for the block.
+	/**
+	 * Styles
+	 * 
+	 * Create custom style variations for the block. These are passed as automatically 
+	 * generated classes, which you can use to style the block. You can then access these
+	 * via the block 'Change Block Type' control.
+	 */
 	styles: [
 		{ name: 'image-top', label: __( 'Image Top', 'plugin-name' ), isDefault: true  },
 		{ name: 'image-left', label: __( 'Image Left', 'plugin-name' ) },
