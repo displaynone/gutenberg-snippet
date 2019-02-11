@@ -10,7 +10,6 @@
  * With webpack, we import the SCSS into the JS so that it can be parsed.
  * Dont worry, these will be compiled into their respective CSS files.
  */
-import '../scss/admin.scss';       // Global admin styles
 import '../scss/blockEditor.scss'; // Block editor styles
 import '../scss/block.scss';       // Block styles
 
@@ -44,7 +43,7 @@ const { Fragment }          = wp.element;
 const { __ }                = wp.i18n; // Localization
 
 /**
- * Register secure block
+ * Register Block
  */
 export default registerBlockType( 'plugin-name/starter-card', {
 
@@ -89,7 +88,12 @@ export default registerBlockType( 'plugin-name/starter-card', {
 	// Import the attributes
 	attributes,
 
-	// Edit view
+	/**
+	 * Edit
+	 * 
+	 * If we were doing something with an API we would use withSelect here, and use slightly
+	 * different syntax, but we are not in this example.
+	 */
 	edit: props => {
 
 		/**
@@ -158,6 +162,7 @@ export default registerBlockType( 'plugin-name/starter-card', {
 		 * Functions for this Component.
 		 */
 		const onChangeLinkLabel = linkLabel => { setAttributes( { linkLabel } ) };
+		const onChangeLinkURL   = linkURL => { setAttributes( { linkURL } ) };
 		const onChangeSummary   = summary => { setAttributes( { summary } ) };
 		const onChangeTitle     = title => { setAttributes( { title } ) };
 
@@ -170,15 +175,28 @@ export default registerBlockType( 'plugin-name/starter-card', {
 			backgroundColor: headerBackgroundColor,
 			color: headerForegroundColor,
 		};
+
 		if ( imageURL && 'video' !== imageType ) {
 			headerStyles.backgroundImage = `url( ${ imageURL } )`;
 		}
 
+		/**
+		 * Return 
+		 * 
+		 * Here is where we return our JSX. Note that we are returning an array.
+		 * We are passing in:
+		 * 
+		 * - InspectorControls
+		 * - BlockControls
+		 * - Edit View
+		 * 
+		 * Note how we pass props to our custom components.
+		 */
 		return [
 			<Inspector { ...{ setAttributes, ...props, onChangeImageID, onRemoveImageID } }/>,
 			<Tools { ...{ setAttributes, ...props, onChangeImageID, onRemoveImageID } }/>,
 			<article 
-				className={ classnames( className, 'starter-card', 'starter-card--align-' + textAlignment ) } 
+				className={ classnames( className, 'starter-card', 'starter-card--align-' + textAlignment, 'h-entry', 'hentry' ) } 
 				textAlign={ textAlignment }
 				role="article"
 			>
@@ -189,7 +207,40 @@ export default registerBlockType( 'plugin-name/starter-card', {
 						color: headerForegroundColor,
 					} }
 				>
+				{/**
+				  * OR and AND
+				  * 
+				  * JSX only allows us to use turnary operators. Put simply:
+				  * 
+				  * OR: { condition ? ( <div></div> ) : ( <div></div> ) }
+				  * 
+				  * Sometimes you don't want the else part of the or (:) in which
+				  * case you can write:
+				  * 
+				  * { condition && <div></div> }
+				  * 
+				  * Which will only display the JSX if the condition is met!
+				  */}
 				{ ! imageURL ? (
+					<Fragment>
+					{/**
+					   * Fragment
+					   * 
+					   * JSX needs JavaScript to have an outer HTML tag as a wrapper. 
+					   * We could use </div>, but <Fragment> is a good way to do this
+					   * without outputing an element.
+					   * 
+					   * This one is needed to allow these comments!
+					   */}
+					{/**
+					   * MediaPlaceholder
+					   * 
+					   * If we are placing content over the header, we cannot use this,
+					   * as the z-index gets pushed back (see the Header Title section).
+					   * 
+					   * But if we have noting blocking it, this is our preferred way to
+					   * set an image in a block.
+					   */}
 					<MediaPlaceholder
 						icon={ 'format-image' }
 						className={ className }
@@ -200,28 +251,48 @@ export default registerBlockType( 'plugin-name/starter-card', {
 						onSelect={ onChangeImageID }
 						accept="image/*"
 					/>
-				) : (
-					<Fragment>
-					{/**
-					   * JSX needs JavaScript to have an outer HTML tag as a wrapper. 
-					   * We could use </div>, but <Fragment> is a good way to do this
-					   * without outputing an element.
-					   * 
-					   * Also other than as an example, this one isn't really needed.
-					   */}
-					
-						<div 
-							className={ classnames( headerImageClass, 'starter-card__header-background' ) }
-							style={ headerStyles }
-						>
-						</div>
 					</Fragment>
+				) : (
+					<div 
+						className={ classnames( headerImageClass, 'starter-card__header-background' ) }
+						style={ headerStyles }
+					>
+					</div>
 				) }
+				{/**
+					* Header Title
+					*
+					* If we want to have the title in the header, we can do so with
+					* this code. Note however that the media picker will not work, so 
+					* one of the alternatives can be used.
+					* 
+					* <div class="starter-card__header-inner">
+					* 	<RichText
+					*		tagName="h2"
+					*		className={ 'starter-card__title p-name entry-title' }
+					*		placeholder={ __( 'Title', 'starter-card' ) }
+					*		keepPlaceholderOnFocus
+					*		onChange={ onChangeTitle }
+					*		style={ { color: headerForegroundColor } }
+					*		value={ title }
+					* 	/>
+					* </div>
+					*/}
 				</header>
 				<div class="starter-card__main">
+					{/**
+					   * RichText
+					   * 
+					   * If you are using multiline, as per summary, make sure
+					   * that your attribute is set to an array, and you also
+					   * have a corosponding area in the save view.
+					   * 
+					   * Rather than being saved into an attribute, the content is
+					   * saved directly to the HTML of the block.
+					   */}
 					<RichText
 						tagName="h2"
-						className={ 'starter-card__title' }
+						className={ 'starter-card__title p-name entry-title' }
 						placeholder={ __( 'Title', 'starter-card' ) }
 						keepPlaceholderOnFocus
 						onChange={ onChangeTitle }
@@ -230,7 +301,7 @@ export default registerBlockType( 'plugin-name/starter-card', {
 					<RichText
 						tagName="div"
 						multiline="p"
-						className={ 'starter-card__summary' }
+						className={ 'starter-card__summary p-summary entry-summary' }
 						placeholder={ __( 'Summary', 'plugin-name' ) }
 						keepPlaceholderOnFocus
 						onChange={ onChangeSummary }
@@ -238,9 +309,17 @@ export default registerBlockType( 'plugin-name/starter-card', {
 					/>
 					{ ( isSelected || ( linkLabel && linkURL ) ) &&
 					<div class="starter-card__cta">
+						{/**
+					      * Button
+					      * 
+						  * A link formatted as a button. Note that we are passing
+						  * formattingControls={ [] } into our RichText control.
+						  * 
+						  * We don't want people to apply HTML formatting to the button.
+					      */}
 						<RichText
 							tagName="a"
-							className={ 'button button--primary' }
+							className={ 'button button--primary u-url' }
 							placeholder={ __( 'Button Text', 'plugin-name' ) }
 							keepPlaceholderOnFocus
 							style={ { 
@@ -251,6 +330,13 @@ export default registerBlockType( 'plugin-name/starter-card', {
 							value={ linkLabel }
 							formattingControls={ [] }
 						/>
+						{/**
+					     * Link Picker 
+					     * 
+						 * We find it best to use the same elements that are native in 
+						 * the WordPress core controls. Here is how the Link Picker is
+						 * Setup in the button control.
+					     */}
 						{ isSelected &&
 							<form
 								className="block-library-button__inline-link"
@@ -258,7 +344,7 @@ export default registerBlockType( 'plugin-name/starter-card', {
 								<Dashicon icon="admin-links" />
 								<URLInput
 									value={ linkURL }
-									onChange={ ( linkURL ) => setAttributes( { linkURL } ) }
+									onChange={ onChangeLinkURL }
 								/>
 								<IconButton icon="editor-break" label={ __( 'Apply' ) } type="submit" />
 							</form>
@@ -270,7 +356,14 @@ export default registerBlockType( 'plugin-name/starter-card', {
 		];
 	},
 
-	// Save view
+	/**
+	 * Save
+	 * 
+	 * It is possible to render the save view in PHP. We are not in this example though.
+	 * 
+	 * We pass in the props we need for output. Which should not be as many as in the 
+	 * Edit View.  
+	 */
 	save: props => {
 
 		const {
@@ -289,6 +382,21 @@ export default registerBlockType( 'plugin-name/starter-card', {
 			className, 
 		} = props;
 
+		/**
+		 * Variables
+		 * 
+		 * We will need to recreate some of the more dynamic variables, such 
+		 * as inline styles, so these are rendered correctly on the front end.
+		 * 
+		 * There should be no functions or setting of attributes here though. 
+		 * (We will leave front end React for another day).
+		 */
+
+		/**
+		 * Dim Ratio.
+		 * 
+		 * Calculates the image opacity, and adds it into the 'headerImageClass' variable.
+		 */
 		const headerImageClass = classnames(
 			className,
 			dimmerRatioToClass( imageTransparency ),
@@ -297,6 +405,11 @@ export default registerBlockType( 'plugin-name/starter-card', {
 			}
 		);
 
+		/**
+		 * Header Styles.
+		 * 
+		 * Set it here, so we don't cause an error with an empty image if one is not set.
+		 */
 		let headerStyles = {
 			backgroundColor: headerBackgroundColor,
 			color: headerForegroundColor,
@@ -305,9 +418,25 @@ export default registerBlockType( 'plugin-name/starter-card', {
 			headerStyles.backgroundImage = `url( ${ imageURL } )`;
 		}
 
+		/**
+		 * Return 
+		 * 
+		 * For the most part this should be plain HTML with a few
+		 * { variables } scattered around.
+		 *
+		 * Microformats
+		 * 
+		 * Note that we are using the following microformats:
+		 * 
+		 * - h-entry: http://microformats.org/wiki/h-entry
+		 * - hentry: http://microformats.org/wiki/hentry
+		 * 
+		 * As this is an article, in theory we could use https://schema.org/Article
+		 * but that is more appropriate for a full page article, not a component.
+		 */
 		return (
 			<article 
-				className={ classnames( className, 'starter-card', 'starter-card--align-' + textAlignment ) } 
+				className={ classnames( className, 'starter-card', 'starter-card--align-' + textAlignment, 'h-entry', 'hentry' ) } 
 				textAlign={ textAlignment }
 				role="article"
 			>
@@ -325,16 +454,33 @@ export default registerBlockType( 'plugin-name/starter-card', {
 					>
 					</div>
 				}
+				{/**
+					* Header Title
+					*
+					* If we want to have the title in the header, we can do so with
+					* this code. Note however that the media picker will not work, so 
+					* one of the alternatives can be used.
+					* 
+					* <div class="starter-card__header-inner">
+					*	<h2 
+					*		class="starter-card__title p-name entry-title"
+					*		style={ {
+					*			color: headerForegroundColor,
+					*		} }
+					*	>
+					*	{ title }
+					*	</h2>
+					* </div>
+					*/}
 				</header>
 				<div class="starter-card__main">
-				<h2 class="starter-card__title">{ title }</h2>
-					<div class="starter-card__summary">
+					<h2 class="starter-card__title p-name entry-title">{ title }</h2>
+					<div class="starter-card__summary p-summary entry-summary">
 						{ summary }
 					</div>
-					
 					{ ( linkLabel && linkURL ) &&
 					<div class="starter-card__cta">
-						<a class="button button--primary" href={ linkURL }>{ linkLabel }</a>
+						<a class="button button--primary u-url" href={ linkURL }>{ linkLabel }</a>
 					</div>
 					}
 				</div>

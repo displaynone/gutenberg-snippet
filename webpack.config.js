@@ -35,13 +35,6 @@ const wplib = [
 
 /**
  * Extract CSS from JS.
- * 
- * - block.css is the CSS for the block that runs in the editor 
- *   and the front end
- * 
- * - editor.css is the CSS for the block editor only
- * 
- * - admin.css is the CSS for the entire WordPress admin interface
  */
 const adminCSS = new ExtractTextPlugin( {
 	filename: './assets/css/admin.css',
@@ -100,9 +93,9 @@ module.exports = {
 	 * This is compiled into editor.js in the assets/js folder.
 	 */ 
 	entry: {
+		'./assets/js/admin' : './assets/src/js/admin.js',
 		'./assets/js/block-editor' : './blocks/block-editor.js',
 		'./assets/js/block' : './blocks/block.js',
-		'./assets/js/admin' : './assets/src/js/admin.js',
 		'./assets/js/script' : './assets/src/js/script.js',
 	},
 	output: {

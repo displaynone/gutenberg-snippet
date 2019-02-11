@@ -11,6 +11,20 @@
   .starter-card .block-library-button__inline-link > button {
     display: inline; }
 
+.starter-card .starter-card__title.editor-rich-text__tinymce[data-is-placeholder-visible=true]::before {
+  display: none; }
+
+.starter-card .starter-card__cta .editor-rich-text__tinymce {
+  min-width: 120px;
+  min-height: 2.4em; }
+
 .starter-card .starter-card__cta .editor-rich-text__tinymce[data-is-placeholder-visible=true] {
   width: 120px;
   height: 2.4em; }
+
+/**
+ * Inspector Controls
+ */
+.starter-card__image-select .components-button {
+  display: block;
+  margin-top: 1em; }
