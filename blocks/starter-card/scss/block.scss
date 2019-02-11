@@ -1,16 +1,28 @@
-@charset "UTF-8";
-
 /**
- * Block Styles
+ * Block
  *
  * The styles for the Block.
  */
 
-@import "../../../assets/src/scss/common/styles";
+/**
+ * Dependancies
+ *
+ * Import shared styles.
+ */
+
+@import '../../../assets/src/scss/common/mixin-dimmer';
+
+/**
+ * Variables
+ *
+ * The variables for the block.
+ */
+$block-color-overlay : #1d1d1d;
+$block-color-primary : #EDEDED;
 
 .starter-card {
 	font-family: Arial, Helvetica, sans-serif;
-	background-color: $common-offwhite;
+	background-color: $block-color-primary;
 	position: relative;
 	overflow: hidden;
 
@@ -41,7 +53,7 @@
 
 	&.has-background-dim {
 		@include dimmer;
-		background-color: $common-dark;
+		background-color: $block-color-overlay;
 	}
 }
 

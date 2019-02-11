@@ -1,31 +1,15 @@
+/**
+ * Attributes.
+ * 
+ * The block, and any components it uses will use these
+ * attributes to store data.
+ * 
+ * We break it into its own file, as otherwise the index file
+ * can become bloated, and we can easily see which attributes
+ * are available in each component if we extract the props at the 
+ * start of the component.
+ */
 const attributes = {
-    authorID: {
-        type: 'string',
-    },
-    authorImageURL: {
-        type: 'string',
-    },
-    authorName: {
-        type: 'string',
-    },
-    authorURL: {
-        type: 'string',
-    },
-    categoryIDs: {
-        type: 'array',
-        default: [],
-    },
-    categoryLayout: {
-        type: 'string',
-    },
-    categoryObjects: {
-        type: 'array',
-        default: [],
-    },
-    dynamiclyPopulate: {
-        type: 'bool',
-        default: true,
-    },
     headerBackgroundColor: {
         type: 'string',
     },
@@ -48,34 +32,11 @@ const attributes = {
     imageURL: {
         type: 'string',
     },
-    isLatestPost: {
-        type: 'bool',
-    },
-    isTitleInHeader: {
-        type: 'bool',
-    },
     linkLabel: {
         type: 'string',
     },
     linkURL: {
         type: 'string',
-    },
-    metaLayout: {
-        type: 'string',
-    },
-    postDateTime: {
-        type: 'string',
-    },
-    postID: {
-        type: 'string',
-    },
-    showGravatar: {
-        type: 'bool',
-        default: true,
-    },
-    skipPosts: {
-        type: 'string',
-        default: '0',
     },
     summary: {
         type: 'array',

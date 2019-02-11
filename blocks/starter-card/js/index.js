@@ -10,34 +10,30 @@
  * With webpack, we import the SCSS into the JS so that it can be parsed.
  * Dont worry, these will be compiled into their respective CSS files.
  */
-import '../scss/admin.scss';
-import '../scss/blockEditor.scss';
-import '../scss/block.scss';
+import '../scss/admin.scss';       // Global admin styles
+import '../scss/blockEditor.scss'; // Block editor styles
+import '../scss/block.scss';       // Block styles
 
 /**
  * Block Dependencies.
  */
 
-// Imported from WordPress
-import classnames from 'classnames';
-
 // From Block
-import attributes from "./attributes";
-import Tools from './tools';
-import Inspector from './inspector';
+import attributes from "./attributes"; // Attribute Registration
+import Inspector from './inspector';   // InspectorControls (Sidebar)
+import Tools from './tools';           // BlockControls (Toolbar)
 
 // From Common
-import dimRatioToClass from '../../../assets/src/js/common/dimRatio';
+import dimmerRatioToClass from '../../../assets/src/js/common/dimmerRatioToClass';
 
-/**
- * Internal Block Libraries
- */
+// Imported from WordPress
+import classnames from 'classnames'; // Enables us to concat classnames
+
+// Internal Block Libraries
 const { registerBlockType } = wp.blocks;
 const { 
 	Dashicon,
-	Icon,
 	IconButton,
-	Spinner,
 }                           = wp.components;
 const { 
 	MediaPlaceholder,
@@ -45,41 +41,71 @@ const {
 	URLInput,
 }                           = wp.editor;
 const { Fragment }          = wp.element;
-const { __ }                = wp.i18n;
+const { __ }                = wp.i18n; // Localization
 
 /**
  * Register secure block
  */
 export default registerBlockType( 'plugin-name/starter-card', {
-	title:       __( 'Card Starter', 'plugin-name' ),
+
+	// Set the title.
+	title: __( 'Starter Card', 'plugin-name' ),
+
+	// Set the description.
 	description: __( 'A starter block that provides useful boilerplating for card style blocks.', 'plugin-name' ),
-	category:   'starter-blocks',
+	
+	// Select a category.
+	category: 'starter-blocks', // Custom (see ./index.php)
+	// category:   'common',
+	// category:   'embed',
+	// category:   'formatting',
+	// category:   'layout',
+	// category:   'widgets',
+
+	// Set the icon.
 	icon: {
 		background: '#2cc795',    // Icon custom background colour
 		foreground: '#fff',       // Icon custom forground colour
-		src: 'welcome-write-blog' // WordPress Dashicon reference
+		src: 'welcome-write-blog' // WordPress Dashicon reference (we can pass an svg for custom icon)
 	},
-	keywords:   [
+	keywords:[
 		__( 'Starter' ),
 		__( 'Card' ),
 		__( 'Card Starter' ),
 	],
+
+	// Enable the align left / right / center controls in the toolbar.
 	supports: {
 		align: true,
 	},
+
+	// Create custom style variations for the block.
 	styles: [
 		{ name: 'image-top', label: __( 'Image Top', 'plugin-name' ), isDefault: true  },
 		{ name: 'image-left', label: __( 'Image Left', 'plugin-name' ) },
 		{ name: 'image-right', label: __( 'Image Right', 'plugin-name' ) },
 	],
+
+	// Import the attributes
 	attributes,
+
+	// Edit view
 	edit: props => {
 
+		/**
+		 * Extract Props
+		 * 
+		 * We could access props by typing props.attributes.name, or props.name.
+		 * However setting them up here gives us an easy reference of what we can
+		 * use in our component.
+		 */
 		const {
 			attributes: {
 				headerBackgroundColor,
 				headerForegroundColor,
 				imageTransparency,
+				imageAlt,
+				imageID,
 				imageType,
 				imageURL,
 				linkLabel,
@@ -96,10 +122,10 @@ export default registerBlockType( 'plugin-name/starter-card', {
 		/**
 		 * Dim Ratio.
 		 * 
-		 * Calculates the image opacity, and adds it into the 'classes' variable.
+		 * Calculates the image opacity, and adds it into the 'headerImageClass' variable.
 		 */
-		const classes = classnames(
-			dimRatioToClass( imageTransparency ),
+		const headerImageClass = classnames(
+			dimmerRatioToClass( imageTransparency ),
 			{ 'has-background-dim' : imageTransparency !== 0 }
 		);
 
@@ -179,11 +205,13 @@ export default registerBlockType( 'plugin-name/starter-card', {
 					{/**
 					   * JSX needs JavaScript to have an outer HTML tag as a wrapper. 
 					   * We could use </div>, but <Fragment> is a good way to do this
-					   * without outputing an element.	
+					   * without outputing an element.
+					   * 
+					   * Also other than as an example, this one isn't really needed.
 					   */}
 					
 						<div 
-							className={ classnames( classes, 'starter-card__header-background' ) }
+							className={ classnames( headerImageClass, 'starter-card__header-background' ) }
 							style={ headerStyles }
 						>
 						</div>
@@ -241,6 +269,8 @@ export default registerBlockType( 'plugin-name/starter-card', {
 			</article>
 		];
 	},
+
+	// Save view
 	save: props => {
 
 		const {
@@ -259,9 +289,9 @@ export default registerBlockType( 'plugin-name/starter-card', {
 			className, 
 		} = props;
 
-		const classes = classnames(
+		const headerImageClass = classnames(
 			className,
-			dimRatioToClass( imageTransparency ),
+			dimmerRatioToClass( imageTransparency ),
 			{
 				'has-background-dim' : imageTransparency !== 0,
 			}
@@ -290,7 +320,7 @@ export default registerBlockType( 'plugin-name/starter-card', {
 				>
 				{ imageURL &&
 					<div 
-						className={ classnames( classes, 'starter-card__header-background' ) }
+						className={ classnames( headerImageClass, 'starter-card__header-background' ) }
 						style={ headerStyles }
 					>
 					</div>
