@@ -116,6 +116,12 @@ h2.mkdo-heading,
   background-color: #EDEDED;
   position: relative;
   overflow: hidden; }
+  .starter-card .block-library-button__inline-link {
+    display: inline-block; }
+    .starter-card .block-library-button__inline-link > svg,
+    .starter-card .block-library-button__inline-link > div,
+    .starter-card .block-library-button__inline-link > button {
+      display: inline; }
 
 .starter-card__title {
   line-height: 1em;
@@ -185,30 +191,6 @@ h2.mkdo-heading,
   border-width: 0px;
   box-shadow: none; }
 
-.meta {
-  clear: both;
-  float: none;
-  overflow: hidden;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
-  -ms-flex-align: center;
-      align-items: center; }
-  .meta .meta__image {
-    border-radius: 100%;
-    height: 50px;
-    width: 50px; }
-  .meta .meta__list {
-    list-style-type: none;
-    font-size: .6em;
-    line-height: 1.5em;
-    padding: 0px;
-    margin: 0px; }
-    .meta .meta__list .meta__list-item {
-      margin: 0px 0px 0px 1.5em;
-      padding: 0px; }
-
 .categories {
   list-style-type: none; }
   .categories .categories__item {
@@ -221,24 +203,11 @@ h2.mkdo-heading,
 .starter-card--align-center .starter-card__main {
   text-align: center; }
 
-.starter-card--align-center .meta {
-  display: block; }
-  .starter-card--align-center .meta .meta__list-item {
-    display: inline; }
-    .starter-card--align-center .meta .meta__list-item .categories {
-      display: inline; }
-
 .starter-card--align-right .starter-card__header {
   text-align: right; }
 
 .starter-card--align-right .starter-card__main {
   text-align: right; }
-
-.starter-card--align-right .meta {
-  -ms-flex-direction: row-reverse;
-      flex-direction: row-reverse; }
-  .starter-card--align-right .meta .meta__list .meta__list-item {
-    margin: 0px 1.5em 0px 0px; }
 
 .starter-card.is-style-image-left {
   display: -ms-flexbox;

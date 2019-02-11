@@ -34,7 +34,9 @@ import dimRatioToClass from '../../../assets/src/js/common/dimRatio';
  */
 const { registerBlockType } = wp.blocks;
 const { 
+	Dashicon,
 	Icon,
+	IconButton,
 	Spinner,
 }                           = wp.components;
 const { 
@@ -89,7 +91,6 @@ export default registerBlockType( 'plugin-name/starter-card', {
 			className, 
 			setAttributes, 
 			isSelected,
-			posts,
 		} = props;
 
 		/**
@@ -147,20 +148,6 @@ export default registerBlockType( 'plugin-name/starter-card', {
 			headerStyles.backgroundImage = `url( ${ imageURL } )`;
 		}
 
-		/** 
-		 * Return Loading Screen.
-		 * 
-		 * If posts are empty, there is an error, so load a loading screen until the
-		 * promise is complete.
-		 */
-		if ( posts && ! posts.length ) {
-			return (
-				<p className={ className } >
-					<Spinner />
-					{ __( 'Loading Data', 'plugin-name' ) }
-				</p>
-			);
-		}
 		return [
 			<Inspector { ...{ setAttributes, ...props, onChangeImageID, onRemoveImageID } }/>,
 			<Tools { ...{ setAttributes, ...props, onChangeImageID, onRemoveImageID } }/>,
@@ -209,7 +196,6 @@ export default registerBlockType( 'plugin-name/starter-card', {
 						className={ 'starter-card__title' }
 						placeholder={ __( 'Title', 'starter-card' ) }
 						keepPlaceholderOnFocus
-						style={ { color: headerForegroundColor } }
 						onChange={ onChangeTitle }
 						value={ title }
 					/>
@@ -238,16 +224,16 @@ export default registerBlockType( 'plugin-name/starter-card', {
 							formattingControls={ [] }
 						/>
 						{ isSelected &&
-							<div class="starter-card__link-picker">
-								<Icon
-									icon="admin-links"
-									label="Link URL"
-								/>
+							<form
+								className="block-library-button__inline-link"
+								onSubmit={ ( event ) => event.preventDefault() }>
+								<Dashicon icon="admin-links" />
 								<URLInput
 									value={ linkURL }
-									onChange={ ( linkURL, post ) => setAttributes( { linkURL, linkLabel: (post && post.title) || '' } ) }
+									onChange={ ( linkURL ) => setAttributes( { linkURL } ) }
 								/>
-							</div>
+								<IconButton icon="editor-break" label={ __( 'Apply' ) } type="submit" />
+							</form>
 						}
 					</div>
 					}
@@ -259,8 +245,16 @@ export default registerBlockType( 'plugin-name/starter-card', {
 
 		const {
 			attributes: {
+				headerBackgroundColor,
+				headerForegroundColor,
 				imageTransparency,
+				imageType,
+				imageURL,
+				linkLabel,
+				linkURL,
 				summary,
+				title,
+				textAlignment,
 			},
 			className, 
 		} = props;
@@ -273,11 +267,47 @@ export default registerBlockType( 'plugin-name/starter-card', {
 			}
 		);
 
+		let headerStyles = {
+			backgroundColor: headerBackgroundColor,
+			color: headerForegroundColor,
+		};
+		if ( imageURL && 'video' !== imageType ) {
+			headerStyles.backgroundImage = `url( ${ imageURL } )`;
+		}
+
 		return (
-			<article className={ classnames( classes, 'starter-card' ) }  role="article">
-			<div class="starter-card__summary">
-				{ summary }
-			</div>
+			<article 
+				className={ classnames( className, 'starter-card', 'starter-card--align-' + textAlignment ) } 
+				textAlign={ textAlignment }
+				role="article"
+			>
+				<header 
+					class="starter-card__header"
+					style={ {
+						backgroundColor: headerBackgroundColor,
+						color: headerForegroundColor,
+					} }
+				>
+				{ imageURL &&
+					<div 
+						className={ classnames( classes, 'starter-card__header-background' ) }
+						style={ headerStyles }
+					>
+					</div>
+				}
+				</header>
+				<div class="starter-card__main">
+				<h2 class="starter-card__title">{ title }</h2>
+					<div class="starter-card__summary">
+						{ summary }
+					</div>
+					
+					{ ( linkLabel && linkURL ) &&
+					<div class="starter-card__cta">
+						<a class="button button--primary" href={ linkURL }>{ linkLabel }</a>
+					</div>
+					}
+				</div>
 			</article>
 		);
 	},
