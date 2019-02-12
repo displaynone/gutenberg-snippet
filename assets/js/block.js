@@ -60,15 +60,15 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 104);
+/******/ 	return __webpack_require__(__webpack_require__.s = 108);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 104:
+/***/ 108:
 /***/ (function(module, exports) {
 
-eval("/**\n * Block\n * \n * This is where all the block front end code for our plugin goes. \n *///# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTA0LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vYmxvY2tzL2Jsb2NrLmpzPzYzNWYiXSwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBCbG9ja1xuICogXG4gKiBUaGlzIGlzIHdoZXJlIGFsbCB0aGUgYmxvY2sgZnJvbnQgZW5kIGNvZGUgZm9yIG91ciBwbHVnaW4gZ29lcy4gXG4gKi9cblxuXG4vLy8vLy8vLy8vLy8vLy8vLy9cbi8vIFdFQlBBQ0sgRk9PVEVSXG4vLyAuL2Jsb2Nrcy9ibG9jay5qc1xuLy8gbW9kdWxlIGlkID0gMTA0XG4vLyBtb2R1bGUgY2h1bmtzID0gMiJdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQSIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///104\n");
+eval("/**\n * Block\n * \n * This is where all the block front end code for our plugin goes. \n *///# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTA4LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vYmxvY2tzL2Jsb2NrLmpzPzYzNWYiXSwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBCbG9ja1xuICogXG4gKiBUaGlzIGlzIHdoZXJlIGFsbCB0aGUgYmxvY2sgZnJvbnQgZW5kIGNvZGUgZm9yIG91ciBwbHVnaW4gZ29lcy4gXG4gKi9cblxuXG4vLy8vLy8vLy8vLy8vLy8vLy9cbi8vIFdFQlBBQ0sgRk9PVEVSXG4vLyAuL2Jsb2Nrcy9ibG9jay5qc1xuLy8gbW9kdWxlIGlkID0gMTA4XG4vLyBtb2R1bGUgY2h1bmtzID0gMiJdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQSIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///108\n");
 
 /***/ })
 

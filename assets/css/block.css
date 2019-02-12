@@ -126,3 +126,27 @@
       flex-direction: row-reverse; }
   .starter-card.is-style-image-right .starter-card__header {
     width: 100%; }
+/**
+ * Block
+ *
+ * The styles for the Block.
+ */
+/**
+ * Dependancies
+ *
+ * Import shared styles.
+ */
+.starter-opening-hours__table {
+  text-align: left;
+  width: 100%; }
+
+.starter-opening-hours__column {
+  width: 25%; }
+
+.starter-opening-hours__column--day {
+  width: 50%; }
+
+.starter-opening-hours-row {
+  width: 100%; }
+  .starter-opening-hours-row .starter-opening-hours__column {
+    display: inline-block; }

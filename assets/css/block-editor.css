@@ -29,3 +29,10 @@
 .starter-card__image-select .components-button {
   display: block;
   margin-top: 1em; }
+/**
+ * Editor Styles
+ *
+ * The Styles for the Block in the Edit View.
+ */
+.starter-opening-hours .starter-opening-hours__title.editor-rich-text__tinymce[data-is-placeholder-visible=true]::before {
+  display: none; }

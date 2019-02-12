@@ -276,7 +276,7 @@ export default registerBlockType( 'plugin-name/starter-card', {
 					* 	<RichText
 					*		tagName="h2"
 					*		className={ 'starter-card__title p-name entry-title' }
-					*		placeholder={ __( 'Title', 'starter-card' ) }
+					*		placeholder={ __( 'Title', 'plugin-name' ) }
 					*		keepPlaceholderOnFocus
 					*		onChange={ onChangeTitle }
 					*		style={ { color: headerForegroundColor } }
@@ -299,7 +299,7 @@ export default registerBlockType( 'plugin-name/starter-card', {
 					<RichText
 						tagName="h2"
 						className={ 'starter-card__title p-name entry-title' }
-						placeholder={ __( 'Title', 'starter-card' ) }
+						placeholder={ __( 'Title', 'plugin-name' ) }
 						keepPlaceholderOnFocus
 						onChange={ onChangeTitle }
 						value={ title }

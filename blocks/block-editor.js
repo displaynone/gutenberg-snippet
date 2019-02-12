@@ -9,3 +9,5 @@ import './i18n.js';
 
 // Import blocks
 import './starter-card/js/index';
+import './starter-opening-hours/js/index';
+// import './starter-opening-hours/js/row';
