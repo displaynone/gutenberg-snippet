@@ -136,6 +136,18 @@
  *
  * Import shared styles.
  */
+/* https://snook.ca/archives/html_and_css/hiding-content-for-accessibility */
+.visually-hidden,
+.visuallyhidden,
+.sr-only {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px); }
+
 .starter-opening-hours__table {
   text-align: left;
   width: 100%; }

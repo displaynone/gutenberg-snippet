@@ -179,17 +179,15 @@ export default registerBlockType( 'plugin-name/starter-opening-hours', {
 						*/}
 						<tr>
 							<td colspan="3">
-							{/**
 								<InnerBlocks
 									template={ [
 										[ 'plugin-name/starter-opening-hours-row' ],
 									] }
-									templateLock={false}
+									templateLock={ isSelected ? false : true }
 									allowedBlocks={ [
 										[ 'plugin-name/starter-opening-hours-row' ],
 									] }
 								/>
-							*/}
 							</td>
 						</tr>
 					</tbody>

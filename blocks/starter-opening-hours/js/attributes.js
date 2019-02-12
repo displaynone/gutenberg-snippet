@@ -17,7 +17,7 @@ const attributes = {
     additionalInformation: {
         type: 'array',
         source: 'children',
-	    selector: '.starter-opening-hours__additional-information',
+	    selector: '.starter-opening-hours__additional-information-text',
     },
     additionalInformationTitle: {
         type: 'string',
