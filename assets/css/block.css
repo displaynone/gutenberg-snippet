@@ -148,6 +148,9 @@
   /* IE6, IE7 */
   clip: rect(1px, 1px, 1px, 1px); }
 
+.starter-opening-hours {
+  font-family: Arial, Helvetica, sans-serif; }
+
 .starter-opening-hours__table {
   text-align: left;
   width: 100%; }
@@ -161,4 +164,5 @@
 .starter-opening-hours-row {
   width: 100%; }
   .starter-opening-hours-row .starter-opening-hours__column {
-    display: inline-block; }
+    display: inline-block;
+    padding-right: 1em; }

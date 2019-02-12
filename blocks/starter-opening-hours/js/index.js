@@ -183,7 +183,7 @@ export default registerBlockType( 'plugin-name/starter-opening-hours', {
 									template={ [
 										[ 'plugin-name/starter-opening-hours-row' ],
 									] }
-									templateLock={ isSelected ? false : true }
+									templateLock={ false }
 									allowedBlocks={ [
 										[ 'plugin-name/starter-opening-hours-row' ],
 									] }

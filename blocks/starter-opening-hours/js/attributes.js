@@ -34,6 +34,10 @@ const attributes = {
         type: 'string',
         default: __( 'Open', 'plugin-name' ),
     },
+    day: {
+        type: 'string',
+        default: 'monday',
+    },
     title: {
         type: 'string',
         default: __( 'Opening Hours', 'plugin-name' ),

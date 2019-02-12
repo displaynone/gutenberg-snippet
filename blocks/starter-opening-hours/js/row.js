@@ -16,10 +16,10 @@ import classnames from 'classnames'; // Enables us to concat classnames
 
 // Internal Block Libraries
 const { registerBlockType } = wp.blocks;
-const {
-	InnerBlocks,
-	RichText,
-}                           = wp.editor;
+const { 
+	TimePicker,             // TODO: https://www.npmjs.com/package/react-time-picker
+	SelectControl 
+}                           = wp.components;
 const { __ }                = wp.i18n; // Localization
 
 /**
@@ -81,19 +81,32 @@ export default registerBlockType( 'plugin-name/starter-opening-hours-row', {
 		 */
 		const {
 			attributes: {
-				additionalInformation,
+				day,
 			},
 			className, 
+			currentDate,
 			setAttributes, 
 			isSelected,
 		} = props;
+
+		const optionsDay = [
+			{ label: 'Monday', value: 'monday' },
+			{ label: 'Tuesday', value: 'tuesday' },
+			{ label: 'Wednesday', value: 'wednesday' },
+			{ label: 'Thursday', value: 'thursday' },
+			{ label: 'Friday', value: 'friday' },
+			{ label: 'Saturday', value: 'saturday' },
+			{ label: 'Sunday', value: 'sunday' },
+		];
+
+		const formattedDay = day ? day.charAt(0).toUpperCase() + day.slice(1) : '';
 
 		/**
 		 * Functions.
 		 * 
 		 * Functions for this Component.
 		 */
-		const onChangeAdditionalInformation      = additionalInformation => { setAttributes( { additionalInformation } ) };
+		const onChangeDay = day => { setAttributes( { day } ) };
 
 		/**
 		 * Return 
@@ -106,10 +119,23 @@ export default registerBlockType( 'plugin-name/starter-opening-hours-row', {
 				className={ classnames( className, 'starter-opening-hours-row' ) } 
 			>
 				<div class="starter-opening-hours__column starter-opening-hours__column--day">
-					TEST
+					{ isSelected ? (
+					<SelectControl
+						label="Day"
+						onChange={ onChangeDay }
+						options={ optionsDay }
+						value={ day }
+					/>
+					) : ( 
+						<span>{ formattedDay }</span>	
+					) }
 				</div>
 				<div class="starter-opening-hours__column starter-opening-hours__column--open">
-					TEST
+					<TimePicker
+						currentTime={ currentDate }
+						onChange={ console.log( 'test') }
+						is12Hour={ false }
+					/>
 				</div>
 				<div class="starter-opening-hours__column starter-opening-hours__column--closed">
 					TEST
@@ -130,10 +156,12 @@ export default registerBlockType( 'plugin-name/starter-opening-hours-row', {
 
 		const {
 			attributes: {
-				additionalInformation,
+				day,
 			},
 			className, 
 		} = props;
+
+		const formattedDay = day ? day.charAt(0).toUpperCase() + day.slice(1) : '';
 
 		/**
 		 * Return 
@@ -146,7 +174,7 @@ export default registerBlockType( 'plugin-name/starter-opening-hours-row', {
 				className={ classnames( className, 'starter-opening-hours-row' ) } 
 			>
 				<td>
-					TEST
+					{ formattedDay }
 				</td>
 				<td>
 					TEST
