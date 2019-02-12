@@ -8,18 +8,19 @@
  * Block Dependencies.
  */
 
+// External
+import React, { Component } from 'react';
+import TimePicker from 'react-time-picker';
+
 // From Block
-import attributes from "./attributes"; // Attribute Registration
+import attributes from './attributes'; // Attribute Registration
 
 // Imported from WordPress
 import classnames from 'classnames'; // Enables us to concat classnames
 
 // Internal Block Libraries
 const { registerBlockType } = wp.blocks;
-const { 
-	TimePicker,             // TODO: https://www.npmjs.com/package/react-time-picker
-	SelectControl 
-}                           = wp.components;
+const { SelectControl }     = wp.components;
 const { __ }                = wp.i18n; // Localization
 
 /**
@@ -132,9 +133,8 @@ export default registerBlockType( 'plugin-name/starter-opening-hours-row', {
 				</div>
 				<div class="starter-opening-hours__column starter-opening-hours__column--open">
 					<TimePicker
-						currentTime={ currentDate }
 						onChange={ console.log( 'test') }
-						is12Hour={ false }
+						value={ '10:00' }
 					/>
 				</div>
 				<div class="starter-opening-hours__column starter-opening-hours__column--closed">

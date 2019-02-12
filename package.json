@@ -32,6 +32,7 @@
 	"dependencies": {
 		"create-react-class": "^15.6.3",
 		"datejs": "^1.0.0-rc3",
-		"prop-types": "^15.7.1"
+		"prop-types": "^15.7.1",
+		"react-time-picker": "^3.2.0"
 	}
 }

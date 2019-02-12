@@ -18,7 +18,7 @@ import '../scss/block.scss';       // Block styles
  */
 
 // From Block
-import attributes from "./attributes"; // Attribute Registration
+import attributes from './attributes'; // Attribute Registration
 
 // Imported from WordPress
 import classnames from 'classnames'; // Enables us to concat classnames

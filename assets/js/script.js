@@ -60,15 +60,15 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 110);
+/******/ 	return __webpack_require__(__webpack_require__.s = 150);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 110:
+/***/ 150:
 /***/ (function(module, exports) {
 
-eval("/**\n * Admin\n * \n * Global front end scripts for the plugin.\n *///# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTEwLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vYXNzZXRzL3NyYy9qcy9zY3JpcHQuanM/OWQxNiJdLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEFkbWluXG4gKiBcbiAqIEdsb2JhbCBmcm9udCBlbmQgc2NyaXB0cyBmb3IgdGhlIHBsdWdpbi5cbiAqL1xuXG5cbi8vLy8vLy8vLy8vLy8vLy8vL1xuLy8gV0VCUEFDSyBGT09URVJcbi8vIC4vYXNzZXRzL3NyYy9qcy9zY3JpcHQuanNcbi8vIG1vZHVsZSBpZCA9IDExMFxuLy8gbW9kdWxlIGNodW5rcyA9IDMiXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///110\n");
+eval("/**\n * Admin\n * \n * Global front end scripts for the plugin.\n *///# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiMTUwLmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vYXNzZXRzL3NyYy9qcy9zY3JpcHQuanM/OWQxNiJdLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEFkbWluXG4gKiBcbiAqIEdsb2JhbCBmcm9udCBlbmQgc2NyaXB0cyBmb3IgdGhlIHBsdWdpbi5cbiAqL1xuXG5cbi8vLy8vLy8vLy8vLy8vLy8vL1xuLy8gV0VCUEFDSyBGT09URVJcbi8vIC4vYXNzZXRzL3NyYy9qcy9zY3JpcHQuanNcbi8vIG1vZHVsZSBpZCA9IDE1MFxuLy8gbW9kdWxlIGNodW5rcyA9IDMiXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///150\n");
 
 /***/ })
 

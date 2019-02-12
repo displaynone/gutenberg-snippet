@@ -18,7 +18,7 @@ import '../scss/block.scss';       // Block styles
  */
 
 // From Block
-import attributes from "./attributes"; // Attribute Registration
+import attributes from './attributes'; // Attribute Registration
 import Inspector from './inspector';   // InspectorControls (Sidebar)
 import Tools from './tools';           // BlockControls (Toolbar)
 
