@@ -261,9 +261,13 @@ export default registerBlockType( 'plugin-name/starter-opening-hours', {
 			<section 
 				className={ classnames( className, 'starter-opening-hours' ) } 
 			>
-				<h2 class="starter-opening-hours__title">
-					{ title }
-				</h2>
+				{ ( title ) ? (
+					<h2 class="starter-opening-hours__title">
+						{ title }
+					</h2>
+				) : (
+					<h2 class="starter-opening-hours__title visuallyhidden">{ __( 'Opening Hours', 'plugin-name' ) }</h2>
+				) }
 
 				<table class="starter-opening-hours__table">
 					<thead>
@@ -284,14 +288,20 @@ export default registerBlockType( 'plugin-name/starter-opening-hours', {
 					</tbody>
 				</table>
 				
-				<div class="starter-opening-hours__additional-information">
-					<h3 class="starter-opening-hours__additional-title">
-						{ additionalInformationTitle }
-					</h3>
-					<div class="starter-opening-hours__additional-text">
-						{ additionalInformation }
+				{ ( additionalInformationTitle || additionalInformation ) && 
+					<div class="starter-opening-hours__additional-information">
+						{ ( additionalInformationTitle ) &&
+							<h3 class="starter-opening-hours__additional-title">
+								{ additionalInformationTitle }
+							</h3>
+						}
+						{ ( additionalInformation && additionalInformation.length > 0  ) &&
+							<div class="starter-opening-hours__additional-text">
+								{ additionalInformation }
+							</div>
+						}
 					</div>
-				</div>
+				}
 			</section>
 		);
 	},
