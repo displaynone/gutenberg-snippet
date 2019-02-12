@@ -8,9 +8,8 @@
  * Block Dependencies.
  */
 
-// External
-import React, { Component } from 'react';
-import TimePicker from 'react-time-picker';
+// Shared Comonents
+import TimePicker from '../../components/time-picker/index';
 
 // From Block
 import attributes from './attributes'; // Attribute Registration
@@ -20,7 +19,10 @@ import classnames from 'classnames'; // Enables us to concat classnames
 
 // Internal Block Libraries
 const { registerBlockType } = wp.blocks;
-const { SelectControl }     = wp.components;
+const { 
+	BaseControl,
+	SelectControl,
+}                           = wp.components;
 const { __ }                = wp.i18n; // Localization
 
 /**
@@ -62,8 +64,19 @@ export default registerBlockType( 'plugin-name/starter-opening-hours-row', {
 	// Only allow this as a child of the following blocks.
 	parent: [ 'plugin-name/starter-opening-hours' ],
 
-	// Import the attributes
-	attributes,
+	// Set the attribes
+	attributes: {
+		closed: {
+			type: 'string',
+		},
+		day: {
+			type: 'string',
+			default: 'monday',
+		},
+		open: {
+			type: 'string',
+		},
+	},
 
 	/**
 	 * Edit
@@ -83,31 +96,38 @@ export default registerBlockType( 'plugin-name/starter-opening-hours-row', {
 		const {
 			attributes: {
 				day,
+				open,
+				closed,
 			},
 			className, 
-			currentDate,
 			setAttributes, 
 			isSelected,
 		} = props;
 
 		const optionsDay = [
-			{ label: 'Monday', value: 'monday' },
-			{ label: 'Tuesday', value: 'tuesday' },
-			{ label: 'Wednesday', value: 'wednesday' },
-			{ label: 'Thursday', value: 'thursday' },
-			{ label: 'Friday', value: 'friday' },
-			{ label: 'Saturday', value: 'saturday' },
-			{ label: 'Sunday', value: 'sunday' },
+			{ label: __( 'Monday', 'plugin-name' ), value: 'monday' },
+			{ label: __( 'Tuesday', 'plugin-name' ), value: 'tuesday' },
+			{ label: __( 'Wednesday', 'plugin-name' ), value: 'wednesday' },
+			{ label: __( 'Thursday', 'plugin-name' ), value: 'thursday' },
+			{ label: __( 'Friday', 'plugin-name' ), value: 'friday' },
+			{ label: __( 'Saturday', 'plugin-name' ), value: 'saturday' },
+			{ label: __( 'Sunday', 'plugin-name' ), value: 'sunday' },
 		];
 
-		const formattedDay = day ? day.charAt(0).toUpperCase() + day.slice(1) : '';
+		const dateEnd         = moment( '0000-01-01 17:00' );
+		const dateStart       = moment( '0000-01-01 09:00' );
+		const formattedClosed = closed ? moment( closed ).format( 'kk:mm' ) : dateEnd.format( 'kk:mm' );
+		const formattedDay    = day ? day.charAt(0).toUpperCase() + day.slice(1) : '';
+		const formattedOpen   = open ? moment( open ).format( 'kk:mm' )  : dateStart.format( 'kk:mm' );
 
 		/**
 		 * Functions.
 		 * 
 		 * Functions for this Component.
 		 */
-		const onChangeDay = day => { setAttributes( { day } ) };
+		const onChangeClosed  = closed => { setAttributes( { closed } ) };
+		const onChangeDay     = day => { setAttributes( { day } ) };
+		const onChangeOpen    = open => { setAttributes( { open } ) };
 
 		/**
 		 * Return 
@@ -132,13 +152,36 @@ export default registerBlockType( 'plugin-name/starter-opening-hours-row', {
 					) }
 				</div>
 				<div class="starter-opening-hours__column starter-opening-hours__column--open">
-					<TimePicker
-						onChange={ console.log( 'test') }
-						value={ '10:00' }
-					/>
+					{ isSelected ? (
+					<BaseControl
+						label="Opening Time"
+					>
+						<TimePicker
+							currentTime={ dateStart }
+							is12Hour={ false }
+							onChange={ onChangeOpen }
+							value={ open }
+						/>
+					</BaseControl>
+					) : ( 
+						formattedOpen
+					) }
 				</div>
 				<div class="starter-opening-hours__column starter-opening-hours__column--closed">
-					TEST
+					{ isSelected ? (
+					<BaseControl
+						label="Closing Time"
+					>
+						<TimePicker
+							currentTime={ dateEnd }
+							is12Hour={ false }
+							onChange={ onChangeClosed }
+							value={ closed }
+						/>
+					</BaseControl>
+					) : ( 
+						formattedClosed
+					) }
 				</div>
 			</div>
 		);
@@ -157,11 +200,17 @@ export default registerBlockType( 'plugin-name/starter-opening-hours-row', {
 		const {
 			attributes: {
 				day,
+				open,
+				closed,
 			},
 			className, 
 		} = props;
 
-		const formattedDay = day ? day.charAt(0).toUpperCase() + day.slice(1) : '';
+		const dateEnd         = moment( '0000-01-01 17:00' );
+		const dateStart       = moment( '0000-01-01 09:00' );
+		const formattedClosed = closed ? moment( closed ).format( 'kk:mm' ) : dateEnd.format( 'kk:mm' );
+		const formattedDay    = day ? day.charAt(0).toUpperCase() + day.slice(1) : '';
+		const formattedOpen   = open ? moment( open ).format( 'kk:mm' )  : dateStart.format( 'kk:mm' );
 
 		/**
 		 * Return 
@@ -177,10 +226,10 @@ export default registerBlockType( 'plugin-name/starter-opening-hours-row', {
 					{ formattedDay }
 				</td>
 				<td>
-					TEST
+					{ formattedOpen }
 				</td>
 				<td>
-					TEST
+					{ formattedClosed }
 				</td>
 			</tr>
 		);

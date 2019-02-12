@@ -30,9 +30,10 @@
 	"version": "1.0.0",
 	"license": "GPL-3.0",
 	"dependencies": {
+		"babel-plugin-lodash": "^3.3.4",
 		"create-react-class": "^15.6.3",
 		"datejs": "^1.0.0-rc3",
-		"prop-types": "^15.7.1",
-		"react-time-picker": "^3.2.0"
+		"moment": "^2.24.0",
+		"prop-types": "^15.7.1"
 	}
 }

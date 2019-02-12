@@ -29,7 +29,6 @@ const {
 	InnerBlocks,
 	RichText,
 }                           = wp.editor;
-const { Fragment }          = wp.element;
 const { __ }                = wp.i18n; // Localization
 
 /**
