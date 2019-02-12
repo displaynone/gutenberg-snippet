@@ -252,7 +252,8 @@ export default registerBlockType( 'plugin-name/starter-opening-hours', {
 		 * 
 		 * Note that we are using the following microformats:
 		 * 
-		 * - TBC
+		 * - TODO: https://schema.org/openingHours
+		 * - TODO: http://www.heppnetz.de/ontologies/goodrelations/v1#OpeningHoursSpecification
 		 */
 		return (
 			<section 
