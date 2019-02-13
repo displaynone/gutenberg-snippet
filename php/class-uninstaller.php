@@ -3,6 +3,8 @@
  * Uninstaller
  *
  * @since 1.0.0
+ *
+ * @package company_name\plugin_name
  */
 
 namespace company_name\plugin_name;
@@ -14,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 /**
  * Class Uninstaller.
- * 
+ *
  * Runs when the plugin is uninstalled.
  */
 class Uninstaller {
@@ -25,13 +27,13 @@ class Uninstaller {
 	 * @since 1.0.0
 	 */
 	public function run() {
-        register_uninstall_hook( COMPANY_NAME_PLUGIN_NAME_ROOT, array( 'company_name\plugin_name\Uninstaller', 'uninstall' ) );
-    }
+		register_uninstall_hook( COMPANY_NAME_PLUGIN_NAME_ROOT, array( 'company_name\plugin_name\Uninstaller', 'uninstall' ) );
+	}
 
-    /**
+	/**
 	 * Uninstall
-     * 
-     * Runs code on uninstall.
+	 *
+	 * Runs code on uninstall.
 	 *
 	 * @since 1.0.0
 	 */

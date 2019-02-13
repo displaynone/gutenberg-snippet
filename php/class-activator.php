@@ -3,6 +3,8 @@
  * Activator
  *
  * @since 1.0.0
+ *
+ * @package company_name\plugin_name
  */
 
 namespace company_name\plugin_name;
@@ -14,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 /**
  * Class Activator.
- * 
+ *
  * Runs when the plugin is activated.
  */
 class Activator {
@@ -25,13 +27,13 @@ class Activator {
 	 * @since 1.0.0
 	 */
 	public function run() {
-        register_activation_hook( COMPANY_NAME_PLUGIN_NAME_ROOT, array( $this, 'activate' ) );
-    }
+		register_activation_hook( COMPANY_NAME_PLUGIN_NAME_ROOT, array( $this, 'activate' ) );
+	}
 
-    /**
+	/**
 	 * Activate
-     * 
-     * Runs code on activation.
+	 *
+	 * Runs code on activation.
 	 *
 	 * @since 1.0.0
 	 */

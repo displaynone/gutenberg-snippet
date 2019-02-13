@@ -3,6 +3,8 @@
  * Deactivator
  *
  * @since 1.0.0
+ *
+ * @package company_name\plugin_name
  */
 
 namespace company_name\plugin_name;
@@ -14,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 /**
  * Class Deactivator.
- * 
+ *
  * Runs when the plugin is deactivated.
  */
 class Deactivator {
@@ -25,13 +27,13 @@ class Deactivator {
 	 * @since 1.0.0
 	 */
 	public function run() {
-        register_deactivation_hook( COMPANY_NAME_PLUGIN_NAME_ROOT, array( $this, 'deactivate' ) );
-    }
+		register_deactivation_hook( COMPANY_NAME_PLUGIN_NAME_ROOT, array( $this, 'deactivate' ) );
+	}
 
-    /**
+	/**
 	 * Deactivate
-     * 
-     * Runs code on deactivation.
+	 *
+	 * Runs code on deactivation.
 	 *
 	 * @since 1.0.0
 	 */
