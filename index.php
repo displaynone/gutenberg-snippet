@@ -150,12 +150,12 @@ class Main {
 		// Example: JavaScript will run on the Front End only.
 		if ( ! is_admin() ) {
 			// Enqueue JS.
-			// @codingStandardsIgnoreLine
 			wp_enqueue_script(
 				'plugin-name',
 				plugins_url( $scripts, __FILE__ ),
 				$this->dependencies,
-				filemtime( plugin_dir_path( __FILE__ ) . $scripts )
+				filemtime( plugin_dir_path( __FILE__ ) . $scripts ),
+				true
 			);
 		}
 
@@ -184,12 +184,12 @@ class Main {
 		// Example: JavaScript will run on the Front End only.
 		if ( ! is_admin() ) {
 			// Enqueue JS.
-			// @codingStandardsIgnoreLine
 			wp_enqueue_script(
 				'plugin-name-block',
 				plugins_url( $scripts, __FILE__ ),
 				$this->dependencies,
-				filemtime( plugin_dir_path( __FILE__ ) . $scripts )
+				filemtime( plugin_dir_path( __FILE__ ) . $scripts ),
+				true
 			);
 		}
 
@@ -218,12 +218,12 @@ class Main {
 		$styles  = '/assets/css/block-editor.css';
 
 		// Enqueue editor JS.
-		// @codingStandardsIgnoreLine
 		wp_enqueue_script(
 			'plugin-name-block-editor',
 			plugins_url( $scripts, __FILE__ ),
 			$this->dependencies,
-			filemtime( plugin_dir_path( __FILE__ ) . $scripts )
+			filemtime( plugin_dir_path( __FILE__ ) . $scripts ),
+			true
 		);
 
 		// Enqueue edtior Styles.
@@ -256,12 +256,12 @@ class Main {
 		);
 
 		// Enqueue edtior JS.
-		// @codingStandardsIgnoreLine
 		wp_enqueue_script(
 			'plugin-name-admin',
 			plugins_url( $scripts, __FILE__ ),
 			array(),
-			filemtime( plugin_dir_path( __FILE__ ) . $styles )
+			filemtime( plugin_dir_path( __FILE__ ) . $styles ),
+			true
 		);
 	}
 
@@ -286,12 +286,12 @@ class Main {
 		);
 
 		// Enqueue JS.
-		// @codingStandardsIgnoreLine
 		wp_enqueue_script(
 			'plugin-name-customizer',
 			plugins_url( $scripts, __FILE__ ),
 			$this->dependencies,
-			filemtime( plugin_dir_path( __FILE__ ) . $scripts )
+			filemtime( plugin_dir_path( __FILE__ ) . $scripts ),
+			true
 		);
 	}
 
@@ -317,14 +317,12 @@ class Main {
 	 *
 	 * Create a custom category to host your blocks.
 	 *
-	 * @param  array  $categories Array of categories.
-	 * @param  object $post       The post object.
-	 * @return array  $categories Array of categories.
+	 * @param  array $categories Array of categories.
+	 * @return array $categories Array of categories.
 	 *
 	 * @since 1.0.0
 	 */
-	// @codingStandardsIgnoreLine
-	public function block_categories( $categories, $post ) {
+	public function block_categories( $categories ) {
 		return array_merge(
 			$categories,
 			array(
