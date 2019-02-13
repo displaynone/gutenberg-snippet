@@ -78,6 +78,10 @@ export default registerBlockType( 'plugin-name/starter-opening-hours', {
 	 * different syntax, but we are not in this example.
 	 */
 	edit: withSelect( function( select, props ) {
+		/**
+		 * Get the attributes of the current block
+		 * this way we can get the inner blocks!
+		 */
 		return {
 			block: select( 'core/editor' ).getBlocksByClientId( props.clientId )[0],
 		};
@@ -116,11 +120,15 @@ export default registerBlockType( 'plugin-name/starter-opening-hours', {
 		/**
 		 * Inner Blocks Content String
 		 */
+
+		// Some fallbacks, we only care about time, so the date is useless to us.
 		const dateEnd   = moment( '0000-01-01 17:00' );
 		const dateStart = moment( '0000-01-01 09:00' );
-
+		
+		// Hold our string while we build it.
 		let openingHoursContent = '';
 
+		// Build the schema string.
 		innerBlocks.map( innerBlock => {
 			
 			let formattedClosed   = innerBlock.attributes.closed ? moment( innerBlock.attributes.closed ).format( 'kk:mm' ) : dateEnd.format( 'kk:mm' );
@@ -135,6 +143,7 @@ export default registerBlockType( 'plugin-name/starter-opening-hours', {
 			openingHoursContent += formattedShortDay + ' ' + formattedOpen + '-' + formattedClosed;
 		});
 
+		// If its different from the attribute, update the attribute.
 		if ( schemaOpeningHours !== openingHoursContent ) {
 			setAttributes( { schemaOpeningHours: openingHoursContent } );
 		}
