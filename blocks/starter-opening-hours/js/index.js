@@ -229,6 +229,15 @@ export default registerBlockType( 'plugin-name/starter-opening-hours', {
 						*/}
 						<tr>
 							<td colspan="3">
+							{/**
+							  * Innerblocks Props
+							  *
+							  * You can pass props to inner blocks, but passing an object into the array.
+							  * EG:
+							  * 
+							  * [ 'plugin-name/starter-opening-hours-row', { day: 'tuesday' } ],
+							  * [ 'plugin-name/starter-opening-hours-row', { day: 'wednesday' } ],
+							  */}	
 								<InnerBlocks
 									template={ [
 										[ 'plugin-name/starter-opening-hours-row' ],
