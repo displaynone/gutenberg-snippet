@@ -34,6 +34,9 @@ const attributes = {
         type: 'string',
         default: __( 'Open', 'plugin-name' ),
     },
+    schemaOpeningHours: {
+        type: 'string',
+    },
     title: {
         type: 'string',
         default: __( 'Opening Hours', 'plugin-name' ),

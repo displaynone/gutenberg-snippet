@@ -117,7 +117,7 @@ export default registerBlockType( 'plugin-name/starter-opening-hours-row', {
 		const dateEnd         = moment( '0000-01-01 17:00' );
 		const dateStart       = moment( '0000-01-01 09:00' );
 		const formattedClosed = closed ? moment( closed ).format( 'kk:mm' ) : dateEnd.format( 'kk:mm' );
-		const formattedDay    = day ? day.charAt(0).toUpperCase() + day.slice(1) : '';
+		const formattedDay    = day ? day.charAt(0).toUpperCase() + day.slice(1) : __( 'Monday', 'plugin-name' );
 		const formattedOpen   = open ? moment( open ).format( 'kk:mm' )  : dateStart.format( 'kk:mm' );
 
 		/**

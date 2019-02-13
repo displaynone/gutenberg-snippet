@@ -29,6 +29,7 @@ const {
 	InnerBlocks,
 	RichText,
 }                           = wp.editor;
+const { withSelect }        = wp.data;
 const { __ }                = wp.i18n; // Localization
 
 /**
@@ -76,7 +77,11 @@ export default registerBlockType( 'plugin-name/starter-opening-hours', {
 	 * If we were doing something with an API we would use withSelect here, and use slightly
 	 * different syntax, but we are not in this example.
 	 */
-	edit: props => {
+	edit: withSelect( function( select, props ) {
+		return {
+			block: select( 'core/editor' ).getBlocksByClientId( props.clientId )[0],
+		};
+	} )( props => {
 
 		/**
 		 * Extract Props
@@ -92,12 +97,47 @@ export default registerBlockType( 'plugin-name/starter-opening-hours', {
 				columnClosedLabel,
 				columnDayLabel,
 				columnOpenLabel,
+				schemaOpeningHours,
 				title,
 			},
+			block,
 			className, 
 			setAttributes, 
 			isSelected,
 		} = props;
+
+		/**
+		 * InnerBlock Properties
+		 * 
+		 * Get the inner blocks so we can output their properties here.
+		 */
+		const innerBlocks = block.innerBlocks;
+		
+		/**
+		 * Inner Blocks Content String
+		 */
+		const dateEnd   = moment( '0000-01-01 17:00' );
+		const dateStart = moment( '0000-01-01 09:00' );
+
+		let openingHoursContent = '';
+
+		innerBlocks.map( innerBlock => {
+			
+			let formattedClosed   = innerBlock.attributes.closed ? moment( innerBlock.attributes.closed ).format( 'kk:mm' ) : dateEnd.format( 'kk:mm' );
+			let formattedDay      = innerBlock.attributes.day ? innerBlock.attributes.day.charAt(0).toUpperCase() + innerBlock.attributes.day.slice(1) : __( 'Monday', 'plugin-name' );
+			let formattedOpen     = innerBlock.attributes.open ? moment( innerBlock.attributes.open ).format( 'kk:mm' )  : dateStart.format( 'kk:mm' );
+			let formattedShortDay = formattedDay.substring(0, 2);
+
+			if ( openingHoursContent ) {
+				openingHoursContent += ', ';
+			}
+
+			openingHoursContent += formattedShortDay + ' ' + formattedOpen + '-' + formattedClosed;
+		});
+
+		if ( schemaOpeningHours !== openingHoursContent ) {
+			setAttributes( { schemaOpeningHours: openingHoursContent } );
+		}
 
 		/**
 		 * Functions.
@@ -119,7 +159,9 @@ export default registerBlockType( 'plugin-name/starter-opening-hours', {
 		 */
 		return (
 			<section 
-				className={ classnames( className, 'starter-opening-hours' ) } 
+				className={ classnames( className, 'starter-opening-hours' ) }
+				itemprop="openingHours"
+				content={ schemaOpeningHours }
 			>
 				{ ( isSelected || title ) ? (
 					<RichText
@@ -218,7 +260,7 @@ export default registerBlockType( 'plugin-name/starter-opening-hours', {
 				}
 			</section>
 		);
-	},
+	} ),
 
 	/**
 	 * Save
@@ -237,6 +279,7 @@ export default registerBlockType( 'plugin-name/starter-opening-hours', {
 				columnClosedLabel,
 				columnDayLabel,
 				columnOpenLabel,
+				schemaOpeningHours,
 				title,
 			},
 			className, 
@@ -252,12 +295,13 @@ export default registerBlockType( 'plugin-name/starter-opening-hours', {
 		 * 
 		 * Note that we are using the following microformats:
 		 * 
-		 * - TODO: https://schema.org/openingHours
-		 * - TODO: http://www.heppnetz.de/ontologies/goodrelations/v1#OpeningHoursSpecification
+		 * - https://schema.org/openingHours
 		 */
 		return (
 			<section 
-				className={ classnames( className, 'starter-opening-hours' ) } 
+				className={ classnames( className, 'starter-opening-hours' ) }
+				itemprop="openingHours"
+				content={ schemaOpeningHours }
 			>
 				{ ( title ) ? (
 					<h2 class="starter-opening-hours__title">
