@@ -1,5 +1,5 @@
 # Block Starter Kit
-A boilerplate / starter kit for WordPress Editor (Gutenberg) blocks. 
+A boilerplate / starter kit for WordPress Editor (Gutenberg) blocks.
 
 **Currently very much Work In Progress**
 
@@ -12,8 +12,9 @@ It also contains serveral 'starter blocks' with plenty of inline documentation.
 
 ## Getting Started
 
-- Download the plugin into your 'plugins' folder. 
+- Download the plugin into your 'plugins' folder.
 - cd into the folder
+- run `composer install` to install PHPCS
 - run `npm install` to install the project dependancies
 - run `npm run build` to compile the plugin assets
 
@@ -54,7 +55,7 @@ Lowercase dashed short version of your plugin name, eg: `block-starter-kit` or `
 Uppercase underscored short version of your plugin name, eg: `BLOCK_STARTER_KIT` or `BSK`.
 
 `Plugin Description.`   
-Description of your plugin. 
+Description of your plugin.
 
 `https://plugin.uri`  
 Link to the location of the plugin. eg. `https://github.com/mkdo/block-starter-kit`.
@@ -63,9 +64,9 @@ Link to the location of the plugin. eg. `https://github.com/mkdo/block-starter-k
 
 The following details the high level structure of the plugin, and detail the purpose of each folder and file.
 
-Note that there will be README.md files in most folders, describing the purpose of the code within. 
+Note that there will be README.md files in most folders, describing the purpose of the code within.
 
-- `/assets` — The assests folder. 
+- `/assets` — The assests folder.
   - `/images` — Images that are used within the blocks
    - `/css` — The compiled CSS for the plugin
    - `/js` — The compiled JavaScript for the plugin
@@ -83,9 +84,10 @@ Note that there will be README.md files in most folders, describing the purpose 
 - `/vendor` — A place to put third party code libraries
 - `.babelrc` — The configuration for the webpack `babel` plugin
 - `.gitignore` — Tells Git not to commit certain files
+- `composer.json` - Installs all PHPCS
 - **`index.php` — *Start Here* - The 'Main' class, that loads all other classes, functions and assets.**
 - `LICENSE` — The Open Source licence for the plugin
-- `package.json` — The npm dependancies for the project, and npm scripts. 
+- `package.json` — The npm dependancies for the project, and npm scripts.
 - `README.md` — This file!
 - `readme.txt` — Starter WordPress plugin repository readme file.
 - `webpack.config.js` — The webpack configruation for the project

@@ -1,5 +1,7 @@
-<?php
+<?php //@codingStandardsIgnoreLine
 /**
+ * Block Starter Kit.
+ *
  * @package           company_name\plugin_name
  *
  * Plugin Name:       Plugin Name
@@ -12,7 +14,7 @@
  * Domain Path:       /languages
  */
 
- /**
+/**
  * Copyright (C) 2018  Author Name  author-name@author.uri
  *
  * This program is free software; you can redistribute it and/or modify
@@ -47,13 +49,13 @@ class Main {
 
 	/**
 	 * Dependancies
-	 * 
+	 *
 	 * In order to use Gutenberg, every time you load a library (eg wp.element, wp.blocks)
 	 * you need to ensure you have added the dependency to the enqueue. Otherwise your
 	 * application will error (especailly if its the only block in the soloution).
 	 *
 	 * @var array
-	 * 
+	 *
 	 * @since 1.0.0
 	 */
 	public $dependencies;
@@ -66,12 +68,12 @@ class Main {
 	public function __construct() {
 
 		/**
-		 * Dependencies
-		 * 
-		 * In order to use Gutenberg, every time you load a library (eg wp.element, wp.blocks)
-	 	 * you need to ensure you have added the dependency to the enqueue. Otherwise your
-	 	 * application will error (especailly if its the only block in the soloution).
-		 */
+		* Dependencies
+		*
+		* In order to use Gutenberg, every time you load a library (eg wp.element, wp.blocks)
+		* you need to ensure you have added the dependency to the enqueue. Otherwise your
+		* application will error (especailly if its the only block in the soloution).
+		*/
 		$this->dependencies = [
 			'wp-api',
 			'wp-blocks',
@@ -99,35 +101,35 @@ class Main {
 		 * Load assets.
 		 */
 
-		// Load Front End Assets
+		// Load Front End Assets.
 		add_action( 'wp_enqueue_scripts', array( $this, 'assets' ), 10 );
 
 		// Load Block Front and Back End Assets (can use a conditional to restrict load).
-		add_action( 'enqueue_block_assets', array( $this, 'block_assets' ) ); 
+		add_action( 'enqueue_block_assets', array( $this, 'block_assets' ) );
 
-		// Load WordPress Global Admin Assets
+		// Load WordPress Global Admin Assets.
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_assets' ) );
 
 		// Load Block Editor Assets.
-		add_action( 'enqueue_block_editor_assets', array( $this, 'editor_assets' ) ); 
+		add_action( 'enqueue_block_editor_assets', array( $this, 'editor_assets' ) );
 
 		// Load Customizer Assets.
 		add_action( 'customize_preview_init', array( $this, 'customize_assets' ), 10 );
 
-		// Classic Editor Styles
+		// Classic Editor Styles.
 		add_action( 'admin_enqueue_scripts', array( $this, 'classic_editor_assets' ) );
 
 		/**
 		 * Setup Block Categories
-		 * 
-		 * If you would like an additional category for your block (in addition to common, 
+		 *
+		 * If you would like an additional category for your block (in addition to common,
 		 * layout, widget etc... ). This is the hook to set it.
 		 */
 		add_action( 'block_categories', array( $this, 'block_categories' ), 10, 2 );
 
 		/**
 		 * Load Classes
-		 * 
+		 *
 		 * Load all the other classes that this plugin needs to run.
 		 */
 		$this->includes();
@@ -135,9 +137,9 @@ class Main {
 
 	/**
 	 * Front end Assets.
-	 * 
+	 *
 	 * Assets that load on on the Front End of WordPress.
-	 * 
+	 *
 	 * @since 1.0.0
 	 */
 	public function assets() {
@@ -148,6 +150,7 @@ class Main {
 		// Example: JavaScript will run on the Front End only.
 		if ( ! is_admin() ) {
 			// Enqueue JS.
+			// @codingStandardsIgnoreLine
 			wp_enqueue_script(
 				'plugin-name',
 				plugins_url( $scripts, __FILE__ ),
@@ -167,10 +170,10 @@ class Main {
 
 	/**
 	 * Block Assets.
-	 * 
-	 * Assets that load on on the Gutenberg 'Save' and Admin view. If you want 
+	 *
+	 * Assets that load on on the Gutenberg 'Save' and Admin view. If you want
 	 * certain assets to only load on the front end, wrap them in a `is_admin` conditional.
-	 * 
+	 *
 	 * @since 1.0.0
 	 */
 	public function block_assets() {
@@ -181,6 +184,7 @@ class Main {
 		// Example: JavaScript will run on the Front End only.
 		if ( ! is_admin() ) {
 			// Enqueue JS.
+			// @codingStandardsIgnoreLine
 			wp_enqueue_script(
 				'plugin-name-block',
 				plugins_url( $scripts, __FILE__ ),
@@ -200,12 +204,12 @@ class Main {
 
 	/**
 	 * Block Editor Assets.
-	 * 
+	 *
 	 * Assets that load on on the Gutenberg 'Edit' interface. Use the styles to
 	 * add styles that only impact the 'edit' view.
-	 * 
+	 *
 	 * The `editor.js` file is the combined React for your Gutenberg Block
-	 * 
+	 *
 	 * @since 1.0.0
 	 */
 	public function editor_assets() {
@@ -214,6 +218,7 @@ class Main {
 		$styles  = '/assets/css/block-editor.css';
 
 		// Enqueue editor JS.
+		// @codingStandardsIgnoreLine
 		wp_enqueue_script(
 			'plugin-name-block-editor',
 			plugins_url( $scripts, __FILE__ ),
@@ -232,14 +237,14 @@ class Main {
 
 	/**
 	 * Enqueue Admin Styles.
-	 * 
+	 *
 	 * Assets to alter the editor (IE InspectorControls), does not impact front end block styles.
-	 * 
+	 *
 	 * @since 1.0.0
 	 */
 	public function admin_assets() {
 
-		$styles = '/assets/css/admin.css';
+		$styles  = '/assets/css/admin.css';
 		$scripts = '/assets/js/admin.js';
 
 		// Enqueue Styles.
@@ -251,6 +256,7 @@ class Main {
 		);
 
 		// Enqueue edtior JS.
+		// @codingStandardsIgnoreLine
 		wp_enqueue_script(
 			'plugin-name-admin',
 			plugins_url( $scripts, __FILE__ ),
@@ -261,9 +267,9 @@ class Main {
 
 	/**
 	 * Customizer Assets.
-	 * 
+	 *
 	 * Assets that load on on the Customizer.
-	 * 
+	 *
 	 * @since 1.0.0
 	 */
 	public function customize_assets() {
@@ -280,6 +286,7 @@ class Main {
 		);
 
 		// Enqueue JS.
+		// @codingStandardsIgnoreLine
 		wp_enqueue_script(
 			'plugin-name-customizer',
 			plugins_url( $scripts, __FILE__ ),
@@ -290,32 +297,33 @@ class Main {
 
 	/**
 	 * Classic Edtior Assets.
-	 * 
+	 *
 	 * CSS that loads in the classic editor only.
-	 * 
+	 *
 	 * @since 1.0.0
 	 */
 	public function classic_editor_assets() {
 
-		$styles  = '/assets/css/classic-editor.css';
+		$styles = '/assets/css/classic-editor.css';
 
-		add_editor_style( 
-			plugins_url( $styles, __FILE__ ) . 
-			'?v=' . filemtime( plugin_dir_path( __FILE__ ) . $styles ) 
+		add_editor_style(
+			plugins_url( $styles, __FILE__ ) .
+			'?v=' . filemtime( plugin_dir_path( __FILE__ ) . $styles )
 		);
 	}
 
 	/**
 	 * Block Categories
-	 * 
+	 *
 	 * Create a custom category to host your blocks.
-	 * 
+	 *
 	 * @param  array  $categories Array of categories.
 	 * @param  object $post       The post object.
 	 * @return array  $categories Array of categories.
-	 * 
+	 *
 	 * @since 1.0.0
 	 */
+	// @codingStandardsIgnoreLine
 	public function block_categories( $categories, $post ) {
 		return array_merge(
 			$categories,
@@ -332,18 +340,18 @@ class Main {
 	 * Include Classes
 	 */
 	public function includes() {
-		
-		// Require Classes
+
+		// Require Classes.
 		require_once 'php/class-activator.php';
 		require_once 'php/class-deactivator.php';
 		require_once 'php/class-uninstaller.php';
 
-		// Instantiate Classes
+		// Instantiate Classes.
 		$activator   = new Activator();
 		$deactivator = new Deactivator();
 		$uninstaller = new Uninstaller();
 
-		// Run Code
+		// Run Code.
 		$activator->run();   // Run code on activation.
 		$deactivator->run(); // Run code on deactivation.
 		$uninstaller->run(); // Run code on uninstallation.
