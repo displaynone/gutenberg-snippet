@@ -81,7 +81,6 @@ Note that there will be README.md files in most folders, describing the purpose 
 - `/docs` - Files and images that support the documentation
 - `/php` — Non block specific PHP plugin code
   - `/examples` — Non block based code examples with documentation
-- `/vendor` — A place to put third party code libraries
 - `.babelrc` — The configuration for the webpack `babel` plugin
 - `.gitignore` — Tells Git not to commit certain files
 - `composer.json` - Installs all PHPCS
