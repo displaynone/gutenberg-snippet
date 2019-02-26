@@ -151,8 +151,6 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 			updateOption,
 		} = props;
 
-		console.log( gMapEmbedAPIKeyOption );
-
 		// Create an empty timeout variable.
 		let timeout = null;
 
@@ -161,7 +159,6 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 		 * 
 		 * Functions for this Component.
 		 */
-		console.log( gMapEmbedAPIKeyOption );
 		if ( ! gMapEmbedAPIKey && gMapEmbedAPIKeyOption && 'string' == typeof gMapEmbedAPIKeyOption ) {
 			setAttributes( 
 				{ 

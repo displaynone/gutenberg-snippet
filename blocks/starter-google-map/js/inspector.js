@@ -84,7 +84,8 @@ render() {
 			<InspectorControls>
 				<PanelBody
 					title={ __( 'Map Settings', 'plugin-name' ) }
-					className="starter-google-map__inspector"
+					className="starter-google-map__map-settings"
+					initialOpen={ true }
 				>
 
 					<TextControl
@@ -108,6 +109,13 @@ render() {
 						defaultValue={ gMapEmbedLocation }
 						onChange={ onChangeGMapEmbedLocation }
 					/>
+
+				</PanelBody>
+				<PanelBody
+					title={ __( 'Info Window', 'plugin-name' ) }
+					className="starter-google-map__info-window"
+					initialOpen={ false }
+				>
 	
 					<TextControl
 						type="text"
@@ -130,6 +138,13 @@ render() {
 						defaultValue={ gMapEmbedInfoWindowContent }
 						onChange={ onChangeGMapEmbedInfoWindowContent }
 					/>
+				
+				</PanelBody>
+				<PanelBody
+					title={ __( 'Display Options', 'plugin-name' ) }
+					className="starter-google-map__display-options"
+					initialOpen={ false }
+				>
 
 					<TextControl
 						type="number"
