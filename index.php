@@ -343,16 +343,19 @@ class Main {
 		require_once 'php/class-activator.php';
 		require_once 'php/class-deactivator.php';
 		require_once 'php/class-uninstaller.php';
+		require_once 'php/class-rest-api-options.php';
 
 		// Instantiate Classes.
-		$activator   = new Activator();
-		$deactivator = new Deactivator();
-		$uninstaller = new Uninstaller();
+		$activator        = new Activator();
+		$deactivator      = new Deactivator();
+		$uninstaller      = new Uninstaller();
+		$rest_api_options = new REST_API_Options();
 
 		// Run Code.
-		$activator->run();   // Run code on activation.
-		$deactivator->run(); // Run code on deactivation.
-		$uninstaller->run(); // Run code on uninstallation.
+		$activator->run();        // Run code on activation.
+		$deactivator->run();      // Run code on deactivation.
+		$uninstaller->run();      // Run code on uninstallation.
+		$rest_api_options->run(); // Register REST API Endpoints.
 	}
 }
 

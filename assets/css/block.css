@@ -171,5 +171,5 @@
  *
  * The styles for the Block.
  */
-.starter-google-map.has-api-key {
-  height: 300px; }
+.starter-google-map {
+  margin-bottom: 1em; }

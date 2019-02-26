@@ -5,7 +5,7 @@
  */
 
 .starter-google-map {
-	margin-bottom: 1em;
+	height: 100%;
 	&.no-api-key {
 		background: #f8d7da;
 		border: 1px solid #f5c6cb;
@@ -16,5 +16,11 @@
 		p {
 			margin: 0px;
 		}
+	}
+}
+
+.starter-google-map__wrapper {
+	.components-resizable-box__handle {
+		// display: block;
 	}
 }

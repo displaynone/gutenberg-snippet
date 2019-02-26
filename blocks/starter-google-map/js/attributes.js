@@ -33,7 +33,11 @@ const attributes = {
     },
     gMapEmbedSkipFetch: {
         type: 'bool'
-    }
+    },
+    height: {
+        type: 'number',
+        default: 100,
+    },
 };
 
 export default attributes;

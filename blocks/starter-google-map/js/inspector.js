@@ -12,9 +12,9 @@
  */
 
 // Internal Block Libraries
+const { apiFetch }          = wp;
 const {
   	PanelBody,
-	PanelRow,
 	TextControl,
 	TextareaControl,
 	SelectControl,
@@ -42,6 +42,7 @@ render() {
 			gMapEmbedDisableUI,
 		},
 		setAttributes,
+		updateOption,
 	} = this.props;
 
 	/**
@@ -52,7 +53,26 @@ render() {
 	 * 
 	 * Functions that are only used in this conponent are defined below.
 	 */
-	const onChangeGMapEmbedAPIKey            = gMapEmbedAPIKey => { setAttributes( { gMapEmbedAPIKey, gMapEmbedSkipFetch: false } ) };
+	const onChangeGMapEmbedAPIKey = gMapEmbedAPIKey => {
+		const option  = 'gMapEmbedAPIKey';
+		const promise = apiFetch( 
+			{ 
+				path: 'company-name/plugin-name/v1/update/option/' + option + '/',
+				method: 'POST',
+				data: { value: gMapEmbedAPIKey },
+			} 
+		);
+		promise.then( ( value ) => { 
+			updateOption( value );
+			setAttributes( 
+				{ 
+					gMapEmbedAPIKey: value, 
+					gMapEmbedSkipFetch: false,
+				} 
+			);
+		} );
+		
+	};
 	const onChangeGMapEmbedLocation          = gMapEmbedLocation => { setAttributes( { gMapEmbedLocation, gMapEmbedSkipFetch: false } ) };
 	const onChangeGMapEmbedInfoWindowTitle   = gMapEmbedInfoWindowTitle => { setAttributes( { gMapEmbedInfoWindowTitle, gMapEmbedSkipFetch: true } ) };
 	const onChangeGMapEmbedInfoWindowContent = gMapEmbedInfoWindowContent => { setAttributes( { gMapEmbedInfoWindowContent, gMapEmbedSkipFetch: true } ) };

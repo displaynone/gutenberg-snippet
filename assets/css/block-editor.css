@@ -42,7 +42,7 @@
  * The Styles for the Block in the Edit View.
  */
 .starter-google-map {
-  margin-bottom: 1em; }
+  height: 100%; }
   .starter-google-map.no-api-key {
     background: #f8d7da;
     border: 1px solid #f5c6cb;

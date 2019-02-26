@@ -22,14 +22,47 @@ import initMap from './initMap';
 import loadLibrary from './loadLibrary'; // TODO: Make this PHP load
 import attributes from './attributes'; // Attribute Registration
 import Inspector from './inspector';   // InspectorControls (Sidebar)
+import store from '../../components/rest-api-options/index'; // REST API Endpoints.
 
 // Imported from WordPress
 import classnames from 'classnames'; // Enables us to concat classnames
 
 // Internal Block Libraries
 const { registerBlockType } = wp.blocks;
+const { ResizableBox }      = wp.components;
+const { compose }           = wp.compose;
+const { 
+	withDispatch, 
+	withSelect 
+}                           = wp.data;
 const { Fragment }          = wp.element;
 const { __ }                = wp.i18n; // Localization
+
+/**
+ * With Dispatch
+ * 
+ * Save values to the API.
+ */
+const applyWithDispatch = withDispatch( ( dispatch, { value } ) => {
+	
+	return {
+		updateOption( value ) {
+			dispatch( 'company-name/plugin-name' ).updateOption( value );
+		},
+	};
+} );
+
+
+/**
+ * With Select
+ * 
+ * Get values from the API.
+ */
+const applyWithSelect = withSelect( ( select ) => {
+	return {
+		gMapEmbedAPIKeyOption: select( 'company-name/plugin-name' ).receiveOption( 'gMapEmbedAPIKey' ),
+	};
+} );
 
 /**
  * Register Block
@@ -81,10 +114,15 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 	/**
 	 * Edit
 	 * 
-	 * If we were doing something with an API we would use withSelect here, and use slightly
-	 * different syntax, but we are not in this example.
+	 * Using 'compose' to combine our withSelect and withDispatch, there is now a wrapper around
+	 * the rest of the edit function.
 	 */
-	edit: props => {
+	edit: compose(
+		[
+			applyWithDispatch,
+			applyWithSelect,
+		]
+	)( props => {
 
 		/**
 		 * Extract Props
@@ -103,11 +141,17 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 				gMapEmbedZoom,
 				gMapEmbedDisableUI,
 				gMapEmbedSkipFetch,
+				height,
 			},
-			className, 
+			className,
+			gMapEmbedAPIKeyOption,
 			setAttributes, 
 			isSelected,
+			toggleSelection,
+			updateOption,
 		} = props;
+
+		console.log( gMapEmbedAPIKeyOption );
 
 		// Create an empty timeout variable.
 		let timeout = null;
@@ -117,6 +161,15 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 		 * 
 		 * Functions for this Component.
 		 */
+		console.log( gMapEmbedAPIKeyOption );
+		if ( ! gMapEmbedAPIKey && gMapEmbedAPIKeyOption && 'string' == typeof gMapEmbedAPIKeyOption ) {
+			setAttributes( 
+				{ 
+					gMapEmbedAPIKey: gMapEmbedAPIKeyOption, 
+					gMapEmbedSkipFetch: false,
+				}
+			);
+		}
 		
 		// Bind our Google Maps API callback to the window, which lets us call initMap.
 		window.initGoogleMapEmbed = function() {
@@ -142,27 +195,58 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 		 * Note how we pass props to our custom components.
 		 */
 		return [
-			<Inspector { ...{ setAttributes, ...props } }/>,
-			<div
-				id="starter-google-map"
-				className={ classnames( 
-					className,
-					'starter-google-map',
-					gMapEmbedAPIKey && gMapEmbedLocation ? 'has-api-key' : 'no-api-key',
-				) }
+			<Inspector { ...{ setAttributes, ...props, updateOption } }/>,
+			<ResizableBox
+			className={ classnames( 
+				className,
+				'starter-google-map__wrapper',
+				{ 'is-selected': isSelected }
+			) }
+				size={ {
+					height,
+				} }
+				minHeight="20"
+				enable={ {
+					top: false,
+					right: false,
+					bottom: true,
+					left: false,
+					topRight: false,
+					bottomRight: false,
+					bottomLeft: false,
+					topLeft: false,
+				} }
+				onResizeStop={ ( event, direction, elt, delta ) => {
+					setAttributes( {
+						height: parseInt( height + delta.height, 10 ),
+					} );
+					toggleSelection( true );
+				} }
+				onResizeStart={ () => {
+					toggleSelection( false );
+				} }
 			>
-				{ gMapEmbedAPIKey && gMapEmbedLocation ? (
-					<Fragment>
-						{ gMapEmbedSkipFetch ? initMap( props.attributes, false ) : initMap( props.attributes ) }
-					</Fragment>
-				) : (
-					<p>
-						{ __( 'Please enter your API Key and Location in the sidebar to render the map.', 'plugin-name' ) }
-					</p>
-				) }
-			</div>
+				<div
+					id="starter-google-map"
+					className={ classnames( 
+						className,
+						'starter-google-map',
+						gMapEmbedAPIKey && gMapEmbedLocation ? 'has-api-key' : 'no-api-key',
+					) }
+				>
+					{ gMapEmbedAPIKey && gMapEmbedLocation ? (
+						<Fragment>
+							{ gMapEmbedSkipFetch ? initMap( props.attributes, false ) : initMap( props.attributes ) }
+						</Fragment>
+					) : (
+						<p>
+							{ __( 'Please enter your API Key and Location in the sidebar to render the map.', 'plugin-name' ) }
+						</p>
+					) }
+				</div>
+			</ResizableBox>
 		];
-	},
+	} ),
 
 	/**
 	 * Save
@@ -184,6 +268,7 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 				gMapEmbedZoom,
 				gMapEmbedDisableUI,
 				gMapEmbedSkipFetch,
+				height,
 			},
 			className, 
 		} = props;
@@ -216,6 +301,7 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 				data-type={ gMapEmbedType }
 				data-zoom={ gMapEmbedZoom }
 				data-disableui={ gMapEmbedDisableUI }
+				style={ { height: height } }
 			>
 			</div>
 		);
