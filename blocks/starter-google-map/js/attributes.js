@@ -13,6 +13,12 @@ const attributes = {
     gMapEmbedAPIKey: {
         type: 'string'
     },
+    gMapEmbedLat: {
+        type: 'float'
+    },
+    gMapEmbedLong: {
+        type: 'float'
+    },
     gMapEmbedLocation: {
         type: 'string'
     },
@@ -29,9 +35,6 @@ const attributes = {
         type: 'string'
     },
     gMapEmbedDisableUI: {
-        type: 'string'
-    },
-    gMapEmbedSkipFetch: {
         type: 'bool'
     },
     height: {

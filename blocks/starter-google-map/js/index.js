@@ -18,9 +18,9 @@ import '../scss/block.scss';       // Block styles
  */
 
 // From Block
-import initMap from './initMap';
-import attributes from './attributes'; // Attribute Registration
-import Inspector from './inspector';   // InspectorControls (Sidebar)
+import attributes from './attributes';                    // Attribute Registration
+import initMap from './initMap';                          // Initiate Google Maps
+import Inspector from './inspector';                      // InspectorControls (Sidebar)
 import store from '../../data/rest-api-options/js/index'; // REST API Endpoints.
 
 // Imported from WordPress
@@ -133,13 +133,14 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 		const {
 			attributes: {
 				gMapEmbedAPIKey,
+				gMapEmbedLat,
+				gMapEmbedLong,
 				gMapEmbedLocation,
 				gMapEmbedInfoWindowTitle,
 				gMapEmbedInfoWindowContent,
 				gMapEmbedType,
 				gMapEmbedZoom,
 				gMapEmbedDisableUI,
-				gMapEmbedSkipFetch,
 				height,
 			},
 			className,
@@ -150,21 +151,13 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 			updateOption,
 		} = props;
 
-		// Create an empty timeout variable.
-		let timeout = null;
-
 		/**
 		 * Functions.
 		 * 
 		 * Functions for this Component.
 		 */
 		if ( ! gMapEmbedAPIKey && gMapEmbedAPIKeyOption && 'string' == typeof gMapEmbedAPIKeyOption ) {
-			setAttributes( 
-				{ 
-					gMapEmbedAPIKey: gMapEmbedAPIKeyOption, 
-					gMapEmbedSkipFetch: false,
-				}
-			);
+			setAttributes( { gMapEmbedAPIKey: gMapEmbedAPIKeyOption } );
 		}
 		
 		// Bind our Google Maps API callback to the window, which lets us call initMap.
@@ -184,7 +177,7 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 		 * Note how we pass props to our custom components.
 		 */
 		return [
-			<Inspector { ...{ setAttributes, ...props, updateOption } }/>,
+			<Inspector { ...{ setAttributes, ...props, updateOption, gMapEmbedAPIKeyOption } }/>,
 			<ResizableBox
 			className={ classnames( 
 				className,
@@ -225,7 +218,7 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 				>
 					{ gMapEmbedAPIKey && gMapEmbedLocation ? (
 						<Fragment>
-							{ gMapEmbedSkipFetch ? initMap( props.attributes, false ) : initMap( props.attributes ) }
+							{ setTimeout( function() { initMap( props.attributes ) }, 500 ) }
 						</Fragment>
 					) : (
 						<p>
@@ -250,13 +243,14 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 		const {
 			attributes: {
 				gMapEmbedAPIKey,
+				gMapEmbedLat,
+				gMapEmbedLong,
 				gMapEmbedLocation,
 				gMapEmbedInfoWindowTitle,
 				gMapEmbedInfoWindowContent,
 				gMapEmbedType,
 				gMapEmbedZoom,
 				gMapEmbedDisableUI,
-				gMapEmbedSkipFetch,
 				height,
 			},
 			className, 
@@ -283,13 +277,15 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 					'starter-google-map',
 					gMapEmbedAPIKey && gMapEmbedLocation ? 'has-api-key' : 'no-api-key',
 				) }
-				data-apikey={ gMapEmbedAPIKey }
-				data-location={ gMapEmbedLocation }
-				data-title={ gMapEmbedInfoWindowTitle }
-				data-text={ gMapEmbedInfoWindowContent }
-				data-type={ gMapEmbedType }
-				data-zoom={ gMapEmbedZoom }
-				data-disableui={ gMapEmbedDisableUI }
+				// data-apikey={ gMapEmbedAPIKey }
+				// data-location={ gMapEmbedLocation }
+				// data-title={ gMapEmbedInfoWindowTitle }
+				// data-text={ gMapEmbedInfoWindowContent }
+				// data-type={ gMapEmbedType }
+				// data-zoom={ gMapEmbedZoom }
+				// data-disable-ui={ gMapEmbedDisableUI ? true : false }
+				// data-lat={ gMapEmbedLat ? gMapEmbedLat : false }
+				// data-long={ gMapEmbedLong ? gMapEmbedLong : false }
 				style={ { height: height } }
 			>
 			</div>

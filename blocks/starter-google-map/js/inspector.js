@@ -34,6 +34,8 @@ render() {
 	const {
 		attributes: {
 			gMapEmbedAPIKey,
+			gMapEmbedLat,
+			gMapEmbedLong,
 			gMapEmbedLocation,
 			gMapEmbedInfoWindowTitle,
 			gMapEmbedInfoWindowContent,
@@ -41,6 +43,7 @@ render() {
 			gMapEmbedZoom,
 			gMapEmbedDisableUI,
 		},
+		gMapEmbedAPIKeyOption,
 		setAttributes,
 		updateOption,
 	} = this.props;
@@ -64,21 +67,44 @@ render() {
 		);
 		promise.then( ( value ) => { 
 			updateOption( value );
-			setAttributes( 
-				{ 
-					gMapEmbedAPIKey: value, 
-					gMapEmbedSkipFetch: false,
-				} 
-			);
+			setAttributes( { gMapEmbedAPIKey: value } );
 		} );
-		
 	};
-	const onChangeGMapEmbedLocation          = gMapEmbedLocation => { setAttributes( { gMapEmbedLocation, gMapEmbedSkipFetch: false } ) };
-	const onChangeGMapEmbedInfoWindowTitle   = gMapEmbedInfoWindowTitle => { setAttributes( { gMapEmbedInfoWindowTitle, gMapEmbedSkipFetch: true } ) };
-	const onChangeGMapEmbedInfoWindowContent = gMapEmbedInfoWindowContent => { setAttributes( { gMapEmbedInfoWindowContent, gMapEmbedSkipFetch: true } ) };
-	const onChangeGMapEmbedZoom              = gMapEmbedZoom => { setAttributes( { gMapEmbedZoom, gMapEmbedSkipFetch: true } ) };
-	const onChangeGMapEmbedType              = gMapEmbedType => { setAttributes( { gMapEmbedType, gMapEmbedSkipFetch: true } ) };
-	const onChangeGMapEmbedDisableUI         = gMapEmbedDisableUI => { setAttributes( { gMapEmbedDisableUI, gMapEmbedSkipFetch: true } ) };
+
+	const onChangeGMapEmbedLocation = gMapEmbedLocation => {
+		let location = gMapEmbedLocation.replace( ' ', '+' );
+		fetch(
+			'https://maps.googleapis.com/maps/api/geocode/json?address=' + location + '&key=' + gMapEmbedAPIKey
+		)
+		.then( function( response ) {
+			// Convert the response to JSON.
+			return response.json();
+		} )
+		.then( function( json ) {
+			// Convert to JSON and extract the co-ordinates.
+			const result = json.results;
+
+			if ( 'undefined' !== typeof result[0] ) {
+				let lat = result[0].geometry.location.lat;
+				let lng = result[0].geometry.location.lng;
+				if ( lat && lng ) {
+					setAttributes(
+						{
+							gMapEmbedLocation,
+							gMapEmbedLat: lat,
+							gMapEmbedLong: lng,
+						} 
+					); 
+				}
+			}
+		});
+	};
+
+	const onChangeGMapEmbedInfoWindowTitle   = gMapEmbedInfoWindowTitle => { setAttributes( { gMapEmbedInfoWindowTitle} ) };
+	const onChangeGMapEmbedInfoWindowContent = gMapEmbedInfoWindowContent => { setAttributes( { gMapEmbedInfoWindowContent} ) };
+	const onChangeGMapEmbedZoom              = gMapEmbedZoom => { setAttributes( { gMapEmbedZoom} ) };
+	const onChangeGMapEmbedType              = gMapEmbedType => { setAttributes( { gMapEmbedType} ) };
+	const onChangeGMapEmbedDisableUI         = gMapEmbedDisableUI => { setAttributes( { gMapEmbedDisableUI} ) };
 
 	return (
 			<InspectorControls>
@@ -95,7 +121,7 @@ render() {
 							'This key must be enabled for the Google Maps JavaScript and Geocoding APIs.',
 							'plugin-name'
 						) }
-						defaultValue={ gMapEmbedAPIKey }
+						defaultValue={ gMapEmbedAPIKeyOption }
 						onChange={ onChangeGMapEmbedAPIKey }
 					/>
 
@@ -190,7 +216,7 @@ render() {
 							'Hides the default map controls to present the map without distraction.',
 							'plugin-name'
 						) }
-						checked={ gMapEmbedDisableUI ? JSON.parse( gMapEmbedDisableUI ) : false }
+						checked={ gMapEmbedDisableUI }
 						onChange={ onChangeGMapEmbedDisableUI }
 					/>
 	

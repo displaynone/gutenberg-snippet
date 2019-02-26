@@ -28,7 +28,7 @@ class Enqueue_Google_Map {
 	 */
 	public function run() {
 		// Load Block Front and Back End Assets (can use a conditional to restrict load).
-		add_action( 'enqueue_block_assets', array( $this, 'block_assets' ) );
+		add_action( 'enqueue_block_assets', array( $this, 'block_assets' ), 9999 );
 	}
 
 	/**
@@ -48,7 +48,7 @@ class Enqueue_Google_Map {
 			// @codingStandardsIgnoreLine.
 			wp_enqueue_script(
 				'google-maps',
-				'//maps.googleapis.com/maps/api/js?key=' . $key . '&callback=initGoogleMapEmbed',
+				'//maps.googleapis.com/maps/api/js?key=' . $key,
 				array(),
 				null,
 				true
