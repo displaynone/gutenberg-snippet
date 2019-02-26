@@ -19,10 +19,9 @@ import '../scss/block.scss';       // Block styles
 
 // From Block
 import initMap from './initMap';
-import loadLibrary from './loadLibrary'; // TODO: Make this PHP load
 import attributes from './attributes'; // Attribute Registration
 import Inspector from './inspector';   // InspectorControls (Sidebar)
-import store from '../../components/rest-api-options/index'; // REST API Endpoints.
+import store from '../../data/rest-api-options/js/index'; // REST API Endpoints.
 
 // Imported from WordPress
 import classnames from 'classnames'; // Enables us to concat classnames
@@ -172,13 +171,6 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 		window.initGoogleMapEmbed = function() {
 			initMap( props.attributes );
 		};
-
-		// Create the <script> element to pull in the Google Maps JS API library,
-		// and add it to the DOM, if it doesn't already exist, and we have a key.
-		
-		if ( gMapEmbedAPIKey && gMapEmbedLocation ) {
-			loadLibrary( props.attributes );
-		}
 
 		/**
 		 * Return 
