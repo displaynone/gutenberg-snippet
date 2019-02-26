@@ -277,17 +277,19 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 					'starter-google-map',
 					gMapEmbedAPIKey && gMapEmbedLocation ? 'has-api-key' : 'no-api-key',
 				) }
-				// data-apikey={ gMapEmbedAPIKey }
-				// data-location={ gMapEmbedLocation }
-				// data-title={ gMapEmbedInfoWindowTitle }
-				// data-text={ gMapEmbedInfoWindowContent }
-				// data-type={ gMapEmbedType }
-				// data-zoom={ gMapEmbedZoom }
-				// data-disable-ui={ gMapEmbedDisableUI ? true : false }
-				// data-lat={ gMapEmbedLat ? gMapEmbedLat : false }
-				// data-long={ gMapEmbedLong ? gMapEmbedLong : false }
 				style={ { height: height } }
 			>
+			<form class="starter-google-map__attributes">
+				<input type="hidden" name="gMapEmbedAPIKey" value={ gMapEmbedAPIKey } />
+				<input type="hidden" name="gMapEmbedLocation" value={ gMapEmbedLocation } />
+				<input type="hidden" name="gMapEmbedInfoWindowTitle" value={ gMapEmbedInfoWindowTitle } />
+				<input type="hidden" name="gMapEmbedInfoWindowContent" value={ gMapEmbedInfoWindowContent } />
+				<input type="hidden" name="gMapEmbedType" value={ gMapEmbedType } />
+				<input type="hidden" name="gMapEmbedZoom" value={ gMapEmbedZoom } />
+				<input type="hidden" name="gMapEmbedDisableUI" value={ gMapEmbedDisableUI } />
+				<input type="hidden" name="gMapEmbedLat" value={ gMapEmbedLat } />
+				<input type="hidden" name="gMapEmbedLong" value={ gMapEmbedLong } />
+				</form>
 			</div>
 		);
 	},

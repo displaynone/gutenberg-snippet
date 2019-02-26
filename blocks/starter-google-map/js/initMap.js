@@ -9,8 +9,7 @@
  * @see https://developers.google.com/maps/documentation/javascript/tutorial
  */
 
-const initMap = function( attributes, doFetch = true ) {
-
+const initMap = function( attributes ) {
   const {
     gMapEmbedAPIKey,
     gMapEmbedLat,
@@ -93,9 +92,10 @@ const initMap = function( attributes, doFetch = true ) {
       });
     }
   };
-
+  
   // Initialise the Map.
   if ( gMapEmbedLat && gMapEmbedLong ) {
+    
     init( gMapEmbedLat, gMapEmbedLong );
   }
 };

@@ -48,7 +48,7 @@ class Enqueue_Google_Map {
 			// @codingStandardsIgnoreLine.
 			wp_enqueue_script(
 				'google-maps',
-				'//maps.googleapis.com/maps/api/js?key=' . $key,
+				is_admin() ? '//maps.googleapis.com/maps/api/js?key=' . $key : '//maps.googleapis.com/maps/api/js?key=' . $key . '&callback=initGoogleMapEmbed',
 				array(),
 				null,
 				true

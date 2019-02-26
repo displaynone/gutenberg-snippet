@@ -13,15 +13,15 @@ const mapEmbedEl = document.getElementsByClassName(
 // Harvest the attribute data that we need to pass to initMap.
 const attributes = [];
 
-attributes['gMapEmbedAPIKey']            = mapEmbedEl.getAttribute( 'data-apikey' );
-attributes['gMapEmbedLocation']          = mapEmbedEl.getAttribute( 'data-location' );
-attributes['gMapEmbedInfoWindowTitle']   = mapEmbedEl.getAttribute( 'data-title' );
-attributes['gMapEmbedInfoWindowContent'] = mapEmbedEl.getAttribute( 'data-text' );
-attributes['gMapEmbedZoom']              = mapEmbedEl.getAttribute( 'data-zoom' );
-attributes['gMapEmbedType']              = mapEmbedEl.getAttribute( 'data-type' );
-attributes['gMapEmbedDisableUI']         = mapEmbedEl.getAttribute( 'data-disable-ui' );
-attributes['gMapEmbedLat']               = mapEmbedEl.getAttribute( 'data-lat' );
-attributes['gMapEmbedLong']              = mapEmbedEl.getAttribute( 'data-long' );
+attributes['gMapEmbedAPIKey']            = mapEmbedEl.querySelector( 'input[name=gMapEmbedAPIKey]' ).value;
+attributes['gMapEmbedLocation']          = mapEmbedEl.querySelector( 'input[name=gMapEmbedLocation]' ).value;
+attributes['gMapEmbedInfoWindowTitle']   = mapEmbedEl.querySelector( 'input[name=gMapEmbedInfoWindowTitle]' ).value;
+attributes['gMapEmbedInfoWindowContent'] = mapEmbedEl.querySelector( 'input[name=gMapEmbedInfoWindowContent]' ).value;
+attributes['gMapEmbedZoom']              = mapEmbedEl.querySelector( 'input[name=gMapEmbedZoom]' ).value;
+attributes['gMapEmbedType']              = mapEmbedEl.querySelector( 'input[name=gMapEmbedType]' ).value;
+attributes['gMapEmbedDisableUI']         = mapEmbedEl.querySelector( 'input[name=gMapEmbedDisableUI]' ).value;
+attributes['gMapEmbedLat']               = mapEmbedEl.querySelector( 'input[name=gMapEmbedLat]' ).value;
+attributes['gMapEmbedLong']              = mapEmbedEl.querySelector( 'input[name=gMapEmbedLong]' ).value;
 
 // Bind our Google Maps API callback to the window, which lets us call initMap.
 window.initGoogleMapEmbed = function() {
