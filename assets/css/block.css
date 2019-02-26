@@ -166,3 +166,10 @@
   .starter-opening-hours-row .starter-opening-hours__column {
     display: inline-block;
     padding-right: 1em; }
+/**
+ * Block
+ *
+ * The styles for the Block.
+ */
+.starter-google-map.has-api-key {
+  height: 300px; }

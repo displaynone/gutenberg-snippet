@@ -11,3 +11,4 @@ import './i18n.js';
 import './starter-card/js/index';
 import './starter-opening-hours/js/index';
 import './starter-opening-hours/js/row';
+import './starter-google-map/js/index';
