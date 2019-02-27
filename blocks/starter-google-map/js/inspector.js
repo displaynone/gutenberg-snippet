@@ -132,7 +132,7 @@ render() {
 							'This key must be enabled for the Google Maps JavaScript and Geocoding APIs.',
 							'plugin-name'
 						) }
-						defaultValue={ gMapEmbedAPIKeyOption }
+						defaultValue={ 'string' === typeof gMapEmbedAPIKeyOption ? gMapEmbedAPIKeyOption : '' }
 						onChange={ onChangeGMapEmbedAPIKey }
 					/>
 

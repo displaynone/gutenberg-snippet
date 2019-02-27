@@ -294,6 +294,7 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 					<input type="hidden" name="gMapEmbedLat" value={ gMapEmbedLat } />
 					<input type="hidden" name="gMapEmbedLong" value={ gMapEmbedLong } />
 					<input type="hidden" name="gMapEmbedStyles" value={ gMapEmbedStyles } />
+					<input type="hidden" name="gMapEmbedMarker" value={ gMapEmbedMarker } />
 				</form>
 			</div>
 		);
