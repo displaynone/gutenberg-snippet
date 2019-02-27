@@ -279,7 +279,6 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 					<form class="starter-google-map__attributes">
 						<input type="hidden" name="gMapEmbedAPIKey" value={ gMapEmbedAPIKey } />
 						<input type="hidden" name="gMapEmbedDisableUI" value={ gMapEmbedDisableUI } />
-						<input type="hidden" name="gMapEmbedID" value={ gMapEmbedID } />
 						<input type="hidden" name="gMapEmbedInfoWindowContent" value={ gMapEmbedInfoWindowContent } />
 						<input type="hidden" name="gMapEmbedInfoWindowTitle" value={ gMapEmbedInfoWindowTitle } />
 						<input type="hidden" name="gMapEmbedLat" value={ gMapEmbedLat } />

@@ -16,7 +16,7 @@ window.initGoogleMapEmbed = function() {
 		const attributes = [];
 		attributes['gMapEmbedAPIKey']            = mapEmbedEl.querySelector( 'input[name=gMapEmbedAPIKey]' ).value;
 		attributes['gMapEmbedDisableUI']         = mapEmbedEl.querySelector( 'input[name=gMapEmbedDisableUI]' ).value;
-		attributes['gMapEmbedID']                = mapEmbedEl.querySelector( 'input[name=gMapEmbedID]' ).value;
+		attributes['gMapEmbedID']                = mapEmbedEl.id;
 		attributes['gMapEmbedInfoWindowContent'] = mapEmbedEl.querySelector( 'input[name=gMapEmbedInfoWindowContent]' ).value;
 		attributes['gMapEmbedInfoWindowTitle']   = mapEmbedEl.querySelector( 'input[name=gMapEmbedInfoWindowTitle]' ).value;
 		attributes['gMapEmbedLat']               = mapEmbedEl.querySelector( 'input[name=gMapEmbedLat]' ).value;
