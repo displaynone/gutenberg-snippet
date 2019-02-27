@@ -264,15 +264,31 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 		 * 
 		 * For the most part this should be plain HTML with a few
 		 * { variables } scattered around.
+		 * 
+		 * Microformats
+		 * 
+		 * Note that we are using the following microformats:
+		 * 
+		 * - h-geo: http://microformats.org/wiki/h-entry
+		 * - geo: http://microformats.org/wiki/hentry
+		 * 
+		 * As this is a map, in theory we could use https://schema.org/Map
+		 * but that is more appropriate when linking to a Map.
 		 */
 		return (
-			<Fragment>
+			<div
+				className={ classnames( 
+					'starter-google-map__wrapper',
+					'geo',
+					'h-geo',
+				) }
+			>
 				<div
 					id={ gMapEmbedID }
 					className={ classnames( 
-						className,
 						'starter-google-map',
 						gMapEmbedAPIKey && gMapEmbedLocation ? 'has-api-key' : 'no-api-key',
+						
 					) }
 					style={ { height: height } }
 				>
@@ -281,16 +297,18 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 						<input type="hidden" name="gMapEmbedDisableUI" value={ gMapEmbedDisableUI } />
 						<input type="hidden" name="gMapEmbedInfoWindowContent" value={ gMapEmbedInfoWindowContent } />
 						<input type="hidden" name="gMapEmbedInfoWindowTitle" value={ gMapEmbedInfoWindowTitle } />
-						<input type="hidden" name="gMapEmbedLat" value={ gMapEmbedLat } />
+						<input type="hidden" name="gMapEmbedLat" value={ gMapEmbedLat } class="p-latitude latitude" />
 						<input type="hidden" name="gMapEmbedLocation" value={ gMapEmbedLocation } />
-						<input type="hidden" name="gMapEmbedLong" value={ gMapEmbedLong } />
+						<input type="hidden" name="gMapEmbedLong" value={ gMapEmbedLong } class="p-longitude longitude" />
 						<input type="hidden" name="gMapEmbedMarker" value={ gMapEmbedMarker } />
 						<input type="hidden" name="gMapEmbedStyles" value={ gMapEmbedStyles } />
 						<input type="hidden" name="gMapEmbedType" value={ gMapEmbedType } />
 						<input type="hidden" name="gMapEmbedZoom" value={ gMapEmbedZoom } />
 					</form>
 				</div>
-			</Fragment>
+				<data class="p-latitude latitude" value={ gMapEmbedLat } />
+				<data class="p-longitude longitude" value={ gMapEmbedLong } />
+			</div>
 		);
 	},
 } );

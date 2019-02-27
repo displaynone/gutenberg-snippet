@@ -97,20 +97,23 @@ function initMap( attributes ) {
 		const link  = '<a target="_blank" href="https://maps.google.com/maps?ll=' + loc.lat + ',' + loc.lng + '&amp;z=' + gMapEmbedZoom + '<span>View on Google Maps</span></a>' + '">';
 		const contentString =
 		'<div class="gm-style">' +
-		'<div class="gm-style-iw">' +
-		'<div class="poi-info-window gm-style">' +
-		'<div class="title full-width">' +
-		title +
-		'</div>' +
-		text +
-		'<div class="address">' +
-		'<div class="address-line full-width">' +
-		gMapEmbedLocation.replace(/ *, */g, ',<br>') +
-		'</div>' +
-		'<div class="view-link">' +
-		link +
-		'</div>' +
-		'</div></div></div></div>';
+			'<div class="gm-style-iw">' +
+				'<div class="poi-info-window gm-style">' +
+					'<div class="title full-width">' +
+						title +
+					'</div>' +
+					text +
+					'<div class="address">' +
+						'<div class="address-line full-width">' +
+							gMapEmbedLocation.replace(/ *, */g, ',<br>') +
+						'</div>' +
+						'<div class="view-link">' +
+							link +
+						'</div>' +
+					'</div>' +
+				'</div>' +
+			'</div>' +
+		'</div>';
 
 
 		if ( gMapEmbedInfoWindowTitle || gMapEmbedInfoWindowTitle ) {
