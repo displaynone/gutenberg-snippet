@@ -3,7 +3,7 @@
  */
 
 // Import dependencies.
-import initMap from './initMap';
+import initMap from './map-init';
 
 window.initGoogleMapEmbed = function() {
 	// Get the block container element.
