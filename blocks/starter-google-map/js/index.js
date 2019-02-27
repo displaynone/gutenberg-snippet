@@ -19,7 +19,7 @@ import '../scss/block.scss';       // Block styles
 
 // From Block
 import attributes from './attributes';                    // Attribute Registration
-import initMap from './initMap';                          // Initiate Google Maps
+import initMap from './map-init';                         // Initiate Google Maps
 import Inspector from './inspector';                      // InspectorControls (Sidebar)
 import store from '../../data/rest-api-options/js/index'; // REST API Endpoints.
 
