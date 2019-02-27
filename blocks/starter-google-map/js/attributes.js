@@ -40,6 +40,9 @@ const attributes = {
     gMapEmbedStyles: {
         type: 'string'
     },
+    gMapEmbedMarker: {
+        type: 'string'
+    },
     height: {
         type: 'number',
         default: 100,

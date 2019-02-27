@@ -51,6 +51,13 @@
     padding: 1em; }
     .starter-google-map.no-api-key p {
       margin: 0px; }
+
+/**
+ * Inspector Controls
+ */
+.starter-google-map__display-options .components-button {
+  display: block;
+  margin-top: 1em; }
 /**
  * Editor Styles
  *

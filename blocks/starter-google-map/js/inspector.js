@@ -17,13 +17,18 @@ import JSONChecker from '../../components/json-checker/js/index';
 // Internal Block Libraries
 const { apiFetch }          = wp;
 const {
+	BaseControl,
+	Button,
   	PanelBody,
 	TextControl,
 	TextareaControl,
 	SelectControl,
 	CheckboxControl,
 }                           = wp.components;
-const { InspectorControls } = wp.editor;
+const { 
+	InspectorControls, 
+	MediaUpload,
+}                           = wp.editor;
 const { Component }         = wp.element;
 const { __ }                = wp.i18n;
 
@@ -44,6 +49,7 @@ render() {
 			gMapEmbedType,
 			gMapEmbedZoom,
 			gMapEmbedDisableUI,
+			gMapEmbedMarker,
 		},
 		gMapEmbedAPIKeyOption,
 		setAttributes,
@@ -108,8 +114,8 @@ render() {
 	const onChangeGMapEmbedZoom              = gMapEmbedZoom => { setAttributes( { gMapEmbedZoom} ) };
 	const onChangeGMapEmbedType              = gMapEmbedType => { setAttributes( { gMapEmbedType} ) };
 	const onChangeGMapEmbedDisableUI         = gMapEmbedDisableUI => { setAttributes( { gMapEmbedDisableUI} ) };
-
-	// console.log( JSON.parse( gMapEmbedStyles ) );
+	const onChangeGMapEmbedMarker            = image => { setAttributes( { gMapEmbedMarker: image.url } ) };
+	const onRemoveGMapEmbedMarker            = () => { setAttributes( { gMapEmbedMarker: null } ) };
 
 	return (
 			<InspectorControls>
@@ -235,6 +241,41 @@ render() {
 						value={ gMapEmbedStyles }
 					/>
 					<JSONChecker { ...{ json: gMapEmbedStyles } } />
+
+					
+					<BaseControl
+						label={ __( 'Choose a Custom Marker Image', 'plugin-name' ) }
+					>
+						<MediaUpload
+							onSelect={ onChangeGMapEmbedMarker }
+							allowedTypes={ [ 'image' ] }
+							type="image"
+							value={ gMapEmbedMarker }
+							render={ ( { open } ) => (
+									<Button
+									label={ __( 'Choose Image', 'plugin-name' ) }
+									isDefault
+									isLarge
+									onClick={ open }
+									>
+										{ __( 'Choose Image', 'plugin-name' ) }
+									</Button>
+								) }
+							>
+						</MediaUpload>
+
+						{ gMapEmbedMarker && (
+							<Button
+								label={ __( 'Remove Image', 'plugin-name' ) }
+								isLink
+								isDestructive
+								onClick={ onRemoveGMapEmbedMarker }
+							>
+								{ __( 'Remove Image', 'plugin-name' ) }
+							</Button>
+						) }
+
+					</BaseControl>
 				</PanelBody>
 			</InspectorControls>
 		)

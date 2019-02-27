@@ -21,6 +21,7 @@ const initMap = function( attributes ) {
     gMapEmbedType,
     gMapEmbedZoom,
     gMapEmbedDisableUI,
+    gMapEmbedMarker,
   } = attributes;
 
   // Abort if we have no location or API key.
@@ -74,12 +75,18 @@ const initMap = function( attributes ) {
       map.mapTypes.set( 'Styled', styledMapType );
     }
 
-    // Create the Marker.
-    const marker = new google.maps.Marker({
+    const markerOptions = {
       position: loc,
       map: map,
       title: gMapEmbedInfoWindowTitle
-    });
+    };
+
+    if ( gMapEmbedMarker ) {
+      markerOptions.icon = gMapEmbedMarker;
+    }
+
+    // Create the Marker.
+    const marker = new google.maps.Marker( markerOptions );
 
     // Prepare our Info Window content.
     const title = gMapEmbedInfoWindowTitle ? gMapEmbedInfoWindowTitle : 'About this Location';
