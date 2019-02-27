@@ -9,125 +9,127 @@
  * @see https://developers.google.com/maps/documentation/javascript/tutorial
  */
 
-const initMap = function( attributes ) {
-  const {
-    gMapEmbedAPIKey,
-    gMapEmbedLat,
+function initMap( attributes ) {
+
+	const {
+		gMapEmbedAPIKey,
+		gMapEmbedDisableUI,
+		gMapEmbedID,
+		gMapEmbedInfoWindowContent,
+		gMapEmbedInfoWindowTitle,
+		gMapEmbedLat,
+		gMapEmbedLocation,
 		gMapEmbedLong,
-    gMapEmbedLocation,
-    gMapEmbedInfoWindowTitle,
-    gMapEmbedInfoWindowContent,
-    gMapEmbedStyles,
-    gMapEmbedType,
-    gMapEmbedZoom,
-    gMapEmbedDisableUI,
-    gMapEmbedMarker,
-  } = attributes;
+		gMapEmbedMarker,
+		gMapEmbedStyles,
+		gMapEmbedType,
+		gMapEmbedZoom,
+	} = attributes;
 
-  // Abort if we have no location or API key.
-  if ( ! gMapEmbedLocation || ! gMapEmbedAPIKey ) {
-    return;
-  }
+	// Abort if we have no location or API key.
+	if ( ! gMapEmbedLocation || ! gMapEmbedAPIKey ) {
+		return;
+	}
 
-  // Define the DOM element we're creating the Map with.
-  const mapEl = document.getElementById( 'starter-google-map' );
+	// Define the DOM element we're creating the Map with.
+	const mapEl = document.getElementById( gMapEmbedID );
 
-  if ( ! mapEl ) {
-    return;
-  }
+	if ( ! mapEl ) {
+		return;
+	}
 
-  // Initialise the Google Map. (fires below)
-  const init = function( lat, lng ) {
-    // Create our location aspect a.k.a "center".
-    const loc = { lat: parseFloat( lat ), lng: parseFloat( lng ) };
+	// Initialise the Google Map. (fires below)
+	const init = function( lat, lng ) {
+		
+		// Create our location aspect a.k.a "center".
+		const loc = { lat: parseFloat( lat ), lng: parseFloat( lng ) };
 
-    let styles = '';
-    let styledMapType = '';
-    try {
-      styles = JSON.parse( gMapEmbedStyles );
-      styledMapType = new google.maps.StyledMapType( styles, {
-          name: 'Styled'
-      } );
-    } catch( error ) {
-      styles = '';
-    }
+		let styles = '';
+		let styledMapType = '';
+		try {
+			styles = JSON.parse( gMapEmbedStyles );
+			styledMapType = new google.maps.StyledMapType( styles, {
+				name: 'Styled'
+			} );
+		} catch( error ) {
+			styles = '';
+		}
 
-    // Build our options object, handling default values.
-    const options = {
-      center: loc,
-      zoom: gMapEmbedZoom ? parseInt( gMapEmbedZoom ) : 14,
-      mapTypeId: gMapEmbedType ? gMapEmbedType : 'roadmap',
-      disableDefaultUI: gMapEmbedDisableUI,
-      scrollwheel: false // Prevents zoom when scrolling.
-    };
+		// Build our options object, handling default values.
+		const options = {
+			center: loc,
+			zoom: gMapEmbedZoom ? parseInt( gMapEmbedZoom ) : 14,
+			mapTypeId: gMapEmbedType ? gMapEmbedType : 'roadmap',
+			disableDefaultUI: gMapEmbedDisableUI,
+			scrollwheel: false // Prevents zoom when scrolling.
+		};
 
-    if ( styles ) {
-      options.mapTypeControlOptions = {
-        mapTypeIds: [ 'Styled' ]
-      };
-      options.mapTypeId = 'Styled';
-    }
+		if ( styles ) {
+			options.mapTypeControlOptions = {
+			mapTypeIds: [ 'Styled' ]
+			};
+			options.mapTypeId = 'Styled';
+		}
 
-    // Create the Map.
-    const map = new google.maps.Map( mapEl, options );
+		// Create the Map.
+		const map = new google.maps.Map( mapEl, options );
 
-    if ( styles ) {
-      map.mapTypes.set( 'Styled', styledMapType );
-    }
+		if ( styles ) {
+			map.mapTypes.set( 'Styled', styledMapType );
+		}
 
-    const markerOptions = {
-      position: loc,
-      map: map,
-      title: gMapEmbedInfoWindowTitle
-    };
+		const markerOptions = {
+			position: loc,
+			map: map,
+			title: gMapEmbedInfoWindowTitle
+		};
 
-    if ( gMapEmbedMarker ) {
-      markerOptions.icon = gMapEmbedMarker;
-    }
+		if ( gMapEmbedMarker ) {
+			markerOptions.icon = gMapEmbedMarker;
+		}
 
-    // Create the Marker.
-    const marker = new google.maps.Marker( markerOptions );
+		// Create the Marker.
+		const marker = new google.maps.Marker( markerOptions );
 
-    // Prepare our Info Window content.
-    const title = gMapEmbedInfoWindowTitle ? gMapEmbedInfoWindowTitle : 'About this Location';
-    const text  = gMapEmbedInfoWindowContent ? '<div class="description full-width">' + gMapEmbedInfoWindowContent + '</div>' : '';
-    const link = '<a target="_blank" href="https://maps.google.com/maps?ll=' + loc.lat + ',' + loc.lng + '&amp;z=' + gMapEmbedZoom + '<span>View on Google Maps</span></a>' + '">';
-    const contentString =
-      '<div class="gm-style">' +
-      '<div class="gm-style-iw">' +
-      '<div class="poi-info-window gm-style">' +
-      '<div class="title full-width">' +
-      title +
-      '</div>' +
-      text +
-      '<div class="address">' +
-      '<div class="address-line full-width">' +
-      gMapEmbedLocation.replace(/ *, */g, ',<br>') +
-      '</div>' +
-      '<div class="view-link">' +
-      link +
-      '</div>' +
-      '</div></div></div></div>';
+		// Prepare our Info Window content.
+		const title = gMapEmbedInfoWindowTitle ? gMapEmbedInfoWindowTitle : 'About this Location';
+		const text  = gMapEmbedInfoWindowContent ? '<div class="description full-width">' + gMapEmbedInfoWindowContent + '</div>' : '';
+		const link  = '<a target="_blank" href="https://maps.google.com/maps?ll=' + loc.lat + ',' + loc.lng + '&amp;z=' + gMapEmbedZoom + '<span>View on Google Maps</span></a>' + '">';
+		const contentString =
+		'<div class="gm-style">' +
+		'<div class="gm-style-iw">' +
+		'<div class="poi-info-window gm-style">' +
+		'<div class="title full-width">' +
+		title +
+		'</div>' +
+		text +
+		'<div class="address">' +
+		'<div class="address-line full-width">' +
+		gMapEmbedLocation.replace(/ *, */g, ',<br>') +
+		'</div>' +
+		'<div class="view-link">' +
+		link +
+		'</div>' +
+		'</div></div></div></div>';
 
 
-    if ( gMapEmbedInfoWindowTitle || gMapEmbedInfoWindowTitle ) {
-      // Create the Info Window.
-      const infowindow = new google.maps.InfoWindow({
-        content: contentString
-      });
+		if ( gMapEmbedInfoWindowTitle || gMapEmbedInfoWindowTitle ) {
+			// Create the Info Window.
+			const infowindow = new google.maps.InfoWindow({
+				content: contentString
+			});
 
-      // Trigger the Info Window on Marker click.
-      marker.addListener( 'click', function() {
-        infowindow.open( map, marker );
-      });
-    }
-  };
-  
-  // Initialise the Map.
-  if ( gMapEmbedLat && gMapEmbedLong ) {
-    
-    init( gMapEmbedLat, gMapEmbedLong );
-  }
+			// Trigger the Info Window on Marker click.
+			marker.addListener( 'click', function() {
+				infowindow.open( map, marker );
+			});
+		}
+	};
+
+	// Initialise the Map.
+	if ( gMapEmbedLat && gMapEmbedLong ) {
+		init( gMapEmbedLat, gMapEmbedLong );
+	}
 };
 
 export default initMap;

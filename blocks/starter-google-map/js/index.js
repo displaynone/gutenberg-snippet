@@ -43,7 +43,6 @@ const { __ }                = wp.i18n; // Localization
  * Save values to the API.
  */
 const applyWithDispatch = withDispatch( ( dispatch, { value } ) => {
-	
 	return {
 		updateOption( value ) {
 			dispatch( 'company-name/plugin-name' ).updateOption( value );
@@ -98,14 +97,14 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 	// https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-registration/#supports-optional
 	supports: {
 		align: true,
-		anchor: false,
+		anchor: true,
 		html: false,
-		multiple: false,
-		reusable: false,
+		multiple: true,
+		reusable: true,
 	},
 
 	// Allow component to be used once only.
-	useOnce: true,
+	// useOnce: true,
 
 	// Import the attributes
 	attributes,
@@ -133,16 +132,8 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 		const {
 			attributes: {
 				gMapEmbedAPIKey,
-				gMapEmbedLat,
-				gMapEmbedLong,
+				gMapEmbedID,
 				gMapEmbedLocation,
-				gMapEmbedInfoWindowTitle,
-				gMapEmbedInfoWindowContent,
-				gMapEmbedStyles,
-				gMapEmbedType,
-				gMapEmbedZoom,
-				gMapEmbedDisableUI,
-				gMapEmbedMarker,
 				height,
 			},
 			className,
@@ -158,6 +149,13 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 		 * 
 		 * Functions for this Component.
 		 */
+
+		if ( ! gMapEmbedID ) {
+			let ts = Math.round((new Date()).getTime() / 1000);
+			let id = 'starter-google-map--' + ts;
+			setAttributes( { gMapEmbedID: id } );
+		}
+
 		if ( ! gMapEmbedAPIKey && gMapEmbedAPIKeyOption && 'string' == typeof gMapEmbedAPIKeyOption ) {
 			setAttributes( { gMapEmbedAPIKey: gMapEmbedAPIKeyOption } );
 		}
@@ -211,7 +209,7 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 				} }
 			>
 				<div
-					id="starter-google-map"
+					id={ gMapEmbedID }
 					className={ classnames( 
 						className,
 						'starter-google-map',
@@ -245,58 +243,55 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 		const {
 			attributes: {
 				gMapEmbedAPIKey,
-				gMapEmbedLat,
-				gMapEmbedLong,
-				gMapEmbedLocation,
-				gMapEmbedInfoWindowTitle,
+				gMapEmbedDisableUI,
+				gMapEmbedID,
 				gMapEmbedInfoWindowContent,
+				gMapEmbedInfoWindowTitle,
+				gMapEmbedLat,
+				gMapEmbedLocation,
+				gMapEmbedLong,
+				gMapEmbedMarker,
 				gMapEmbedStyles,
 				gMapEmbedType,
 				gMapEmbedZoom,
-				gMapEmbedDisableUI,
-				gMapEmbedMarker,
 				height,
 			},
 			className, 
 		} = props;
-
 	
 		/**
 		 * Return 
 		 * 
 		 * For the most part this should be plain HTML with a few
 		 * { variables } scattered around.
-		 *
-		 * Microformats
-		 * 
-		 * Note that we are using the following microformats:
-		 * 
-		 * - TBD
 		 */
 		return (
-			<div
-				id="starter-google-map"
-				className={ classnames( 
-					className,
-					'starter-google-map',
-					gMapEmbedAPIKey && gMapEmbedLocation ? 'has-api-key' : 'no-api-key',
-				) }
-				style={ { height: height } }
-			>
-				<form class="starter-google-map__attributes">
-					<input type="hidden" name="gMapEmbedAPIKey" value={ gMapEmbedAPIKey } />
-					<input type="hidden" name="gMapEmbedLocation" value={ gMapEmbedLocation } />
-					<input type="hidden" name="gMapEmbedInfoWindowTitle" value={ gMapEmbedInfoWindowTitle } />
-					<input type="hidden" name="gMapEmbedInfoWindowContent" value={ gMapEmbedInfoWindowContent } />
-					<input type="hidden" name="gMapEmbedType" value={ gMapEmbedType } />
-					<input type="hidden" name="gMapEmbedZoom" value={ gMapEmbedZoom } />
-					<input type="hidden" name="gMapEmbedDisableUI" value={ gMapEmbedDisableUI } />
-					<input type="hidden" name="gMapEmbedLat" value={ gMapEmbedLat } />
-					<input type="hidden" name="gMapEmbedLong" value={ gMapEmbedLong } />
-					<input type="hidden" name="gMapEmbedStyles" value={ gMapEmbedStyles } />
-					<input type="hidden" name="gMapEmbedMarker" value={ gMapEmbedMarker } />
-				</form>
-			</div>
+			<Fragment>
+				<div
+					id={ gMapEmbedID }
+					className={ classnames( 
+						className,
+						'starter-google-map',
+						gMapEmbedAPIKey && gMapEmbedLocation ? 'has-api-key' : 'no-api-key',
+					) }
+					style={ { height: height } }
+				>
+					<form class="starter-google-map__attributes">
+						<input type="hidden" name="gMapEmbedAPIKey" value={ gMapEmbedAPIKey } />
+						<input type="hidden" name="gMapEmbedDisableUI" value={ gMapEmbedDisableUI } />
+						<input type="hidden" name="gMapEmbedID" value={ gMapEmbedID } />
+						<input type="hidden" name="gMapEmbedInfoWindowContent" value={ gMapEmbedInfoWindowContent } />
+						<input type="hidden" name="gMapEmbedInfoWindowTitle" value={ gMapEmbedInfoWindowTitle } />
+						<input type="hidden" name="gMapEmbedLat" value={ gMapEmbedLat } />
+						<input type="hidden" name="gMapEmbedLocation" value={ gMapEmbedLocation } />
+						<input type="hidden" name="gMapEmbedLong" value={ gMapEmbedLong } />
+						<input type="hidden" name="gMapEmbedMarker" value={ gMapEmbedMarker } />
+						<input type="hidden" name="gMapEmbedStyles" value={ gMapEmbedStyles } />
+						<input type="hidden" name="gMapEmbedType" value={ gMapEmbedType } />
+						<input type="hidden" name="gMapEmbedZoom" value={ gMapEmbedZoom } />
+					</form>
+				</div>
+			</Fragment>
 		);
 	},
 } );

@@ -12,35 +12,38 @@
 const attributes = {
     gMapEmbedAPIKey: {
         type: 'string'
+	},
+	gMapEmbedDisableUI: {
+        type: 'bool'
+	},
+	gMapEmbedID: {
+        type: 'string'
+	},
+	gMapEmbedInfoWindowContent: {
+        type: 'string'
+    },
+	gMapEmbedInfoWindowTitle: {
+        type: 'string'
     },
     gMapEmbedLat: {
         type: 'float'
+	},
+	gMapEmbedLocation: {
+        type: 'string'
     },
     gMapEmbedLong: {
         type: 'float'
-    },
-    gMapEmbedLocation: {
+	},
+	gMapEmbedMarker: {
         type: 'string'
     },
-    gMapEmbedInfoWindowTitle: {
-        type: 'string'
-    },
-    gMapEmbedInfoWindowContent: {
+	gMapEmbedStyles: {
         type: 'string'
     },
     gMapEmbedType: {
         type: 'string'
     },
     gMapEmbedZoom: {
-        type: 'string'
-    },
-    gMapEmbedDisableUI: {
-        type: 'bool'
-    },
-    gMapEmbedStyles: {
-        type: 'string'
-    },
-    gMapEmbedMarker: {
         type: 'string'
     },
     height: {
