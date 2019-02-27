@@ -304,7 +304,7 @@ class Main {
 	 */
 	public function classic_editor_assets() {
 
-		$styles = '/assets/css/classic-editor.css';
+		$styles = 'assets/css/editor.css';
 
 		add_editor_style(
 			plugins_url( $styles, __FILE__ ) .
