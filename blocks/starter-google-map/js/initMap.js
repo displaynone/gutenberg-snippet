@@ -17,6 +17,7 @@ const initMap = function( attributes ) {
     gMapEmbedLocation,
     gMapEmbedInfoWindowTitle,
     gMapEmbedInfoWindowContent,
+    gMapEmbedStyles,
     gMapEmbedType,
     gMapEmbedZoom,
     gMapEmbedDisableUI,
@@ -39,6 +40,17 @@ const initMap = function( attributes ) {
     // Create our location aspect a.k.a "center".
     const loc = { lat: parseFloat( lat ), lng: parseFloat( lng ) };
 
+    let styles = '';
+    let styledMapType = '';
+    try {
+      styles = JSON.parse( gMapEmbedStyles );
+      styledMapType = new google.maps.StyledMapType( styles, {
+          name: 'Styled'
+      } );
+    } catch( error ) {
+      styles = '';
+    }
+
     // Build our options object, handling default values.
     const options = {
       center: loc,
@@ -48,8 +60,19 @@ const initMap = function( attributes ) {
       scrollwheel: false // Prevents zoom when scrolling.
     };
 
+    if ( styles ) {
+      options.mapTypeControlOptions = {
+        mapTypeIds: [ 'Styled' ]
+      };
+      options.mapTypeId = 'Styled';
+    }
+
     // Create the Map.
     const map = new google.maps.Map( mapEl, options );
+
+    if ( styles ) {
+      map.mapTypes.set( 'Styled', styledMapType );
+    }
 
     // Create the Marker.
     const marker = new google.maps.Marker({

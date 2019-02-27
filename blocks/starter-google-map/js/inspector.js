@@ -11,6 +11,9 @@
  * Block Dependencies.
  */
 
+// Shared Comonents
+import JSONChecker from '../../components/json-checker/js/index';
+
 // Internal Block Libraries
 const { apiFetch }          = wp;
 const {
@@ -34,11 +37,10 @@ render() {
 	const {
 		attributes: {
 			gMapEmbedAPIKey,
-			gMapEmbedLat,
-			gMapEmbedLong,
 			gMapEmbedLocation,
 			gMapEmbedInfoWindowTitle,
 			gMapEmbedInfoWindowContent,
+			gMapEmbedStyles,
 			gMapEmbedType,
 			gMapEmbedZoom,
 			gMapEmbedDisableUI,
@@ -100,18 +102,21 @@ render() {
 		});
 	};
 
-	const onChangeGMapEmbedInfoWindowTitle   = gMapEmbedInfoWindowTitle => { setAttributes( { gMapEmbedInfoWindowTitle} ) };
+	const onChangeGMapEmbedStyles            = gMapEmbedStyles => { setAttributes( { gMapEmbedStyles } ) };
+	const onChangeGMapEmbedInfoWindowTitle   = gMapEmbedInfoWindowTitle => { setAttributes( { gMapEmbedInfoWindowTitle } ) };
 	const onChangeGMapEmbedInfoWindowContent = gMapEmbedInfoWindowContent => { setAttributes( { gMapEmbedInfoWindowContent} ) };
 	const onChangeGMapEmbedZoom              = gMapEmbedZoom => { setAttributes( { gMapEmbedZoom} ) };
 	const onChangeGMapEmbedType              = gMapEmbedType => { setAttributes( { gMapEmbedType} ) };
 	const onChangeGMapEmbedDisableUI         = gMapEmbedDisableUI => { setAttributes( { gMapEmbedDisableUI} ) };
+
+	// console.log( JSON.parse( gMapEmbedStyles ) );
 
 	return (
 			<InspectorControls>
 				<PanelBody
 					title={ __( 'Map Settings', 'plugin-name' ) }
 					className="starter-google-map__map-settings"
-					initialOpen={ true }
+					initialOpen={ ! ( gMapEmbedAPIKey && gMapEmbedLocation ) }
 				>
 
 					<TextControl
@@ -219,7 +224,17 @@ render() {
 						checked={ gMapEmbedDisableUI }
 						onChange={ onChangeGMapEmbedDisableUI }
 					/>
-	
+
+					<TextareaControl
+						label={ __( 'Custom Styles', 'plugin-name' ) }
+						help={ __(
+							'Must be valid JSON within an array.',
+							'plugin-name'
+						) }
+						onChange={ onChangeGMapEmbedStyles }
+						value={ gMapEmbedStyles }
+					/>
+					<JSONChecker { ...{ json: gMapEmbedStyles } } />
 				</PanelBody>
 			</InspectorControls>
 		)

@@ -138,6 +138,7 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 				gMapEmbedLocation,
 				gMapEmbedInfoWindowTitle,
 				gMapEmbedInfoWindowContent,
+				gMapEmbedStyles,
 				gMapEmbedType,
 				gMapEmbedZoom,
 				gMapEmbedDisableUI,
@@ -248,6 +249,7 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 				gMapEmbedLocation,
 				gMapEmbedInfoWindowTitle,
 				gMapEmbedInfoWindowContent,
+				gMapEmbedStyles,
 				gMapEmbedType,
 				gMapEmbedZoom,
 				gMapEmbedDisableUI,
@@ -279,16 +281,17 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 				) }
 				style={ { height: height } }
 			>
-			<form class="starter-google-map__attributes">
-				<input type="hidden" name="gMapEmbedAPIKey" value={ gMapEmbedAPIKey } />
-				<input type="hidden" name="gMapEmbedLocation" value={ gMapEmbedLocation } />
-				<input type="hidden" name="gMapEmbedInfoWindowTitle" value={ gMapEmbedInfoWindowTitle } />
-				<input type="hidden" name="gMapEmbedInfoWindowContent" value={ gMapEmbedInfoWindowContent } />
-				<input type="hidden" name="gMapEmbedType" value={ gMapEmbedType } />
-				<input type="hidden" name="gMapEmbedZoom" value={ gMapEmbedZoom } />
-				<input type="hidden" name="gMapEmbedDisableUI" value={ gMapEmbedDisableUI } />
-				<input type="hidden" name="gMapEmbedLat" value={ gMapEmbedLat } />
-				<input type="hidden" name="gMapEmbedLong" value={ gMapEmbedLong } />
+				<form class="starter-google-map__attributes">
+					<input type="hidden" name="gMapEmbedAPIKey" value={ gMapEmbedAPIKey } />
+					<input type="hidden" name="gMapEmbedLocation" value={ gMapEmbedLocation } />
+					<input type="hidden" name="gMapEmbedInfoWindowTitle" value={ gMapEmbedInfoWindowTitle } />
+					<input type="hidden" name="gMapEmbedInfoWindowContent" value={ gMapEmbedInfoWindowContent } />
+					<input type="hidden" name="gMapEmbedType" value={ gMapEmbedType } />
+					<input type="hidden" name="gMapEmbedZoom" value={ gMapEmbedZoom } />
+					<input type="hidden" name="gMapEmbedDisableUI" value={ gMapEmbedDisableUI } />
+					<input type="hidden" name="gMapEmbedLat" value={ gMapEmbedLat } />
+					<input type="hidden" name="gMapEmbedLong" value={ gMapEmbedLong } />
+					<input type="hidden" name="gMapEmbedStyles" value={ gMapEmbedStyles } />
 				</form>
 			</div>
 		);

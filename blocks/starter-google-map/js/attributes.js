@@ -37,6 +37,9 @@ const attributes = {
     gMapEmbedDisableUI: {
         type: 'bool'
     },
+    gMapEmbedStyles: {
+        type: 'string'
+    },
     height: {
         type: 'number',
         default: 100,

@@ -22,6 +22,7 @@ attributes['gMapEmbedType']              = mapEmbedEl.querySelector( 'input[name
 attributes['gMapEmbedDisableUI']         = mapEmbedEl.querySelector( 'input[name=gMapEmbedDisableUI]' ).value;
 attributes['gMapEmbedLat']               = mapEmbedEl.querySelector( 'input[name=gMapEmbedLat]' ).value;
 attributes['gMapEmbedLong']              = mapEmbedEl.querySelector( 'input[name=gMapEmbedLong]' ).value;
+attributes['gMapEmbedStyles']            = mapEmbedEl.querySelector( 'input[name=gMapEmbedStyles]' ).value;
 
 // Bind our Google Maps API callback to the window, which lets us call initMap.
 window.initGoogleMapEmbed = function() {
