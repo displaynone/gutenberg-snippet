@@ -66,8 +66,6 @@ render() {
 			gMapEmbedStyles,
 			gMapEmbedType,
 			gMapEmbedZoom,
-			
-			
 		},
 		gMapEmbedAPIKeyOption,
 		setAttributes,
@@ -155,7 +153,14 @@ render() {
 			} 
 		);
 	};
-	const onRemoveGMapEmbedMarker             = () => { setAttributes( { gMapEmbedMarker: null } ) };
+	const onRemoveGMapEmbedMarker             = () => { 
+		setAttributes( 
+			{
+				gMapEmbedMarkerID: null,
+				gMapEmbedMarker: null,
+			} 
+		);
+	};
 	const onChangeGMapEmbedInfoWindowImageURL = image => { 
 		let imageUrl = image.url;
 		if ( image.sizes.thumbnail.url ) {
@@ -181,9 +186,6 @@ render() {
 	const onChangeGMapEmbedInfoWindowLinkText    = gMapEmbedInfoWindowLinkText => { setAttributes( { gMapEmbedInfoWindowLinkText } ) };
 	const onChangeGMapEmbedInfoWindowLinkURL     = gMapEmbedInfoWindowLinkURL => { setAttributes( { gMapEmbedInfoWindowLinkURL } ) };
 	const onChangeGMapEmbedInfoWindowShowAddress = gMapEmbedInfoWindowShowAddress => { setAttributes( { gMapEmbedInfoWindowShowAddress } ) };
-
-	console.log( gMapEmbedInfoWindowImageID );
-	console.log( gMapEmbedInfoWindowImageURL );
 
 	return (
 			<InspectorControls>

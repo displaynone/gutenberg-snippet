@@ -173,3 +173,22 @@
  */
 .starter-google-map {
   margin-bottom: 1em; }
+
+.info-window .info-window__image {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  margin-right: 2em;
+  vertical-align: top; }
+
+.info-window .info-window__content {
+  display: inline-block; }
+  .info-window .info-window__content .info-window__title {
+    font-size: 1em;
+    margin: 0px;
+    font-weight: bold; }
+  .info-window .info-window__content .info-window__address {
+    margin-bottom: 1em;
+    margin-top: 1em; }
+    .info-window .info-window__content .info-window__address span {
+      display: block; }

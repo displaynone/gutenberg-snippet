@@ -246,6 +246,7 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 				gMapEmbedDisableUI,
 				gMapEmbedID,
 				gMapEmbedInfoWindowContent,
+				gMapEmbedInfoWindowShowAddress,
 				gMapEmbedInfoWindowTitle,
 				gMapEmbedLat,
 				gMapEmbedLocation,
@@ -279,8 +280,8 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 			<div
 				className={ classnames( 
 					'starter-google-map__wrapper',
-					'geo',
-					'h-geo',
+					( ! gMapEmbedInfoWindowShowAddress ) ? 'geo' : '',
+					( ! gMapEmbedInfoWindowShowAddress ) ? 'h-geo' : '',
 				) }
 			>
 				<div
@@ -306,8 +307,12 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 						<input type="hidden" name="gMapEmbedZoom" value={ gMapEmbedZoom } />
 					</form>
 				</div>
-				<data class="p-latitude latitude" value={ gMapEmbedLat } />
-				<data class="p-longitude longitude" value={ gMapEmbedLong } />
+				{ ( ! gMapEmbedInfoWindowShowAddress ) &&
+					<Fragment>
+						<data class="p-latitude latitude" value={ gMapEmbedLat } />
+						<data class="p-longitude longitude" value={ gMapEmbedLong } />
+					</Fragment>
+				}
 			</div>
 		);
 	},
