@@ -10,6 +10,30 @@
  * start of the component.
  */
 const attributes = {
+	gMapEmbedAddressCompanyName: {
+        type: 'string'
+	},
+	gMapEmbedAddressCountry: {
+        type: 'string'
+	},
+	gMapEmbedAddressLine1: {
+        type: 'string'
+	},
+	gMapEmbedAddressLine2: {
+        type: 'string'
+	},
+	gMapEmbedAddressLocality: {
+        type: 'string'
+	},
+	gMapEmbedAddressPostOfficeBox: {
+        type: 'string'
+	},
+	gMapEmbedAddressRegion: {
+        type: 'string'
+	},
+	gMapEmbedAddressPostCode: {
+        type: 'string'
+	},
     gMapEmbedAPIKey: {
         type: 'string'
 	},
@@ -21,6 +45,24 @@ const attributes = {
 	},
 	gMapEmbedInfoWindowContent: {
         type: 'string'
+	},
+	gMapEmbedInfoWindowImageAlt: {
+        type: 'string'
+    },
+	gMapEmbedInfoWindowImageID: {
+        type: 'string'
+	},
+	gMapEmbedInfoWindowImageURL: {
+        type: 'string'
+	},
+	gMapEmbedInfoWindowLinkText: {
+        type: 'string'
+	},
+	gMapEmbedInfoWindowLinkURL: {
+        type: 'string'
+	},
+	gMapEmbedInfoWindowShowAddress: {
+        type: 'bool'
     },
 	gMapEmbedInfoWindowTitle: {
         type: 'string'

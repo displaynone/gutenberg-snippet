@@ -41,10 +41,24 @@ render() {
 
 	const {
 		attributes: {
+			gMapEmbedAddressCompanyName,
+			gMapEmbedAddressCountry,
+			gMapEmbedAddressLine1,
+			gMapEmbedAddressLine2,
+			gMapEmbedAddressLocality,
+			gMapEmbedAddressPostOfficeBox,
+			gMapEmbedAddressRegion,
+			gMapEmbedAddressPostCode,
 			gMapEmbedAPIKey,
 			gMapEmbedLocation,
-			gMapEmbedInfoWindowTitle,
 			gMapEmbedInfoWindowContent,
+			gMapEmbedInfoWindowImageAlt,
+			gMapEmbedInfoWindowImageID,
+			gMapEmbedInfoWindowImageURL,
+			gMapEmbedInfoWindowLinkText,
+			gMapEmbedInfoWindowLinkURL,
+			gMapEmbedInfoWindowShowAddress,
+			gMapEmbedInfoWindowTitle,
 			gMapEmbedStyles,
 			gMapEmbedType,
 			gMapEmbedZoom,
@@ -78,7 +92,6 @@ render() {
 			setAttributes( { gMapEmbedAPIKey: value } );
 		} );
 	};
-
 	const onChangeGMapEmbedLocation = gMapEmbedLocation => {
 		let location = gMapEmbedLocation.replace( ' ', '+' );
 		fetch(
@@ -107,15 +120,37 @@ render() {
 			}
 		});
 	};
-
-	const onChangeGMapEmbedStyles            = gMapEmbedStyles => { setAttributes( { gMapEmbedStyles } ) };
-	const onChangeGMapEmbedInfoWindowTitle   = gMapEmbedInfoWindowTitle => { setAttributes( { gMapEmbedInfoWindowTitle } ) };
-	const onChangeGMapEmbedInfoWindowContent = gMapEmbedInfoWindowContent => { setAttributes( { gMapEmbedInfoWindowContent} ) };
-	const onChangeGMapEmbedZoom              = gMapEmbedZoom => { setAttributes( { gMapEmbedZoom} ) };
-	const onChangeGMapEmbedType              = gMapEmbedType => { setAttributes( { gMapEmbedType} ) };
-	const onChangeGMapEmbedDisableUI         = gMapEmbedDisableUI => { setAttributes( { gMapEmbedDisableUI} ) };
-	const onChangeGMapEmbedMarker            = image => { setAttributes( { gMapEmbedMarker: image.url } ) };
-	const onRemoveGMapEmbedMarker            = () => { setAttributes( { gMapEmbedMarker: null } ) };
+	const onChangeGMapEmbedStyles             = gMapEmbedStyles => { setAttributes( { gMapEmbedStyles } ) };
+	const onChangeGMapEmbedInfoWindowTitle    = gMapEmbedInfoWindowTitle => { setAttributes( { gMapEmbedInfoWindowTitle } ) };
+	const onChangeGMapEmbedInfoWindowContent  = gMapEmbedInfoWindowContent => { setAttributes( { gMapEmbedInfoWindowContent} ) };
+	const onChangeGMapEmbedZoom               = gMapEmbedZoom => { setAttributes( { gMapEmbedZoom} ) };
+	const onChangeGMapEmbedType               = gMapEmbedType => { setAttributes( { gMapEmbedType} ) };
+	const onChangeGMapEmbedDisableUI          = gMapEmbedDisableUI => { setAttributes( { gMapEmbedDisableUI} ) };
+	const onChangeGMapEmbedMarker             = image => { setAttributes( { gMapEmbedMarker: image.url } ) };
+	const onRemoveGMapEmbedMarker             = () => { setAttributes( { gMapEmbedMarker: null } ) };
+	const onChangeGMapEmbedInfoWindowImageURL = image => { 
+		let imageUrl = image.url;
+		if ( image.sizes.square.url ) {
+			imageUrl = image.sizes.square.url;
+		}
+		setAttributes( 
+			{ 
+				gMapEmbedInfoWindowImageAlt: image.alt,
+				gMapEmbedInfoWindowImageID: image.id,
+				gMapEmbedInfoWindowImageURL: imageUrl,
+			} 
+		);
+	};
+	const onRemoveGMapEmbedInfoWindowImageURL = () => { 
+		setAttributes( 
+			{ 
+				gMapEmbedInfoWindowImageAlt: null,
+				gMapEmbedInfoWindowImageID: null,
+				gMapEmbedInfoWindowImageURL: null,
+			} 
+		);
+	};
+	const onChangeGMapEmbedInfoWindowShowAddress  = gMapEmbedInfoWindowShowAddress => { setAttributes( { gMapEmbedInfoWindowShowAddress } ) };
 
 	return (
 			<InspectorControls>
@@ -138,14 +173,66 @@ render() {
 
 					<TextControl
 						type="text"
+						label={ __( 'Address Company Name', 'plugin-name' ) }
+						defaultValue={ gMapEmbedAddressCompanyName }
+						onChange={ onChangeGMapEmbedAddressCompanyName }
+					/>
+
+					<TextControl
+						type="text"
+						label={ __( 'Address Post Office Box', 'plugin-name' ) }
+						defaultValue={ gMapEmbedAddressPostOfficeBox }
+						onChange={ onChangeGMapEmbedAddressPostOfficeBox }
+					/>
+
+					<TextControl
+						type="text"
+						label={ __( 'Address First Line', 'plugin-name' ) }
+						defaultValue={ gMapEmbedAddressLine1 }
+						onChange={ onChangeGMapEmbedAddressLine1 }
+					/>
+
+					<TextControl
+						type="text"
+						label={ __( 'Address Second Line', 'plugin-name' ) }
+						defaultValue={ gMapEmbedAddressLine2 }
+						onChange={ onChangeGMapEmbedAddressLine2 }
+					/>
+
+					<TextControl
+						type="text"
+						label={ __( 'Address City / Town', 'plugin-name' ) }
+						defaultValue={ gMapEmbedAddressLocality }
+						onChange={ onChangeGMapEmbedAddressLocality }
+					/>
+
+					<TextControl
+						type="text"
+						label={ __( 'Address Region', 'plugin-name' ) }
+						defaultValue={ gMapEmbedAddressRegion }
+						onChange={ onChangeGMapEmbedAddressRegion }
+					/>
+
+					<TextControl
+						type="text"
+						label={ __( 'Address Post Code', 'plugin-name' ) }
+						defaultValue={ gMapEmbedAddressPostCode }
+						onChange={ onChangeGMapEmbedAddressPostCode }
+					/>
+
+					<TextControl
+						type="text"
+						label={ __( 'Address Country', 'plugin-name' ) }
+						defaultValue={ gMapEmbedAddressCountry }
+						onChange={ onChangeGMapEmbedAddressCountry }
+					/>
+
+					{/*<TextControl
+						type="text"
 						label={ __( 'Postal Address', 'plugin-name' ) }
-						help={ __(
-							'Enter the full postal address of the location you wish to display. This will also appear in the Info Window which appears when a user clicks on the map marker.',
-							'plugin-name'
-						) }
 						defaultValue={ gMapEmbedLocation }
 						onChange={ onChangeGMapEmbedLocation }
-					/>
+					/>*/}
 
 				</PanelBody>
 				<PanelBody
@@ -175,6 +262,51 @@ render() {
 						defaultValue={ gMapEmbedInfoWindowContent }
 						onChange={ onChangeGMapEmbedInfoWindowContent }
 					/>
+		
+					<BaseControl
+						label={ __( 'Info Window Image', 'plugin-name' ) }
+					>
+						<MediaUpload
+							onSelect={ onChangeGMapEmbedInfoWindowImageURL }
+							allowedTypes={ [ 'image' ] }
+							type="image"
+							value={ gMapEmbedInfoWindowImageID }
+							render={ ( { open } ) => (
+									<Button
+									label={ __( 'Choose Image', 'plugin-name' ) }
+									isDefault
+									isLarge
+									onClick={ open }
+									>
+										{ __( 'Choose Image', 'plugin-name' ) }
+									</Button>
+								) }
+							>
+						</MediaUpload>
+
+						{ gMapEmbedInfoWindowImageID && (
+							<Button
+								label={ __( 'Remove Image', 'plugin-name' ) }
+								isLink
+								isDestructive
+								onClick={ onRemoveGMapEmbedInfoWindowImageURL }
+							>
+								{ __( 'Remove Image', 'plugin-name' ) }
+							</Button>
+						) }
+
+					<CheckboxControl
+						type="checkbox"
+						label={ __( 'Show Address in Info Window', 'plugin-name' ) }
+						help={ __(
+							'If checked, the address will show in the info window.',
+							'plugin-name'
+						) }
+						checked={ gMapEmbedInfoWindowShowAddress }
+						onChange={ onChangeGMapEmbedInfoWindowShowAddress }
+					/>
+
+					</BaseControl>
 				
 				</PanelBody>
 				<PanelBody
