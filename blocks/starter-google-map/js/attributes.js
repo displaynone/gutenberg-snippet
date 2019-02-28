@@ -50,7 +50,7 @@ const attributes = {
         type: 'string'
     },
 	gMapEmbedInfoWindowImageID: {
-        type: 'string'
+        type: 'number'
 	},
 	gMapEmbedInfoWindowImageURL: {
         type: 'string'
@@ -78,6 +78,9 @@ const attributes = {
 	},
 	gMapEmbedMarker: {
         type: 'string'
+	},
+	gMapEmbedMarkerID: {
+        type: 'bool'
     },
 	gMapEmbedStyles: {
         type: 'string'

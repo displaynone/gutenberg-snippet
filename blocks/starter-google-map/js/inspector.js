@@ -28,6 +28,7 @@ const {
 const { 
 	InspectorControls, 
 	MediaUpload,
+	URLInput,
 }                           = wp.editor;
 const { Component }         = wp.element;
 const { __ }                = wp.i18n;
@@ -50,7 +51,7 @@ render() {
 			gMapEmbedAddressRegion,
 			gMapEmbedAddressPostCode,
 			gMapEmbedAPIKey,
-			gMapEmbedLocation,
+			gMapEmbedDisableUI,
 			gMapEmbedInfoWindowContent,
 			gMapEmbedInfoWindowImageAlt,
 			gMapEmbedInfoWindowImageID,
@@ -59,11 +60,14 @@ render() {
 			gMapEmbedInfoWindowLinkURL,
 			gMapEmbedInfoWindowShowAddress,
 			gMapEmbedInfoWindowTitle,
+			gMapEmbedMarker,
+			gMapEmbedMarkerID,
+			gMapEmbedLocation,
 			gMapEmbedStyles,
 			gMapEmbedType,
 			gMapEmbedZoom,
-			gMapEmbedDisableUI,
-			gMapEmbedMarker,
+			
+			
 		},
 		gMapEmbedAPIKeyOption,
 		setAttributes,
@@ -92,33 +96,50 @@ render() {
 			setAttributes( { gMapEmbedAPIKey: value } );
 		} );
 	};
-	const onChangeGMapEmbedLocation = gMapEmbedLocation => {
-		let location = gMapEmbedLocation.replace( ' ', '+' );
-		fetch(
-			'https://maps.googleapis.com/maps/api/geocode/json?address=' + location + '&key=' + gMapEmbedAPIKey
-		)
-		.then( function( response ) {
-			// Convert the response to JSON.
-			return response.json();
-		} )
-		.then( function( json ) {
-			// Convert to JSON and extract the co-ordinates.
-			const result = json.results;
+	const onChangeGMapEmbedLocation = ( value, key ) => {
+		let address = { 
+			gMapEmbedAddressLine1: gMapEmbedAddressLine1, 
+			gMapEmbedAddressLine2: gMapEmbedAddressLine2, 
+			gMapEmbedAddressLocality: gMapEmbedAddressLocality, 
+			gMapEmbedAddressRegion: gMapEmbedAddressRegion, 
+			gMapEmbedAddressPostCode: gMapEmbedAddressPostCode, 
+			gMapEmbedAddressCountry: gMapEmbedAddressCountry,
+		};
+		if ( key in address ) {
+			address[ key ] = value;
+		}
+		address = Object.values( address ).filter( Boolean ).join( ' ' );
+		let location = address.split(' ').join('+');
+		if ( address && gMapEmbedAPIKey ) {
+			fetch(
+				'https://maps.googleapis.com/maps/api/geocode/json?address=' + location + '&key=' + gMapEmbedAPIKey
+			)
+			.then( function( response ) {
+				// Convert the response to JSON.
+				return response.json();
+			} )
+			.then( function( json ) {
+				// Convert to JSON and extract the co-ordinates.
+				const result = json.results;
 
-			if ( 'undefined' !== typeof result[0] ) {
-				let lat = result[0].geometry.location.lat;
-				let lng = result[0].geometry.location.lng;
-				if ( lat && lng ) {
-					setAttributes(
-						{
-							gMapEmbedLocation,
-							gMapEmbedLat: lat,
-							gMapEmbedLong: lng,
-						} 
-					); 
+				if ( 'undefined' !== typeof result[0] ) {
+					let lat = result[0].geometry.location.lat;
+					let lng = result[0].geometry.location.lng;
+					if ( lat && lng ) {
+						setAttributes(
+							{
+								[key]: value,
+								gMapEmbedLocation: address,
+								gMapEmbedLat: lat,
+								gMapEmbedLong: lng,
+							} 
+						); 
+					}
+				} else {
+					setAttributes( { key: value } ); 
 				}
-			}
-		});
+			});
+		}
 	};
 	const onChangeGMapEmbedStyles             = gMapEmbedStyles => { setAttributes( { gMapEmbedStyles } ) };
 	const onChangeGMapEmbedInfoWindowTitle    = gMapEmbedInfoWindowTitle => { setAttributes( { gMapEmbedInfoWindowTitle } ) };
@@ -126,12 +147,19 @@ render() {
 	const onChangeGMapEmbedZoom               = gMapEmbedZoom => { setAttributes( { gMapEmbedZoom} ) };
 	const onChangeGMapEmbedType               = gMapEmbedType => { setAttributes( { gMapEmbedType} ) };
 	const onChangeGMapEmbedDisableUI          = gMapEmbedDisableUI => { setAttributes( { gMapEmbedDisableUI} ) };
-	const onChangeGMapEmbedMarker             = image => { setAttributes( { gMapEmbedMarker: image.url } ) };
+	const onChangeGMapEmbedMarker             = image => { 
+		setAttributes( 
+			{
+				gMapEmbedMarkerID: image.id,
+				gMapEmbedMarker: image.url,
+			} 
+		);
+	};
 	const onRemoveGMapEmbedMarker             = () => { setAttributes( { gMapEmbedMarker: null } ) };
 	const onChangeGMapEmbedInfoWindowImageURL = image => { 
 		let imageUrl = image.url;
-		if ( image.sizes.square.url ) {
-			imageUrl = image.sizes.square.url;
+		if ( image.sizes.thumbnail.url ) {
+			imageUrl = image.sizes.thumbnail.url;
 		}
 		setAttributes( 
 			{ 
@@ -150,44 +178,12 @@ render() {
 			} 
 		);
 	};
-
-	const onChangeGMapEmbedAddressCompanyName    = gMapEmbedAddressCompanyName => { 
-		setAttributes( { gMapEmbedAddressCompanyName, gMapEmbedLocation: address } );
-		let address = [ gMapEmbedAddressLine1, gMapEmbedAddressLine2, gMapEmbedAddressLocality, gMapEmbedAddressRegion, gMapEmbedAddressPostCode, gMapEmbedAddressCountry ].filter( Boolean ).join( ' ' );
-	};
-	const onChangeGMapEmbedAddressPostOfficeBox  = gMapEmbedAddressPostOfficeBox => { 
-		setAttributes( { gMapEmbedAddressPostOfficeBox, gMapEmbedLocation: address } );
-		let address = [ gMapEmbedAddressLine1, gMapEmbedAddressLine2, gMapEmbedAddressLocality, gMapEmbedAddressRegion, gMapEmbedAddressPostCode, gMapEmbedAddressCountry ].filter( Boolean ).join( ' ' );
-	};
-	const onChangeGMapEmbedAddressLine1          = gMapEmbedAddressLine1 => { 
-		let address = [ gMapEmbedAddressLine1, gMapEmbedAddressLine2, gMapEmbedAddressLocality, gMapEmbedAddressRegion, gMapEmbedAddressPostCode, gMapEmbedAddressCountry ].filter( Boolean ).join( ' ' );
-		setAttributes( { gMapEmbedAddressLine1, gMapEmbedLocation: address } );
-	};
-	const onChangeGMapEmbedAddressLine2          = gMapEmbedAddressLine2 => {
-		let address = [ gMapEmbedAddressLine1, gMapEmbedAddressLine2, gMapEmbedAddressLocality, gMapEmbedAddressRegion, gMapEmbedAddressPostCode, gMapEmbedAddressCountry ].filter( Boolean ).join( ' ' ); 
-		setAttributes( { gMapEmbedAddressLine2, gMapEmbedLocation: address } ); 
-	};
-	const onChangeGMapEmbedAddressLocality       = gMapEmbedAddressLocality => { 
-		let address = [ gMapEmbedAddressLine1, gMapEmbedAddressLine2, gMapEmbedAddressLocality, gMapEmbedAddressRegion, gMapEmbedAddressPostCode, gMapEmbedAddressCountry ].filter( Boolean ).join( ' ' );
-		setAttributes( { gMapEmbedAddressLocality, gMapEmbedLocation: address } );
-	};
-	const onChangeGMapEmbedAddressRegion         = gMapEmbedAddressRegion => {
-		let address = [ gMapEmbedAddressLine1, gMapEmbedAddressLine2, gMapEmbedAddressLocality, gMapEmbedAddressRegion, gMapEmbedAddressPostCode, gMapEmbedAddressCountry ].filter( Boolean ).join( ' ' );
-		setAttributes( { gMapEmbedAddressRegion, gMapEmbedLocation: address } );
-	};
-	const onChangeGMapEmbedAddressPostCode       = gMapEmbedAddressPostCode => { 
-		let address = [ gMapEmbedAddressLine1, gMapEmbedAddressLine2, gMapEmbedAddressLocality, gMapEmbedAddressRegion, gMapEmbedAddressPostCode, gMapEmbedAddressCountry ].filter( Boolean ).join( ' ' );
-		setAttributes( { gMapEmbedAddressPostCode } );
-	};
-	const onChangeGMapEmbedAddressCountry        = gMapEmbedAddressCountry => {
-		let address = [ gMapEmbedAddressLine1, gMapEmbedAddressLine2, gMapEmbedAddressLocality, gMapEmbedAddressRegion, gMapEmbedAddressPostCode, gMapEmbedAddressCountry ].filter( Boolean ).join( ' ' );
-		setAttributes( { gMapEmbedAddressCountry, gMapEmbedLocation: address } );
-	};
 	const onChangeGMapEmbedInfoWindowLinkText    = gMapEmbedInfoWindowLinkText => { setAttributes( { gMapEmbedInfoWindowLinkText } ) };
 	const onChangeGMapEmbedInfoWindowLinkURL     = gMapEmbedInfoWindowLinkURL => { setAttributes( { gMapEmbedInfoWindowLinkURL } ) };
 	const onChangeGMapEmbedInfoWindowShowAddress = gMapEmbedInfoWindowShowAddress => { setAttributes( { gMapEmbedInfoWindowShowAddress } ) };
 
-	console.log( gMapEmbedLocation );
+	console.log( gMapEmbedInfoWindowImageID );
+	console.log( gMapEmbedInfoWindowImageURL );
 
 	return (
 			<InspectorControls>
@@ -212,63 +208,56 @@ render() {
 						type="text"
 						label={ __( 'Address Company Name', 'plugin-name' ) }
 						defaultValue={ gMapEmbedAddressCompanyName }
-						onChange={ onChangeGMapEmbedAddressCompanyName }
+						onChange={ value => onChangeGMapEmbedLocation( value, 'gMapEmbedAddressCompanyName' ) }
 					/>
 
 					<TextControl
 						type="text"
 						label={ __( 'Address Post Office Box', 'plugin-name' ) }
 						defaultValue={ gMapEmbedAddressPostOfficeBox }
-						onChange={ onChangeGMapEmbedAddressPostOfficeBox }
+						onChange={ value => onChangeGMapEmbedLocation( value, 'gMapEmbedAddressPostOfficeBox' ) }
 					/>
 
 					<TextControl
 						type="text"
 						label={ __( 'Address First Line', 'plugin-name' ) }
 						defaultValue={ gMapEmbedAddressLine1 }
-						onChange={ onChangeGMapEmbedAddressLine1 }
+						onChange={ value => onChangeGMapEmbedLocation( value, 'gMapEmbedAddressLine1' ) }
 					/>
 
 					<TextControl
 						type="text"
 						label={ __( 'Address Second Line', 'plugin-name' ) }
 						defaultValue={ gMapEmbedAddressLine2 }
-						onChange={ onChangeGMapEmbedAddressLine2 }
+						onChange={ value => onChangeGMapEmbedLocation( value, 'gMapEmbedAddressLine2' ) }
 					/>
 
 					<TextControl
 						type="text"
 						label={ __( 'Address City / Town', 'plugin-name' ) }
 						defaultValue={ gMapEmbedAddressLocality }
-						onChange={ onChangeGMapEmbedAddressLocality }
+						onChange={ value => onChangeGMapEmbedLocation( value, 'gMapEmbedAddressLocality' ) }
 					/>
 
 					<TextControl
 						type="text"
 						label={ __( 'Address Region', 'plugin-name' ) }
 						defaultValue={ gMapEmbedAddressRegion }
-						onChange={ onChangeGMapEmbedAddressRegion }
+						onChange={ value => onChangeGMapEmbedLocation( value, 'gMapEmbedAddressRegion' ) }
 					/>
 
 					<TextControl
 						type="text"
 						label={ __( 'Address Post Code', 'plugin-name' ) }
 						defaultValue={ gMapEmbedAddressPostCode }
-						onChange={ onChangeGMapEmbedAddressPostCode }
+						onChange={ value => onChangeGMapEmbedLocation( value, 'gMapEmbedAddressPostCode' ) }
 					/>
 
 					<TextControl
 						type="text"
 						label={ __( 'Address Country', 'plugin-name' ) }
 						defaultValue={ gMapEmbedAddressCountry }
-						onChange={ onChangeGMapEmbedAddressCountry }
-					/>
-
-					<TextControl
-						type="text"
-						label={ __( 'Postal Address', 'plugin-name' ) }
-						defaultValue={ gMapEmbedLocation }
-						onChange={ onChangeGMapEmbedLocation }
+						onChange={ value => onChangeGMapEmbedLocation( value, 'gMapEmbedAddressCountry' ) }
 					/>
 
 				</PanelBody>
@@ -311,16 +300,19 @@ render() {
 						onChange={ onChangeGMapEmbedInfoWindowLinkText }
 					/>
 
-					<TextControl
-						type="url"
+					<BaseControl
 						label={ __( 'Info Window Link URL', 'starter-google-map' ) }
 						help={ __(
-							'The URL of the Info Window Link',
+							'The URL of the Info Window Link.',
 							'plugin-name'
 						) }
-						defaultValue={ gMapEmbedInfoWindowLinkURL }
-						onChange={ onChangeGMapEmbedInfoWindowLinkURL }
-					/>
+					>
+						<URLInput
+							
+							value={ gMapEmbedInfoWindowLinkURL }
+							onChange={ onChangeGMapEmbedInfoWindowLinkURL }
+						/>
+					</BaseControl>
 		
 					<BaseControl
 						label={ __( 'Info Window Image', 'plugin-name' ) }
@@ -353,6 +345,7 @@ render() {
 								{ __( 'Remove Image', 'plugin-name' ) }
 							</Button>
 						) }
+					</BaseControl>
 
 					<CheckboxControl
 						type="checkbox"
@@ -365,7 +358,7 @@ render() {
 						onChange={ onChangeGMapEmbedInfoWindowShowAddress }
 					/>
 
-					</BaseControl>
+					
 				
 				</PanelBody>
 				<PanelBody
@@ -441,7 +434,7 @@ render() {
 							onSelect={ onChangeGMapEmbedMarker }
 							allowedTypes={ [ 'image' ] }
 							type="image"
-							value={ gMapEmbedMarker }
+							value={ gMapEmbedMarkerID }
 							render={ ( { open } ) => (
 									<Button
 									label={ __( 'Choose Image', 'plugin-name' ) }
@@ -455,7 +448,7 @@ render() {
 							>
 						</MediaUpload>
 
-						{ gMapEmbedMarker && (
+						{ gMapEmbedMarkerID && (
 							<Button
 								label={ __( 'Remove Image', 'plugin-name' ) }
 								isLink

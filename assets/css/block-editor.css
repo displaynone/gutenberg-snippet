@@ -55,9 +55,14 @@
 /**
  * Inspector Controls
  */
+.starter-google-map__info-window .components-button,
 .starter-google-map__display-options .components-button {
   display: block;
   margin-top: 1em; }
+
+.starter-google-map__info-window .editor-url-input input,
+.starter-google-map__display-options .editor-url-input input {
+  width: 100%; }
 /**
  * Editor Styles
  *

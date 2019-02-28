@@ -22,10 +22,17 @@
 /**
  * Inspector Controls
  */
+ .starter-google-map__info-window,
  .starter-google-map__display-options {
 	// Allow the remove button to be below the main button.
 	.components-button {
 		display: block;
 		margin-top: 1em;
+	}
+
+	.editor-url-input {
+		input {
+			width: 100%;
+		}
 	}
 }
