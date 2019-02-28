@@ -9,24 +9,26 @@
 }
 
 .info-window {
+	min-width: 250px;
+	position: relative;
 	.info-window__image {
 		width: 100px;
 		height: 100px;
 		display: inline-block;
 		margin-right: 2em;
 		vertical-align: top;
+		position: relative;
 	}
 
 	.info-window__content {
 		display: inline-block;
+		position: relative;
 		.info-window__title {
 			font-size: 1em;
 			margin:0px;
 			font-weight: bold;
 		}
 		.info-window__address {
-			margin-bottom: 1em;
-			margin-top: 1em;
 			span {
 				display: block;
 			}

@@ -120,10 +120,10 @@ function initMap( attributes ) {
 		}
 		
 		if ( gMapEmbedInfoWindowContent ) {
-			content += gMapEmbedInfoWindowContent;
+			content += '<p>' + gMapEmbedInfoWindowContent + '</p>';
 		}
-		
-		if ( gMapEmbedInfoWindowShowAddress ) {
+
+		if ( true === gMapEmbedInfoWindowShowAddress || 'true' === gMapEmbedInfoWindowShowAddress ) {
 			content += '<address class="info-window__address h-adr adr">';
 			if ( gMapEmbedAddressCompanyName ) {
 				content += '<span class="p-org org">' + gMapEmbedAddressCompanyName + '</span>';
@@ -158,9 +158,9 @@ function initMap( attributes ) {
 		}
 		
 		if ( gMapEmbedInfoWindowLinkText && gMapEmbedInfoWindowLinkURL ) {
-			content += '<a class="u-url url" href="' + gMapEmbedInfoWindowLinkURL + '">';
+			content += '<p><a class="u-url url" href="' + gMapEmbedInfoWindowLinkURL + '">';
 			content += gMapEmbedInfoWindowLinkText;
-			content += '</a>';
+			content += '</a></p>';
 		}
 		
 		content += '</div>';

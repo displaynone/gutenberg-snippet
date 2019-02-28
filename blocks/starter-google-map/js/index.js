@@ -242,16 +242,30 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 
 		const {
 			attributes: {
+				gMapEmbedAddressCompanyName,
+				gMapEmbedAddressCountry,
+				gMapEmbedAddressLine1,
+				gMapEmbedAddressLine2,
+				gMapEmbedAddressLocality,
+				gMapEmbedAddressPostOfficeBox,
+				gMapEmbedAddressRegion,
+				gMapEmbedAddressPostCode,
 				gMapEmbedAPIKey,
 				gMapEmbedDisableUI,
 				gMapEmbedID,
 				gMapEmbedInfoWindowContent,
+				gMapEmbedInfoWindowImageAlt,
+				gMapEmbedInfoWindowImageID,
+				gMapEmbedInfoWindowImageURL,
+				gMapEmbedInfoWindowLinkText,
+				gMapEmbedInfoWindowLinkURL,
 				gMapEmbedInfoWindowShowAddress,
 				gMapEmbedInfoWindowTitle,
+				gMapEmbedMarker,
+				gMapEmbedMarkerID,
 				gMapEmbedLat,
 				gMapEmbedLocation,
 				gMapEmbedLong,
-				gMapEmbedMarker,
 				gMapEmbedStyles,
 				gMapEmbedType,
 				gMapEmbedZoom,
@@ -294,6 +308,21 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 					style={ { height: height } }
 				>
 					<form class="starter-google-map__attributes">
+						<input type="hidden" name="gMapEmbedAddressCompanyName" value={ gMapEmbedAddressCompanyName } />
+						<input type="hidden" name="gMapEmbedAddressCountry" value={ gMapEmbedAddressCountry } />
+						<input type="hidden" name="gMapEmbedAddressLine1" value={ gMapEmbedAddressLine1 } />
+						<input type="hidden" name="gMapEmbedAddressLine2" value={ gMapEmbedAddressLine2 } />
+						<input type="hidden" name="gMapEmbedAddressLocality" value={ gMapEmbedAddressLocality } />
+						<input type="hidden" name="gMapEmbedAddressPostOfficeBox" value={ gMapEmbedAddressPostOfficeBox } />
+						<input type="hidden" name="gMapEmbedAddressRegion" value={ gMapEmbedAddressRegion } />
+						<input type="hidden" name="gMapEmbedAddressPostCode" value={ gMapEmbedAddressPostCode } />
+						<input type="hidden" name="gMapEmbedInfoWindowImageAlt" value={ gMapEmbedInfoWindowImageAlt } />
+						<input type="hidden" name="gMapEmbedInfoWindowImageID" value={ gMapEmbedInfoWindowImageID } />
+						<input type="hidden" name="gMapEmbedInfoWindowImageURL" value={ gMapEmbedInfoWindowImageURL } />
+						<input type="hidden" name="gMapEmbedInfoWindowLinkText" value={ gMapEmbedInfoWindowLinkText } />
+						<input type="hidden" name="gMapEmbedInfoWindowLinkURL" value={ gMapEmbedInfoWindowLinkURL } />
+						<input type="hidden" name="gMapEmbedInfoWindowShowAddress" value={ gMapEmbedInfoWindowShowAddress ? 'true' : 'false' } />
+						<input type="hidden" name="gMapEmbedMarkerID" value={ gMapEmbedMarkerID } />
 						<input type="hidden" name="gMapEmbedAPIKey" value={ gMapEmbedAPIKey } />
 						<input type="hidden" name="gMapEmbedDisableUI" value={ gMapEmbedDisableUI } />
 						<input type="hidden" name="gMapEmbedInfoWindowContent" value={ gMapEmbedInfoWindowContent } />
