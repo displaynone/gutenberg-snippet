@@ -19,10 +19,10 @@ const { apiFetch }          = wp;
 const {
 	BaseControl,
 	Button,
-  	PanelBody,
+	PanelBody,
+	SelectControl,
 	TextControl,
 	TextareaControl,
-	SelectControl,
 	CheckboxControl,
 }                           = wp.components;
 const { 

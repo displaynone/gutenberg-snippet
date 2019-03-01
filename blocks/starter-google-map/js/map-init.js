@@ -167,7 +167,8 @@ function initMap( attributes ) {
 		content += '</div>';
 
 
-		if ( gMapEmbedInfoWindowTitle || gMapEmbedInfoWindowTitle || gMapEmbedInfoWindowShowAddress ) {
+		if ( gMapEmbedInfoWindowTitle || gMapEmbedInfoWindowContent || true === gMapEmbedInfoWindowShowAddress || 'true' === gMapEmbedInfoWindowShowAddress  ) {
+            
 			// Create the Info Window.
 			const infowindow = new google.maps.InfoWindow({
 				content: content,

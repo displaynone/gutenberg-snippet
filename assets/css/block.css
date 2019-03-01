@@ -189,9 +189,9 @@
     display: inline-block;
     position: relative; }
     .info-window .info-window__content .info-window__title {
-      font-size: 1em;
+      font-size: 1.25em;
       margin: 0px;
-      font-weight: bold; }
+      font-weight: normal; }
     .info-window .info-window__content .info-window__address span {
       display: block; }
     .info-window .info-window__content p {

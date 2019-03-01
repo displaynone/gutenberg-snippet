@@ -10,12 +10,12 @@
  * start of the component.
  */
 const attributes = {
-	gMapEmbedAddressCompanyName: {
+    gMapEmbedAddressCompanyName: {
         type: 'string'
-	},
-	gMapEmbedAddressCountry: {
+    },
+    gMapEmbedAddressCountry: {
         type: 'string'
-	},
+    },
 	gMapEmbedAddressLine1: {
         type: 'string'
 	},

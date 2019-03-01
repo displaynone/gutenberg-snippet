@@ -97,10 +97,10 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 	// https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-registration/#supports-optional
 	supports: {
 		align: true,
-		anchor: true,
-		html: false,
-		multiple: true,
-		reusable: true,
+		// anchor: true,
+		// html: false,
+		// multiple: true,
+		// reusable: true,
 	},
 
 	// Allow component to be used once only.
@@ -316,21 +316,21 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 						<input type="hidden" name="gMapEmbedAddressPostOfficeBox" value={ gMapEmbedAddressPostOfficeBox } />
 						<input type="hidden" name="gMapEmbedAddressRegion" value={ gMapEmbedAddressRegion } />
 						<input type="hidden" name="gMapEmbedAddressPostCode" value={ gMapEmbedAddressPostCode } />
+                        <input type="hidden" name="gMapEmbedAPIKey" value={ gMapEmbedAPIKey } />
+                        <input type="hidden" name="gMapEmbedDisableUI" value={ gMapEmbedDisableUI } />
+                        <input type="hidden" name="gMapEmbedInfoWindowContent" value={ gMapEmbedInfoWindowContent } />
 						<input type="hidden" name="gMapEmbedInfoWindowImageAlt" value={ gMapEmbedInfoWindowImageAlt } />
 						<input type="hidden" name="gMapEmbedInfoWindowImageID" value={ gMapEmbedInfoWindowImageID } />
 						<input type="hidden" name="gMapEmbedInfoWindowImageURL" value={ gMapEmbedInfoWindowImageURL } />
 						<input type="hidden" name="gMapEmbedInfoWindowLinkText" value={ gMapEmbedInfoWindowLinkText } />
 						<input type="hidden" name="gMapEmbedInfoWindowLinkURL" value={ gMapEmbedInfoWindowLinkURL } />
 						<input type="hidden" name="gMapEmbedInfoWindowShowAddress" value={ gMapEmbedInfoWindowShowAddress ? 'true' : 'false' } />
-						<input type="hidden" name="gMapEmbedMarkerID" value={ gMapEmbedMarkerID } />
-						<input type="hidden" name="gMapEmbedAPIKey" value={ gMapEmbedAPIKey } />
-						<input type="hidden" name="gMapEmbedDisableUI" value={ gMapEmbedDisableUI } />
-						<input type="hidden" name="gMapEmbedInfoWindowContent" value={ gMapEmbedInfoWindowContent } />
 						<input type="hidden" name="gMapEmbedInfoWindowTitle" value={ gMapEmbedInfoWindowTitle } />
-						<input type="hidden" name="gMapEmbedLat" value={ gMapEmbedLat } class="p-latitude latitude" />
+                        <input type="hidden" name="gMapEmbedLat" value={ gMapEmbedLat } class="p-latitude latitude" />
 						<input type="hidden" name="gMapEmbedLocation" value={ gMapEmbedLocation } />
 						<input type="hidden" name="gMapEmbedLong" value={ gMapEmbedLong } class="p-longitude longitude" />
 						<input type="hidden" name="gMapEmbedMarker" value={ gMapEmbedMarker } />
+                        <input type="hidden" name="gMapEmbedMarkerID" value={ gMapEmbedMarkerID } />
 						<input type="hidden" name="gMapEmbedStyles" value={ gMapEmbedStyles } />
 						<input type="hidden" name="gMapEmbedType" value={ gMapEmbedType } />
 						<input type="hidden" name="gMapEmbedZoom" value={ gMapEmbedZoom } />
