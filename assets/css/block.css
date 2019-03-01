@@ -185,6 +185,7 @@
     vertical-align: top;
     position: relative; }
   .info-window .info-window__content {
+    font-size: 1em;
     display: inline-block;
     position: relative; }
     .info-window .info-window__content .info-window__title {
@@ -193,3 +194,5 @@
       font-weight: bold; }
     .info-window .info-window__content .info-window__address span {
       display: block; }
+    .info-window .info-window__content p {
+      font-size: 1em; }

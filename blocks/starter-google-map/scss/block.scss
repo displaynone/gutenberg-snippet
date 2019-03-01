@@ -21,6 +21,7 @@
 	}
 
 	.info-window__content {
+		font-size: 1em;
 		display: inline-block;
 		position: relative;
 		.info-window__title {
@@ -32,6 +33,9 @@
 			span {
 				display: block;
 			}
+		}
+		p {
+			font-size: 1em;
 		}
 	}
 }
