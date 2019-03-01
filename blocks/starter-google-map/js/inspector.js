@@ -426,8 +426,11 @@ render() {
 						onChange={ onChangeGMapEmbedStyles }
 						value={ gMapEmbedStyles }
 					/>
-					<JSONChecker { ...{ json: gMapEmbedStyles } } />
-
+					{ gMapEmbedStyles &&
+						<BaseControl>
+							<JSONChecker { ...{ json: gMapEmbedStyles } } />
+						</BaseControl>
+					}
 					
 					<BaseControl
 						label={ __( 'Choose a Custom Marker Image', 'plugin-name' ) }
