@@ -317,7 +317,7 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 						<input type="hidden" name="gMapEmbedAddressRegion" value={ gMapEmbedAddressRegion } />
 						<input type="hidden" name="gMapEmbedAddressPostCode" value={ gMapEmbedAddressPostCode } />
                         <input type="hidden" name="gMapEmbedAPIKey" value={ gMapEmbedAPIKey } />
-                        <input type="hidden" name="gMapEmbedDisableUI" value={ gMapEmbedDisableUI } />
+                        <input type="hidden" name="gMapEmbedDisableUI" value={ gMapEmbedDisableUI ? 'true' : 'false' } />
                         <input type="hidden" name="gMapEmbedInfoWindowContent" value={ gMapEmbedInfoWindowContent } />
 						<input type="hidden" name="gMapEmbedInfoWindowImageAlt" value={ gMapEmbedInfoWindowImageAlt } />
 						<input type="hidden" name="gMapEmbedInfoWindowImageID" value={ gMapEmbedInfoWindowImageID } />

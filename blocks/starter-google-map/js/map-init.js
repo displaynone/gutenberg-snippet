@@ -75,7 +75,7 @@ function initMap( attributes ) {
 			center: loc,
 			zoom: gMapEmbedZoom ? parseInt( gMapEmbedZoom ) : 14,
 			mapTypeId: gMapEmbedType ? gMapEmbedType : 'roadmap',
-			disableDefaultUI: gMapEmbedDisableUI,
+			disableDefaultUI: true === gMapEmbedDisableUI || 'true' === gMapEmbedDisableUI,
 			scrollwheel: false // Prevents zoom when scrolling.
 		};
 
