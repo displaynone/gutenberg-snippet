@@ -96,7 +96,7 @@ export default registerBlockType( 'plugin-name/starter-google-map', {
 	// Supports options
 	// https://wordpress.org/gutenberg/handbook/designers-developers/developers/block-api/block-registration/#supports-optional
 	supports: {
-		align: true,
+		align: [ 'full', 'wide' ],
 		// anchor: true,
 		// html: false,
 		// multiple: true,
