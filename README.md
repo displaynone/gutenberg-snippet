@@ -37,3 +37,5 @@ Based in Making WordPress Do More [Block Starter Kit](https://github.com/mkdo/bl
 Original webpack configuration (before modifications) from [Zac Gordon's Gutenberg Course](https://github.com/zgordon/gutenberg-course).
 
 Original deploy script (before modifications) from [Garry Jones](https://github.com/GaryJones/wordpress-plugin-git-flow-svn-deploy).
+
+Webpack HMR thanks to [Christian Glingener](https://github.com/CGlingener)
