@@ -1,21 +1,23 @@
 <?php //@codingStandardsIgnoreLine
 /**
- * Block Starter Kit.
+ * Snippets Block
  *
- * @package           company_name\plugin_name
+ * @package SentidoWeb/Blocks/Snippet
  *
- * Plugin Name:       Plugin Name
- * Plugin URI:        https://plugin.uri
- * Description:       Plugin Description.
- * Version:           1.0.0
- * Author:            Author Name <author-name@author.uri>
- * Author URI:        https://author.uri
- * Text Domain:       plugin-name
- * Domain Path:       /languages
+ * Plugin Name: Snippets Block
+ * Plugin URI: https://github.com/displaynone/
+ * Description: Allows to add snippets blocks to your content: Javascript, CSS, HTML...
+ * Author: Luis Sacristán
+ * Author URI: https://sentidoweb.com/
+ * Version: 1.0.0
+ * License: GPL2+
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain: sw-snippet
+ * Domain Path: /languages
  */
 
 /**
- * Copyright (C) 2018  Author Name  author-name@author.uri
+ * Copyright (C) 2019  Luis Sacristán
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License, version 3, as
@@ -31,7 +33,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-namespace company_name\plugin_name;
+namespace SentidoWeb\Blocks\Snippet;
 
 // Abort if this file is called directly.
 if ( ! defined( 'WPINC' ) ) {
@@ -39,51 +41,18 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Constants.
-define( 'COMPANY_NAME_PLUGIN_NAME_ROOT', __FILE__ );
-define( 'COMPANY_NAME_PLUGIN_NAME_PREFIX', 'plugin_name' );
+define( 'SENTIDOWEB_SNIPPET_BLOCK_ROOT', __FILE__ );
+define( 'SENTIDOWEB_SNIPPET_BLOCK_DIR', __DIR__ );
+define( 'SENTIDOWEB_SNIPPET_BLOCK_PREFIX', 'snippet_block' );
+
+require __DIR__ . '/includes/class-autoloader.php';
+
+use SentidoWeb\Blocks\Snippet\Blocks\Main as MainBlock;
 
 /**
  * The main loader for this plugin
  */
 class Main {
-
-	/**
-	 * Dependancies
-	 *
-	 * In order to use Gutenberg, every time you load a library (eg wp.element, wp.blocks)
-	 * you need to ensure you have added the dependency to the enqueue. Otherwise your
-	 * application will error (especailly if its the only block in the soloution).
-	 *
-	 * @var array
-	 *
-	 * @since 1.0.0
-	 */
-	public $dependencies;
-
-	/**
-	 * Constructor.
-	 *
-	 * @since 1.0.0
-	 */
-	public function __construct() {
-
-		/**
-		* Dependencies
-		*
-		* In order to use Gutenberg, every time you load a library (eg wp.element, wp.blocks)
-		* you need to ensure you have added the dependency to the enqueue. Otherwise your
-		* application will error (especailly if its the only block in the soloution).
-		*/
-		$this->dependencies = [
-			'wp-api',
-			'wp-blocks',
-			'wp-components',
-			'wp-data',
-			'wp-editor',
-			'wp-element',
-			'wp-i18n',
-		];
-	}
 
 	/**
 	 * Run all of the plugin functions.
@@ -95,37 +64,10 @@ class Main {
 		/**
 		 * Load Text Domain
 		 */
-		load_plugin_textdomain( 'plugin-name', false, COMPANY_NAME_PLUGIN_NAME_ROOT . '\languages' );
+		load_plugin_textdomain( 'snippet-block', false, SENTIDOWEB_SNIPPET_BLOCK_ROOT . '\languages' );
 
-		/**
-		 * Load assets.
-		 */
-
-		// Load Front End Assets.
-		add_action( 'wp_enqueue_scripts', array( $this, 'assets' ), 10 );
-
-		// Load Block Front and Back End Assets (can use a conditional to restrict load).
-		add_action( 'enqueue_block_assets', array( $this, 'block_assets' ) );
-
-		// Load WordPress Global Admin Assets.
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_assets' ) );
-
-		// Load Block Editor Assets.
-		add_action( 'enqueue_block_editor_assets', array( $this, 'editor_assets' ) );
-
-		// Load Customizer Assets.
-		add_action( 'customize_preview_init', array( $this, 'customize_assets' ), 10 );
-
-		// Classic Editor Styles.
-		add_action( 'admin_enqueue_scripts', array( $this, 'classic_editor_assets' ) );
-
-		/**
-		 * Setup Block Categories
-		 *
-		 * If you would like an additional category for your block (in addition to common,
-		 * layout, widget etc... ). This is the hook to set it.
-		 */
-		add_action( 'block_categories', array( $this, 'block_categories' ), 10, 2 );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_editor_assets' ) );
+		add_action( 'enqueue_block_assets', array( $this, 'enqueue_block_assets' ) );
 
 		/**
 		 * Load Classes
@@ -136,39 +78,6 @@ class Main {
 	}
 
 	/**
-	 * Front end Assets.
-	 *
-	 * Assets that load on on the Front End of WordPress.
-	 *
-	 * @since 1.0.0
-	 */
-	public function assets() {
-
-		$scripts = '/assets/js/script.js';
-		$styles  = '/assets/css/style.css';
-
-		// Example: JavaScript will run on the Front End only.
-		if ( ! is_admin() ) {
-			// Enqueue JS.
-			wp_enqueue_script(
-				'plugin-name',
-				plugins_url( $scripts, __FILE__ ),
-				$this->dependencies,
-				filemtime( plugin_dir_path( __FILE__ ) . $scripts ),
-				true
-			);
-		}
-
-		// Enqueue Styles.
-		wp_enqueue_style(
-			'plugin-name',
-			plugins_url( $styles, __FILE__ ),
-			[],
-			filemtime( plugin_dir_path( __FILE__ ) . $styles )
-		);
-	}
-
-	/**
 	 * Block Assets.
 	 *
 	 * Assets that load on on the Gutenberg 'Save' and Admin view. If you want
@@ -176,161 +85,61 @@ class Main {
 	 *
 	 * @since 1.0.0
 	 */
-	public function block_assets() {
+	public function enqueue_block_editor_assets() {
 
-		$scripts = '/assets/js/block.js';
-		$styles  = '/assets/css/block.css';
+		$scripts = 'assets/js/blocks.js';
+		$styles  = 'assets/css/blocks.css';
 
-		// Example: JavaScript will run on the Front End only.
-		if ( ! is_admin() ) {
-			// Enqueue JS.
-			wp_enqueue_script(
-				'plugin-name-block',
-				plugins_url( $scripts, __FILE__ ),
-				$this->dependencies,
-				filemtime( plugin_dir_path( __FILE__ ) . $scripts ),
-				true
-			);
+		$webpack_server_http_scripts_root   = 'http://localhost:3000';
+		$webpack_server_http_scripts_a_file = $webpack_server_http_scripts_root . '/blocks.js';
+
+		// phpcs:disable
+		if ( @file_get_contents( $webpack_server_http_scripts_a_file ) !== false ) {
+			wp_enqueue_script( 'webpack_hmr', $webpack_server_http_scripts_a_file, [], 1, true );
 		}
+		// phpcs:enable
 
-		// Enqueue Styles.
-		wp_enqueue_style(
-			'plugin-name-block',
-			plugins_url( $styles, __FILE__ ),
-			[],
-			filemtime( plugin_dir_path( __FILE__ ) . $styles )
-		);
-	}
-
-	/**
-	 * Block Editor Assets.
-	 *
-	 * Assets that load on on the Gutenberg 'Edit' interface. Use the styles to
-	 * add styles that only impact the 'edit' view.
-	 *
-	 * The `editor.js` file is the combined React for your Gutenberg Block
-	 *
-	 * @since 1.0.0
-	 */
-	public function editor_assets() {
-
-		$scripts = '/assets/js/block-editor.js';
-		$styles  = '/assets/css/block-editor.css';
-
-		// Enqueue editor JS.
 		wp_enqueue_script(
-			'plugin-name-block-editor',
+			'snippet-block-block',
 			plugins_url( $scripts, __FILE__ ),
-			$this->dependencies,
+			[ 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ],
 			filemtime( plugin_dir_path( __FILE__ ) . $scripts ),
 			true
 		);
 
-		// Enqueue edtior Styles.
+		// Enqueue Styles.
 		wp_enqueue_style(
-			'plugin-name-block-editor',
+			'snippet-block-block',
 			plugins_url( $styles, __FILE__ ),
-			array(),
+			[],
 			filemtime( plugin_dir_path( __FILE__ ) . $styles )
 		);
 	}
 
 	/**
-	 * Enqueue Admin Styles.
-	 *
-	 * Assets to alter the editor (IE InspectorControls), does not impact front end block styles.
-	 *
-	 * @since 1.0.0
+	 * Loads frontend and backend scripts
 	 */
-	public function admin_assets() {
-
-		$styles  = '/assets/css/admin.css';
-		$scripts = '/assets/js/admin.js';
-
-		// Enqueue Styles.
-		wp_enqueue_style(
-			'plugin-name-admin',
-			plugins_url( $styles, __FILE__ ),
-			[],
-			filemtime( plugin_dir_path( __FILE__ ) . $styles )
-		);
-
-		// Enqueue edtior JS.
+	public function enqueue_block_assets() {
+		$scripts = 'assets/js/frontend.js';
 		wp_enqueue_script(
-			'plugin-name-admin',
-			plugins_url( $scripts, __FILE__ ),
-			array(),
-			filemtime( plugin_dir_path( __FILE__ ) . $styles ),
+			'sw-hightlight',
+			'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js',
+			[],
+			'9.15.6',
 			true
 		);
-	}
-
-	/**
-	 * Customizer Assets.
-	 *
-	 * Assets that load on on the Customizer.
-	 *
-	 * @since 1.0.0
-	 */
-	public function customize_assets() {
-
-		$scripts = '/assets/js/customizer.js';
-		$styles  = '/assets/css/customizer.css';
-
-		// Enqueue Styles.
 		wp_enqueue_style(
-			'plugin-name-customizer',
-			plugins_url( $styles, __FILE__ ),
+			'sw-hightlight',
+			'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dark.min.css',
 			[],
-			filemtime( plugin_dir_path( __FILE__ ) . $styles )
+			'9.15.6'
 		);
-
-		// Enqueue JS.
 		wp_enqueue_script(
-			'plugin-name-customizer',
+			'snippet-block-block',
 			plugins_url( $scripts, __FILE__ ),
-			$this->dependencies,
+			[],
 			filemtime( plugin_dir_path( __FILE__ ) . $scripts ),
 			true
-		);
-	}
-
-	/**
-	 * Classic Edtior Assets.
-	 *
-	 * CSS that loads in the classic editor only.
-	 *
-	 * @since 1.0.0
-	 */
-	public function classic_editor_assets() {
-
-		$styles = 'assets/css/editor.css';
-
-		add_editor_style(
-			plugins_url( $styles, __FILE__ ) .
-			'?v=' . filemtime( plugin_dir_path( __FILE__ ) . $styles )
-		);
-	}
-
-	/**
-	 * Block Categories
-	 *
-	 * Create a custom category to host your blocks.
-	 *
-	 * @param  array $categories Array of categories.
-	 * @return array $categories Array of categories.
-	 *
-	 * @since 1.0.0
-	 */
-	public function block_categories( $categories ) {
-		return array_merge(
-			$categories,
-			array(
-				array(
-					'slug'  => 'starter-blocks',
-					'title' => __( 'Starter Blocks', 'plugin-name' ),
-				),
-			)
 		);
 	}
 
@@ -339,23 +148,18 @@ class Main {
 	 */
 	public function includes() {
 
-		// Require Classes.
-		require_once 'php/class-activator.php';
-		require_once 'php/class-deactivator.php';
-		require_once 'php/class-uninstaller.php';
-
 		// Instantiate Classes.
-		$activator        = new Activator();
-		$deactivator      = new Deactivator();
-		$uninstaller      = new Uninstaller();
+		$activator   = new Activator();
+		$deactivator = new Deactivator();
+		$uninstaller = new Uninstaller();
 
 		// Run Code.
-		$activator->run();        // Run code on activation.
-		$deactivator->run();      // Run code on deactivation.
-		$uninstaller->run();      // Run code on uninstallation.
+		$activator->run();   // Run code on activation.
+		$deactivator->run(); // Run code on deactivation.
+		$uninstaller->run(); // Run code on uninstallation.
 
 		// PHP in Blocks.
-		require_once 'blocks/block.php';
+		new MainBlock();
 	}
 }
 
