@@ -87,8 +87,9 @@ class Main {
 	 */
 	public function enqueue_block_editor_assets() {
 
-		$scripts = 'assets/js/blocks.js';
-		$styles  = 'assets/css/blocks.css';
+		$scripts    = 'assets/js/blocks.js';
+		$hightlight = 'assets/libraries/js/highlight.min.js';
+		$styles     = 'assets/css/blocks.css';
 
 		$webpack_server_http_scripts_root   = 'http://localhost:3000';
 		$webpack_server_http_scripts_a_file = $webpack_server_http_scripts_root . '/blocks.js';
@@ -123,7 +124,7 @@ class Main {
 		$scripts = 'assets/js/frontend.js';
 		wp_enqueue_script(
 			'sw-hightlight',
-			'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js',
+			plugins_url( $hightlight, __FILE__ ),
 			[],
 			'9.15.6',
 			true
