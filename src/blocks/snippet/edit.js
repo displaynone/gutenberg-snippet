@@ -12,6 +12,7 @@ import {
 	Toolbar,
 } from '@wordpress/components';
 import { InspectorControls, BlockControls } from '@wordpress/editor';
+import Highlight from 'react-highlight';
 
 const languages = [
 	{ label: __( 'Select a language', 'sw-snippet' ), value: '' },
@@ -59,12 +60,6 @@ export default class BlockEdit extends Component {
 			preview: false,
 		};
 		this.codeRef = createRef();
-	}
-
-	componentDidUpdate() {
-		if ( ( this.state.preview || ! this.isSelected ) && this.codeRef && this.codeRef.current ) {
-			window.hljs.highlightBlock( this.codeRef.current );
-		}
 	}
 
 	/**
@@ -125,11 +120,9 @@ export default class BlockEdit extends Component {
 					onChange={ value => setAttributes( { content: value } ) }
 				/> }
 				{ ( ! isSelected || this.state.preview ) &&
-					<pre className={ language }>
-						<code ref={ this.codeRef }>
-							{ content }
-						</code>
-					</pre>
+					<Highlight className={ language }>
+						{ content }
+					</Highlight>
 				}
 			</div>
 		);

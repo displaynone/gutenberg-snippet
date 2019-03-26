@@ -97,6 +97,7 @@ module.exports = {
 			'react-dom': 'ReactDOM',
 			jquery: 'jQuery',
 			lodash: 'lodash',
+			'highlight.js': 'hljs',
 		},
 		// Define Wordpress libraries as externals
 		// see https://webpack.js.org/configuration/externals/#function

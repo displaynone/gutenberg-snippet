@@ -44,6 +44,7 @@
 		"babel-plugin-lodash": "^3.3.4",
 		"create-react-class": "^15.6.3",
 		"highlightjs": "^9.12.0",
-		"prop-types": "^15.7.2"
-	}
+		"prop-types": "^15.7.2",
+		"react-highlight": "^0.12.0"
+  }
 }
