@@ -39,3 +39,18 @@ Original webpack configuration (before modifications) from [Zac Gordon's Gutenbe
 Original deploy script (before modifications) from [Garry Jones](https://github.com/GaryJones/wordpress-plugin-git-flow-svn-deploy).
 
 Webpack HMR thanks to [Christian Glingener](https://github.com/CGlingener)
+
+## Development
+
+If you want to use Webpack HMR, add this lines to your `wp-config.php` file. I tried to add them to the plugin but it is not allowed by WordPress plugin reviewers
+
+```php
+$webpack_server_http_scripts_root   = 'http://localhost:3000';
+$webpack_server_http_scripts_a_file = $webpack_server_http_scripts_root . '/blocks.js';
+
+// phpcs:disable
+if ( @file_get_contents( $webpack_server_http_scripts_a_file ) !== false ) {
+	wp_enqueue_script( 'webpack_hmr', $webpack_server_http_scripts_a_file, [], 1, true );
+}
+// phpcs:enable
+```
