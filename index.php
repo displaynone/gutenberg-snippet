@@ -90,15 +90,6 @@ class Main {
 		$scripts = 'assets/js/blocks.js';
 		$styles  = 'assets/css/blocks.css';
 
-		$webpack_server_http_scripts_root   = 'http://localhost:3000';
-		$webpack_server_http_scripts_a_file = $webpack_server_http_scripts_root . '/blocks.js';
-
-		// phpcs:disable
-		if ( @file_get_contents( $webpack_server_http_scripts_a_file ) !== false ) {
-			wp_enqueue_script( 'webpack_hmr', $webpack_server_http_scripts_a_file, [], 1, true );
-		}
-		// phpcs:enable
-
 		$this->enqueue_highlight();
 
 		wp_enqueue_script(
