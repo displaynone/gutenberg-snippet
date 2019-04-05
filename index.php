@@ -5,7 +5,7 @@
  * @package SentidoWeb/Blocks/Snippet
  *
  * Plugin Name: Snippets Block
- * Plugin URI: https://github.com/displaynone/
+ * Plugin URI: https://github.com/displaynone/gutenberg-snippet
  * Description: Allows to add snippets blocks to your content: Javascript, CSS, HTML...
  * Author: Luis Sacristán
  * Author URI: https://sentidoweb.com/
