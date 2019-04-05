@@ -18,7 +18,7 @@ echo
 
 # Set up some default values. Feel free to change these in your own script
 CURRENTDIR=`pwd`
-PLUGINSLUG="plugin-name"
+PLUGINSLUG="snippets-block"
 default_svnpath="/tmp/$PLUGINSLUG"
 default_svnurl="https://plugins.svn.wordpress.org/$PLUGINSLUG"
 default_svnuser="author_wordpress_username"
@@ -149,11 +149,16 @@ fi
 # Support for the /assets folder on the .org repo.
 echo "Moving assets"
 
+# Moving npm modules
+mkdir -p $SVNPATH/trunk/node_modules
+cp $GITPATH/node_modules/highlightjs $SVNPATH
+
 # Make the directory if it doesn't already exist
 mkdir -p $SVNPATH/assets/
 
 # Move wp-org files into /assets
 mv $SVNPATH/trunk/deploy/wp-org/* $SVNPATH/assets/
+mv $SVNPATH/trunk/docs/*.png $SVNPATH/assets/
 svn add --force $SVNPATH/assets/
 
 # Delete the deploy folder from SVN
@@ -162,6 +167,11 @@ svn delete --force $SVNPATH/trunk/deploy/
 # We dont want all of our toys in the SVN repo, so lets remove them:
 echo "Deleting unwanted assets"
 svn delete --force $SVNPATH/trunk/docs
+svn delete --force $SVNPATH/trunk/src
+svn delete --force $SVNPATH/trunk/.*
+svn delete --force $SVNPATH/trunk/composer*
+svn delete --force $SVNPATH/trunk/package*
+svn delete --force $SVNPATH/trunk/webpack*
 
 echo "Changing directory to SVN and committing to trunk"
 cd $SVNPATH/trunk/

@@ -29,6 +29,35 @@ Save the post and check your front-end
 
 ![Step 4](./docs/step4.png)
 
+## Supported languages
+
+- Apache
+- Bash
+- C#
+- C++
+- CSS
+- Erlang
+- Go
+- HTML
+- XML
+- Handlebars
+- JSON
+- Java
+- JavaScript
+- Markdown
+- Objective C
+- PHP
+- Python
+- R
+- Ruby
+- Rust
+- SCSS
+- SQL
+- Shell
+- Twig
+- TypeScript
+
+
 
 ## Credits
 

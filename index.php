@@ -9,7 +9,7 @@
  * Description: Allows to add snippets blocks to your content: Javascript, CSS, HTML...
  * Author: Luis Sacristán
  * Author URI: https://sentidoweb.com/
- * Version: 1.0.0
+ * Version: 1.0.2
  * License: GPL2+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain: sw-snippet
