@@ -95,7 +95,7 @@ class Main {
 		wp_enqueue_script(
 			'snippet-block-block',
 			plugins_url( $scripts, __FILE__ ),
-			[ 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ],
+			[ 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'wp-data' ],
 			filemtime( plugin_dir_path( __FILE__ ) . $scripts ),
 			true
 		);
@@ -114,13 +114,23 @@ class Main {
 	 */
 	public function enqueue_block_assets() {
 		$scripts = 'assets/js/frontend.js';
+		$styles  = 'assets/css/blocks.css';
+
 		$this->enqueue_highlight();
+
 		wp_enqueue_script(
 			'snippet-block-block',
 			plugins_url( $scripts, __FILE__ ),
 			[],
 			filemtime( plugin_dir_path( __FILE__ ) . $scripts ),
 			true
+		);
+
+		wp_enqueue_style(
+			'snippet-block-block',
+			plugins_url( $styles, __FILE__ ),
+			[],
+			filemtime( plugin_dir_path( __FILE__ ) . $styles )
 		);
 	}
 

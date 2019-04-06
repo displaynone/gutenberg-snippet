@@ -1,1 +1,31 @@
+.wp-block-sentidoweb-snippet {
+	position: relative;
 
+	button {
+		position: absolute;
+		right: 0;
+		position: absolute;
+		right: 1px;
+		text-transform: uppercase;
+		border: 0;
+		padding: 5px 10px;
+		font-size: 10px;
+		top: 1px;
+		background: #ccc;
+		color: #666;
+		display: none;
+		cursor: pointer;
+		border-radius: 0;
+
+		&:hover {
+			background: #aaa;
+			color: #333;
+		}
+	}
+
+	&:hover {
+		button {
+			display: inline-block;
+		}
+	}
+}

@@ -3,12 +3,14 @@
  *
  * @since 1.0.0
  */
-import { Component, createRef } from '@wordpress/element';
+import { Component, createRef, Fragment } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import {
 	PanelBody,
 	SelectControl,
 	TextareaControl,
+	TextControl,
+	ToggleControl,
 	Toolbar,
 } from '@wordpress/components';
 import { InspectorControls, BlockControls } from '@wordpress/editor';
@@ -76,7 +78,10 @@ export default class BlockEdit extends Component {
 		} = this.props;
 		const {
 			content,
+			copyLabelCopyButton,
+			copiedLabelCopyButton,
 			language,
+			showCopyButton,
 		} = attributes;
 
 		const controls = this.state.preview ?
@@ -107,6 +112,25 @@ export default class BlockEdit extends Component {
 							options={ languages }
 							onChange={ value => setAttributes( { language: value } ) }
 						/>
+						<ToggleControl
+							label={ __( 'Add Copy button', 'sw-snippet' ) }
+							checked={ showCopyButton }
+							onChange={ value => setAttributes( { showCopyButton: value } ) }
+						/>
+						{ showCopyButton && [
+							<TextControl
+								key="copy-label"
+								label={ __( '\'Copy\' label', 'sw-snippet' ) }
+								value={ copyLabelCopyButton }
+								onChange={ value => setAttributes( { copyLabelCopyButton: value } ) }
+							/>,
+							<TextControl
+								key="copied-label"
+								label={ __( '\'Copied\' label', 'sw-snippet' ) }
+								value={ copiedLabelCopyButton }
+								onChange={ value => setAttributes( { copiedLabelCopyButton: value } ) }
+							/>,
+						] }
 					</PanelBody>
 				</InspectorControls>
 				<BlockControls>
@@ -120,9 +144,17 @@ export default class BlockEdit extends Component {
 					onChange={ value => setAttributes( { content: value } ) }
 				/> }
 				{ ( ! isSelected || this.state.preview ) &&
-					<Highlight className={ language }>
-						{ content }
-					</Highlight>
+					<Fragment>
+						{ showCopyButton &&
+							<button className="sw-snippet-button">
+								{ copyLabelCopyButton }
+							</button>
+						}
+
+						<Highlight className={ language }>
+							{ content }
+						</Highlight>
+					</Fragment>
 				}
 			</div>
 		);

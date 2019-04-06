@@ -20,11 +20,23 @@ export default class BlockSave extends Component {
 		} = this.props;
 		const {
 			content,
+			copyLabelCopyButton,
+			copiedLabelCopyButton,
 			language,
+			showCopyButton,
 		} = attributes;
 
 		return (
 			<pre>
+				{ showCopyButton &&
+					<button
+						className="sw-snippet-button"
+						data-label-copy={ copyLabelCopyButton }
+						data-label-copied={ copiedLabelCopyButton }
+					>
+						{ copyLabelCopyButton }
+					</button>
+				}
 				<code
 					className={ language }
 				>

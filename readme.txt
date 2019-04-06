@@ -77,11 +77,15 @@ It uses [highlight.js](https://highlightjs.org/)
 
 == Changelog ==
 
-= 1.0.0 =
-* First version.
+= 1.1.0 =
+
+* Added copy button: it allows to copy to clipboard the content of the snippet
 
 = 1.0.1 =
 * Cleaning some first SVN version mess
+
+= 1.0.0 =
+* First version.
 
 == Upgrade Notice ==
 
