@@ -81,6 +81,7 @@ export default class BlockEdit extends Component {
 			copyLabelCopyButton,
 			copiedLabelCopyButton,
 			language,
+			saveParsed,
 			showCopyButton,
 		} = attributes;
 
@@ -131,6 +132,12 @@ export default class BlockEdit extends Component {
 								onChange={ value => setAttributes( { copiedLabelCopyButton: value } ) }
 							/>,
 						] }
+						<ToggleControl
+							label={ __( 'Save formatted content', 'sw-snippet' ) }
+							help={ __( 'Code snippet content will saved as HTML', 'sw-snippet' ) }
+							checked={ saveParsed }
+							onChange={ value => setAttributes( { saveParsed: value } ) }
+						/>
 					</PanelBody>
 				</InspectorControls>
 				<BlockControls>

@@ -5,14 +5,6 @@ export default {
 		type: 'string',
 		default: '',
 	},
-	language: {
-		type: 'string',
-		default: '',
-	},
-	showCopyButton: {
-		type: 'boolean',
-		default: false,
-	},
 	copyLabelCopyButton: {
 		type: 'string',
 		default: __( 'Copy', 'sw-snippet' ),
@@ -20,5 +12,17 @@ export default {
 	copiedLabelCopyButton: {
 		type: 'string',
 		default: __( 'Copied', 'sw-snippet' ),
+	},
+	language: {
+		type: 'string',
+		default: '',
+	},
+	saveParsed: {
+		type: 'boolean',
+		default: false,
+	},
+	showCopyButton: {
+		type: 'boolean',
+		default: false,
 	},
 };

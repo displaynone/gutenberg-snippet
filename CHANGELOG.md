@@ -3,6 +3,7 @@
 ### 1.1.0
 
 - [[#1](https://github.com/displaynone/gutenberg-snippet/issues/1)] Added copy button: it allows to copy to clipboard the content of the snippet
+- [[#5](https://github.com/displaynone/gutenberg-snippet/issues/5)] Save formatted code: instead of parsing the content using `highlight.js` in the front-end, the HTML is saved directly in the backend
 - [[#3](https://github.com/displaynone/gutenberg-snippet/issues/3)] Fix: `filemtime` fails in Windows when getting the plugin version :bug:
 
 ### 1.0.2
