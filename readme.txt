@@ -80,6 +80,7 @@ It uses [highlight.js](https://highlightjs.org/)
 = 1.1.0 =
 
 * Added copy button: it allows to copy to clipboard the content of the snippet
+* Fixed `filemtime` in Windows
 
 = 1.0.1 =
 * Cleaning some first SVN version mess
@@ -103,4 +104,3 @@ There are no known issues at this time.
 
 * Allow several themes
 * Avoid `highlight.js` library in the frontend
-* Copy code button
