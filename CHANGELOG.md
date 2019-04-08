@@ -2,7 +2,8 @@
 
 ### 1.1.0
 
-- Added copy button: it allows to copy to clipboard the content of the snippet
+- #1 Added copy button: it allows to copy to clipboard the content of the snippet
+- #3 Fix: `filemtime` fails in Windows when getting the plugin version :bug:
 
 ### 1.0.2
 
