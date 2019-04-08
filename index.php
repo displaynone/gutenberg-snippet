@@ -117,12 +117,13 @@ class Main {
 		$styles  = 'assets/css/blocks.css';
 
 		$this->enqueue_highlight();
+		$plugin_version = $this->get_plugin_version();
 
 		wp_enqueue_script(
 			'snippet-block-block',
 			plugins_url( $scripts, __FILE__ ),
 			[],
-			filemtime( plugin_dir_path( __FILE__ ) . $scripts ),
+			$plugin_version,
 			true
 		);
 
@@ -130,7 +131,7 @@ class Main {
 			'snippet-block-block',
 			plugins_url( $styles, __FILE__ ),
 			[],
-			filemtime( plugin_dir_path( __FILE__ ) . $styles )
+			$plugin_version
 		);
 	}
 
@@ -172,6 +173,19 @@ class Main {
 
 		// PHP in Blocks.
 		new MainBlock();
+	}
+
+	/**
+	 * Gets the plugin version
+	 *
+	 * @return {string}
+	 */
+	private function get_plugin_version() {
+		if ( ! function_exists( 'get_plugin_data' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+		$plugin_data = \get_plugin_data( __FILE__ );
+		return $plugin_data['Version'];
 	}
 }
 
