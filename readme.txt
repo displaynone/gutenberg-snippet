@@ -80,6 +80,7 @@ It uses [highlight.js](https://highlightjs.org/)
 = 1.1.0 =
 
 * Added copy button: it allows to copy to clipboard the content of the snippet
+* Save formatted code: instead of parsing the content using `highlight.js` in the front-end, the HTML is saved directly in the backend
 * Fixed `filemtime` in Windows
 
 = 1.0.1 =
@@ -103,4 +104,4 @@ There are no known issues at this time.
 == Roadmap ==
 
 * Allow several themes
-* Avoid `highlight.js` library in the frontend
+

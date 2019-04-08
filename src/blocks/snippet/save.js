@@ -10,6 +10,42 @@ import { Component } from '@wordpress/element';
  */
 export default class BlockSave extends Component {
 	/**
+	 * Returns the content that is going to be saved
+	 * Depending on `saveParsed` it returns the content or the parsed content
+	 *
+	 * @return {JSX}
+	 */
+	getContent() {
+		const {
+			attributes,
+		} = this.props;
+		const {
+			content,
+			language,
+			saveParsed,
+		} = attributes;
+		if ( ! saveParsed || ! window.hljs ) {
+			return (
+				<code
+					className={ language }
+				>
+					{ content }
+				</code>
+			);
+		}
+
+		const parsedObject = window.hljs.highlight( language, content );
+		return (
+			<code
+				className={ `${ language } hljs` }
+				dangerouslySetInnerHTML={ {
+					__html: parsedObject.value,
+				} }
+			/>
+		);
+	}
+
+	/**
 	 * Renders block in the frontend
 	 *
 	 * @return {jsx}
@@ -19,10 +55,8 @@ export default class BlockSave extends Component {
 			attributes,
 		} = this.props;
 		const {
-			content,
 			copyLabelCopyButton,
 			copiedLabelCopyButton,
-			language,
 			showCopyButton,
 		} = attributes;
 
@@ -37,11 +71,7 @@ export default class BlockSave extends Component {
 						{ copyLabelCopyButton }
 					</button>
 				}
-				<code
-					className={ language }
-				>
-					{ content }
-				</code>
+				{ this.getContent() }
 			</pre>
 		);
 	}
