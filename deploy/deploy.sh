@@ -28,6 +28,14 @@ MAINFILE="index.php"
 SVNUSER="author_wordpress_username"
 SVNPATH="/tmp/$PLUGINSLUG"
 
+# Get wporg username
+echo "Username on WordPress.org."
+printf "($default_svnuser): "
+read -e input
+input="${input%/}" # Strip trailing slash
+SVNUSER="${input:-$default_svnuser}" # Populate with default if empty
+echo
+
 # Get some user input
 # Can't use the -i flag for read, since that doesn't work for bash 3
 echo "1 - Remote SVN repository on WordPress.org."
