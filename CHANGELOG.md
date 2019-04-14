@@ -1,5 +1,9 @@
 ## Changelog
 
+### 1.2.0
+
+- [[#7](https://github.com/displaynone/gutenberg-snippet/issues/7)] Fixed HMR.
+
 ### 1.1.0
 
 - [[#1](https://github.com/displaynone/gutenberg-snippet/issues/1)] Added copy button: it allows to copy to clipboard the content of the snippet
