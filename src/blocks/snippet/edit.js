@@ -138,6 +138,7 @@ export default class BlockEdit extends Component {
 							checked={ saveParsed }
 							onChange={ value => setAttributes( { saveParsed: value } ) }
 						/>
+						<p>Hola!!! guapi</p>
 					</PanelBody>
 				</InspectorControls>
 				<BlockControls>
