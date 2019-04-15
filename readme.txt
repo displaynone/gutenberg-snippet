@@ -3,7 +3,7 @@ Contributors: displaynone
 Tags: gutenberg, blocks, snippets, highlight.js
 Requires at least: 5.0
 Tested up to: 5.0
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPL2+
 
 Allows to add snippets blocks to your content: Javascript, CSS, HTML...
