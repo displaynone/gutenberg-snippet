@@ -3,6 +3,7 @@
 ### 1.2.0
 
 - [[#7](https://github.com/displaynone/gutenberg-snippet/issues/7)] Fixed HMR.
+- [[#9](https://github.com/displaynone/gutenberg-snippet/issues/9)] Added line numbers. Thanks [Waqas Bin Hasan](https://twitter.com/waqasbinhasan) for the tip.
 
 ### 1.1.0
 

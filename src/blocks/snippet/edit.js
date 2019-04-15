@@ -3,7 +3,7 @@
  *
  * @since 1.0.0
  */
-import { Component, createRef, Fragment } from '@wordpress/element';
+import { Component, Fragment } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import {
 	PanelBody,
@@ -14,7 +14,8 @@ import {
 	Toolbar,
 } from '@wordpress/components';
 import { InspectorControls, BlockControls } from '@wordpress/editor';
-import Highlight from 'react-highlight';
+import '../../utils/hack-highlight';
+import Highlight from './components/highlight';
 
 const languages = [
 	{ label: __( 'Select a language', 'sw-snippet' ), value: '' },
@@ -61,7 +62,6 @@ export default class BlockEdit extends Component {
 		this.state = {
 			preview: false,
 		};
-		this.codeRef = createRef();
 	}
 
 	/**
@@ -83,6 +83,7 @@ export default class BlockEdit extends Component {
 			language,
 			saveParsed,
 			showCopyButton,
+			showLineNumbers,
 		} = attributes;
 
 		const controls = this.state.preview ?
@@ -100,6 +101,11 @@ export default class BlockEdit extends Component {
 					onClick: () => this.setState( { preview: true } ),
 				},
 			];
+
+		const classNames = [ language ];
+		if ( showLineNumbers ) {
+			classNames.push( 'sw_show_line_numbers' );
+		}
 
 		return (
 			<div className={ className }>
@@ -138,7 +144,11 @@ export default class BlockEdit extends Component {
 							checked={ saveParsed }
 							onChange={ value => setAttributes( { saveParsed: value } ) }
 						/>
-						<p>Hola!!! guapi</p>
+						<ToggleControl
+							label={ __( 'Show line numbers', 'sw-snippet' ) }
+							checked={ showLineNumbers }
+							onChange={ value => setAttributes( { showLineNumbers: value } ) }
+						/>
 					</PanelBody>
 				</InspectorControls>
 				<BlockControls>
@@ -159,7 +169,7 @@ export default class BlockEdit extends Component {
 							</button>
 						}
 
-						<Highlight className={ language }>
+						<Highlight className={ classNames.join( ' ' ) }>
 							{ content }
 						</Highlight>
 					</Fragment>

@@ -77,6 +77,10 @@ It uses [highlight.js](https://highlightjs.org/)
 
 == Changelog ==
 
+= 1.2.0 =
+
+* Added line numbers. Thanks [Waqas Bin Hasan](https://wordpress.org/support/users/waqasb/) for the tip.
+
 = 1.1.0 =
 
 * Added copy button: it allows to copy to clipboard the content of the snippet

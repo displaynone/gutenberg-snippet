@@ -1,5 +1,14 @@
 .wp-block-sentidoweb-snippet {
 	position: relative;
+	counter-reset: linenumber;
+
+	& .sw_new_line::before {
+		content: counter(linenumber, decimal-leading-zero);
+		counter-increment: linenumber;
+		padding-right: 15px;
+		font-size: 0.8em;
+		opacity: 0.6;
+	}
 
 	button {
 		position: absolute;

@@ -1,7 +1,11 @@
+import hljs from 'highlight.js';
+import hackHighlight from '../../utils/hack-highlight';
+
 document.addEventListener( 'DOMContentLoaded', () => {
 	document.querySelectorAll( 'pre code' ).forEach( block => {
-		if ( !! window.hljs ) {
-			window.hljs.highlightBlock( block );
+		if ( !! hljs ) {
+			hackHighlight();
+			hljs.highlightBlock( block );
 		}
 	} );
 
