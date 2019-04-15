@@ -25,4 +25,8 @@ export default {
 		type: 'boolean',
 		default: false,
 	},
+	showLineNumbers: {
+		type: 'boolean',
+		default: false,
+	},
 };

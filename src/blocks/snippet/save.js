@@ -23,21 +23,28 @@ export default class BlockSave extends Component {
 			content,
 			language,
 			saveParsed,
+			showLineNumbers,
 		} = attributes;
+
+		const classNames = [ language ];
+		if ( showLineNumbers ) {
+			classNames.push( 'sw_show_line_numbers' );
+		}
 		if ( ! saveParsed || ! window.hljs ) {
 			return (
 				<code
-					className={ language }
+					className={ classNames.join( ' ' ) }
 				>
 					{ content }
 				</code>
 			);
 		}
 
+		classNames.push( 'hljs' );
 		const parsedObject = window.hljs.highlight( language, content );
 		return (
 			<code
-				className={ `${ language } hljs` }
+				className={ classNames.join( ' ' ) }
 				dangerouslySetInnerHTML={ {
 					__html: parsedObject.value,
 				} }
