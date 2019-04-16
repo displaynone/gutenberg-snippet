@@ -1,11 +1,21 @@
 .wp-block-sentidoweb-snippet {
 	position: relative;
 	counter-reset: linenumber;
+	white-space: pre-wrap;
+
+	pre {
+		white-space: pre-wrap;
+	}
+
+	.sw_show_line_numbers {
+		padding-left: 35px;
+	}
 
 	& .sw_new_line::before {
 		content: counter(linenumber, decimal-leading-zero);
 		counter-increment: linenumber;
-		padding-right: 15px;
+		position: absolute;
+		left: 10px;
 		font-size: 0.8em;
 		opacity: 0.6;
 	}
