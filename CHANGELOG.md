@@ -1,5 +1,9 @@
 ## Changelog
 
+### 1.2.1
+
+- [[#11](https://github.com/displaynone/gutenberg-snippet/issues/11)] Fixed line numbers with long lines.
+
 ### 1.2.0
 
 - [[#7](https://github.com/displaynone/gutenberg-snippet/issues/7)] Fixed HMR.

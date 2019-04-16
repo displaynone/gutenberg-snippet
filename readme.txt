@@ -3,7 +3,7 @@ Contributors: displaynone
 Tags: gutenberg, blocks, snippets, highlight.js
 Requires at least: 5.0
 Tested up to: 5.0
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPL2+
 
 Allows to add snippets blocks to your content: Javascript, CSS, HTML...
@@ -76,6 +76,10 @@ It uses [highlight.js](https://highlightjs.org/)
 `androidstudio`
 
 == Changelog ==
+
+= 1.2.1 =
+
+* Fixed line numbers with long lines.
 
 = 1.2.0 =
 
