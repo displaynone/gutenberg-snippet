@@ -1,0 +1,104 @@
+# Copyright (C) 2019 Luis Sacristán
+# This file is distributed under the same license as the Snippets Block plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Snippets Block 1.2.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snippet-block\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-04-29T22:44:37+02:00\n"
+"PO-Revision-Date: 2019-04-29 22:50+0200\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Domain: sw-snippet\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_ES\n"
+
+#. Plugin Name of the plugin
+msgid "Snippets Block"
+msgstr "Snippets Block"
+
+#. Plugin URI of the plugin
+msgid "https://github.com/displaynone/gutenberg-snippet"
+msgstr "https://github.com/displaynone/gutenberg-snippet"
+
+#. Description of the plugin
+msgid "Allows to add snippets blocks to your content: Javascript, CSS, HTML..."
+msgstr "Permite añadir bloques con código en tu contenido: Javascript, CSS, HTML..."
+
+#. Author of the plugin
+msgid "Luis Sacristán"
+msgstr "Luis Sacristán"
+
+#. Author URI of the plugin
+msgid "https://sentidoweb.com/"
+msgstr "https://sentidoweb.com/"
+
+#: src/blocks/snippet/attributes.js:10
+msgid "Copy"
+msgstr "Copiar"
+
+#: src/blocks/snippet/attributes.js:14
+msgid "Copied"
+msgstr "Copiado"
+
+#: src/blocks/snippet/index.js:21
+msgid "Snippets editor"
+msgstr "Editor Snippets"
+
+#: src/blocks/snippet/index.js:25
+msgid "code"
+msgstr "código"
+
+#: src/blocks/snippet/index.js:26
+msgid "format"
+msgstr "formato"
+
+#: src/blocks/snippet/index.js:27
+msgid "snippet"
+msgstr "snippet"
+
+#: src/blocks/snippet/edit.js:21
+msgid "Select a language"
+msgstr "Selecciona un lenguaje"
+
+#: src/blocks/snippet/edit.js:93
+msgid "Edit"
+msgstr "Editar"
+
+#: src/blocks/snippet/edit.js:100
+msgid "Preview"
+msgstr "Mostrar"
+
+#: src/blocks/snippet/edit.js:114
+msgid "Snippet Settings"
+msgstr "Opciones del código"
+
+#: src/blocks/snippet/edit.js:117
+msgid "Language"
+msgstr "Lenguaje"
+
+#: src/blocks/snippet/edit.js:123
+msgid "Add Copy button"
+msgstr "Añadir botón Copiar"
+
+#: src/blocks/snippet/edit.js:130
+msgid "'Copy' label"
+msgstr "Etiqueta 'Copiar'"
+
+#: src/blocks/snippet/edit.js:136
+msgid "'Copied' label"
+msgstr "Etiqueta 'Copiado'"
+
+#: src/blocks/snippet/edit.js:142
+msgid "Save formatted content"
+msgstr "Guardar contenido formateado"
+
+#: src/blocks/snippet/edit.js:143
+msgid "Code snippet content will saved as HTML"
+msgstr "El contenido del código será guardado como HTML"
+
+#: src/blocks/snippet/edit.js:148
+msgid "Show line numbers"
+msgstr "Mostrar números de línea"
