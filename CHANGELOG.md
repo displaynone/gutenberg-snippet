@@ -1,5 +1,9 @@
 ## Changelog
 
+### 1.3.0
+
+- [[#13](https://github.com/displaynone/gutenberg-snippet/issues/13)] Added Spanish translation.
+
 ### 1.2.1
 
 - [[#11](https://github.com/displaynone/gutenberg-snippet/issues/11)] Fixed line numbers with long lines.

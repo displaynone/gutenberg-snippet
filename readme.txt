@@ -2,7 +2,7 @@
 Contributors: displaynone
 Tags: gutenberg, blocks, snippets, highlight.js
 Requires at least: 5.0
-Tested up to: 5.0
+Tested up to: 5.2
 Stable tag: 1.2.1
 License: GPL2+
 
@@ -76,6 +76,10 @@ It uses [highlight.js](https://highlightjs.org/)
 `androidstudio`
 
 == Changelog ==
+
+= 1.3.0 =
+
+* Added Spanish translation.
 
 = 1.2.1 =
 
