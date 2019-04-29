@@ -117,6 +117,8 @@ class Main {
 			filemtime( plugin_dir_path( __FILE__ ) . $scripts ),
 			true
 		);
+
+		wp_set_script_translations( 'snippet-block-block', 'sw-snippet', plugin_dir_path( __FILE__ ) . 'languages' );
 	}
 
 	/**
